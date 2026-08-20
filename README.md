@@ -43,7 +43,7 @@ python scripts/summarize.py 8
 | `days_back` | 抓取最近多少天的论文（默认 30；超过 3 倍窗口的旧论文自动清理） |
 | `max_per_field_arxiv` / `max_per_field_s2` | 每个领域每个来源的抓取上限 |
 | `claude_backend` | `proxy`（默认，调用本机反代）或 `cli`（直接启动 `claude -p`） |
-| `claude_base_url` | 反代地址，默认 `http://127.0.0.1:8787`；也可用环境变量 `CLAUDE_PROXY_URL` 覆盖 |
+| `claude_base_url` | 反代地址，默认 `http://localhost:8787`；也可用环境变量 `CLAUDE_PROXY_URL` 覆盖 |
 | `claude_api_key` | 反代未启用鉴权时填 `unused`；也可用环境变量 `CLAUDE_PROXY_KEY` 覆盖 |
 | `claude_model` | 总结用的模型（默认 `haiku`，可改 `sonnet` / `opus` 提高质量） |
 | `summarize_batch_size` | 每次 `claude -p` 调用总结几篇（默认 8） |

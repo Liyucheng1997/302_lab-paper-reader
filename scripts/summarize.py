@@ -72,7 +72,7 @@ def run_claude(prompt, claude_path):
 
 def run_proxy(prompt):
     """通过本机 claude -p 的 Anthropic 兼容反代生成总结。"""
-    base_url = os.environ.get("CLAUDE_PROXY_URL", CONFIG.get("claude_base_url", "http://127.0.0.1:8787"))
+    base_url = os.environ.get("CLAUDE_PROXY_URL", CONFIG.get("claude_base_url", "http://localhost:8787"))
     base_url = base_url.rstrip("/")
     url = base_url + ("/messages" if base_url.endswith("/v1") else "/v1/messages")
     api_key = os.environ.get("CLAUDE_PROXY_KEY", CONFIG.get("claude_api_key", "unused"))
