@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """调用 `claude -p` 为 data/papers.json 中尚未总结的论文批量生成中文总结。"""
 import json
+import os
 import re
 import shutil
 import subprocess
 import sys
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,9 +70,58 @@ def run_claude(prompt, claude_path):
     raise RuntimeError(last_err)
 
 
+def run_proxy(prompt):
+    """通过本机 claude -p 的 Anthropic 兼容反代生成总结。"""
+    base_url = os.environ.get("CLAUDE_PROXY_URL", CONFIG.get("claude_base_url", "http://127.0.0.1:8787"))
+    base_url = base_url.rstrip("/")
+    url = base_url + ("/messages" if base_url.endswith("/v1") else "/v1/messages")
+    api_key = os.environ.get("CLAUDE_PROXY_KEY", CONFIG.get("claude_api_key", "unused"))
+    body = json.dumps({
+        "model": CONFIG.get("claude_model", "haiku"),
+        "max_tokens": 8000,
+        "messages": [{"role": "user", "content": prompt}],
+    }, ensure_ascii=False).encode("utf-8")
+
+    last_err = None
+    for attempt in range(3):
+        request = urllib.request.Request(url, data=body, method="POST", headers={
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+        })
+        try:
+            with urllib.request.urlopen(request, timeout=600) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            text = "".join(
+                block.get("text", "") for block in payload.get("content", [])
+                if block.get("type") == "text"
+            )
+            if not text:
+                raise RuntimeError("反代返回内容为空")
+            return text
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")[:300]
+            last_err = f"反代返回 HTTP {exc.code}: {detail}"
+        except (urllib.error.URLError, TimeoutError, ValueError, RuntimeError) as exc:
+            last_err = f"反代调用失败: {exc}"
+        wait = 20 * (attempt + 1)
+        print(f"    {last_err}，{wait}s 后重试...", flush=True)
+        time.sleep(wait)
+    raise RuntimeError(last_err)
+
+
+def run_model(prompt, claude_path):
+    backend = CONFIG.get("claude_backend", "proxy").lower()
+    if backend == "proxy":
+        return run_proxy(prompt)
+    if backend == "cli":
+        return run_claude(prompt, claude_path)
+    raise RuntimeError(f"不支持的 claude_backend: {backend}")
+
+
 def summarize_batch(papers, claude_path):
     prompt = PROMPT_TEMPLATE.format(papers=build_batch_text(papers))
-    output = run_claude(prompt, claude_path)
+    output = run_model(prompt, claude_path)
     items = parse_json_array(output)
     by_id = {it.get("id"): it for it in items if isinstance(it, dict)}
     done = 0
@@ -87,8 +139,9 @@ def summarize_batch(papers, claude_path):
 
 def main():
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else None
-    claude_path = shutil.which("claude")
-    if not claude_path:
+    backend = CONFIG.get("claude_backend", "proxy").lower()
+    claude_path = shutil.which("claude") if backend == "cli" else None
+    if backend == "cli" and not claude_path:
         sys.exit("找不到 claude CLI，请确认已安装并在 PATH 中")
 
     db = json.loads(DATA_FILE.read_text(encoding="utf-8"))
@@ -98,7 +151,7 @@ def main():
     if not pending:
         print("所有论文均已总结，无需处理")
         return
-    print(f"待总结论文: {len(pending)} 篇，模型: {CONFIG.get('claude_model', 'haiku')}")
+    print(f"待总结论文: {len(pending)} 篇，后端: {backend}，模型: {CONFIG.get('claude_model', 'haiku')}")
 
     batch_size = CONFIG.get("summarize_batch_size", 8)
     total_done = 0

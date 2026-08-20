@@ -2,6 +2,9 @@
   "days_back": 30,
   "max_per_field_arxiv": 25,
   "max_per_field_s2": 15,
+  "claude_backend": "proxy",
+  "claude_base_url": "http://127.0.0.1:8787",
+  "claude_api_key": "unused",
   "claude_model": "haiku",
   "summarize_batch_size": 8,
   "fields": {

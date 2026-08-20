@@ -1,7 +1,7 @@
 # 领域论文阅读
 
 追踪 **控制、自动驾驶、汽车动力学、机器人、无人机、人工智能** 六个方向的近期论文，
-用 `claude -p` 自动生成中文总结，并在本地网站上浏览。
+通过本机 `claude -p` 反代自动生成中文总结，并在本地网站上浏览。
 
 ## 数据来源
 
@@ -42,6 +42,9 @@ python scripts/summarize.py 8
 |---|---|
 | `days_back` | 抓取最近多少天的论文（默认 30；超过 3 倍窗口的旧论文自动清理） |
 | `max_per_field_arxiv` / `max_per_field_s2` | 每个领域每个来源的抓取上限 |
+| `claude_backend` | `proxy`（默认，调用本机反代）或 `cli`（直接启动 `claude -p`） |
+| `claude_base_url` | 反代地址，默认 `http://127.0.0.1:8787`；也可用环境变量 `CLAUDE_PROXY_URL` 覆盖 |
+| `claude_api_key` | 反代未启用鉴权时填 `unused`；也可用环境变量 `CLAUDE_PROXY_KEY` 覆盖 |
 | `claude_model` | 总结用的模型（默认 `haiku`，可改 `sonnet` / `opus` 提高质量） |
 | `summarize_batch_size` | 每次 `claude -p` 调用总结几篇（默认 8） |
 | `fields.*.arxiv_query` | arXiv 检索式（分类 `cat:` 或关键词 `all:`） |
@@ -55,7 +58,7 @@ python scripts/summarize.py 8
 serve.py               网站服务器: 静态页面 + POST /api/update + GET /api/status
 config.json            领域与抓取配置
 scripts/fetch_papers.py  抓取 + 去重 + 清理过期
-scripts/summarize.py     调用 claude -p 批量中文总结（每批落盘，可中断续跑，限流自动重试）
+scripts/summarize.py     调用 claude -p 反代或 CLI 批量中文总结（每批落盘，可中断续跑，限流自动重试）
 scripts/update.py        命令行一键: 抓取 + 总结
 data/papers.json         论文库（含总结）
 index.html / app.js / style.css  网站前端
