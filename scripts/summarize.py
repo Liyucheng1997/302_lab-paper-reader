@@ -5,6 +5,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,17 +46,25 @@ def parse_json_array(text):
 
 
 def run_claude(prompt, claude_path):
-    result = subprocess.run(
-        [claude_path, "-p", "--model", CONFIG.get("claude_model", "haiku")],
-        input=prompt,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        timeout=600,
-    )
-    if result.returncode != 0:
-        raise RuntimeError(f"claude -p 失败: {result.stderr[:500]}")
-    return result.stdout
+    last_err = None
+    for attempt in range(3):
+        result = subprocess.run(
+            [claude_path, "-p", "--model", CONFIG.get("claude_model", "haiku")],
+            input=prompt,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=600,
+        )
+        if result.returncode == 0:
+            return result.stdout
+        detail = (result.stderr or "").strip() or (result.stdout or "").strip()
+        last_err = f"claude -p 失败 (exit {result.returncode}): {detail[:300]}"
+        wait = 20 * (attempt + 1)
+        print(f"    {last_err}，{wait}s 后重试...", flush=True)
+        time.sleep(wait)
+    raise RuntimeError(last_err)
 
 
 def summarize_batch(papers, claude_path):

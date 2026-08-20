@@ -25,6 +25,21 @@
       <option value="期刊">其他期刊</option>
     </select>
     <label class="chk"><input type="checkbox" id="only-summarized">仅看已总结</label>
+    <div class="update-box">
+      <select id="update-action">
+        <option value="all">抓取 + 总结</option>
+        <option value="fetch">仅抓取</option>
+        <option value="summarize">仅总结</option>
+      </select>
+      <button id="update-btn">🔄 更新</button>
+    </div>
+  </div>
+  <div id="update-panel" hidden>
+    <div class="update-panel-head">
+      <span id="update-title">正在更新...</span>
+      <button id="update-close" title="收起">✕</button>
+    </div>
+    <pre id="update-log"></pre>
   </div>
 </header>
 <main id="paper-list"></main>

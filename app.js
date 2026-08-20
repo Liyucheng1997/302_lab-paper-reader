@@ -78,11 +78,88 @@ function render() {
     : `<div class="empty">没有符合条件的论文。<br>运行 <code>python scripts/update.py</code> 抓取并总结最新论文。</div>`;
 }
 
+// ---------- 更新功能 ----------
+const updateBtn = document.getElementById("update-btn");
+const updatePanel = document.getElementById("update-panel");
+const updateLog = document.getElementById("update-log");
+const updateTitle = document.getElementById("update-title");
+let pollTimer = null;
+
+const ACTION_NAMES = { all: "抓取 + 总结", fetch: "抓取论文", summarize: "生成总结" };
+
+async function startUpdate() {
+  const action = document.getElementById("update-action").value;
+  updateBtn.disabled = true;
+  try {
+    const resp = await fetch("/api/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action }),
+    });
+    const data = await resp.json();
+    if (!resp.ok) {
+      alert(data.error || "启动失败");
+      updateBtn.disabled = false;
+      return;
+    }
+    showPanel();
+    startPolling();
+  } catch (e) {
+    alert("无法连接服务器 API。请确认是通过 python serve.py 启动的网站（而非 http.server）。");
+    updateBtn.disabled = false;
+  }
+}
+
+function showPanel() {
+  updatePanel.hidden = false;
+}
+
+function startPolling() {
+  if (pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(pollStatus, 2000);
+  pollStatus();
+}
+
+async function pollStatus() {
+  let st;
+  try {
+    st = await fetch("/api/status").then(r => r.json());
+  } catch { return; }
+  if (st.log?.length || st.running) showPanel();
+  const atBottom = updateLog.scrollHeight - updateLog.scrollTop - updateLog.clientHeight < 30;
+  updateLog.textContent = (st.log || []).join("\n");
+  if (atBottom) updateLog.scrollTop = updateLog.scrollHeight;
+  if (st.running) {
+    if (!pollTimer) pollTimer = setInterval(pollStatus, 2000);
+    updateBtn.disabled = true;
+    updateTitle.textContent = `⏳ 正在${ACTION_NAMES[st.action] || "更新"}...（可离开页面，任务在服务器继续运行）`;
+  } else {
+    updateBtn.disabled = false;
+    if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+    if (st.exit_code === null) {
+      updatePanel.hidden = true;
+    } else {
+      updateTitle.textContent = st.exit_code === 0 ? "✅ 更新完成" : "❌ 更新失败，详见日志";
+      if (st.exit_code === 0) await reloadData();
+    }
+  }
+}
+
+async function reloadData() {
+  DB = await fetch("data/papers.json").then(r => r.json());
+  document.getElementById("updated").textContent = DB.updated ? `更新于 ${DB.updated}` : "";
+  renderTabs();
+  render();
+}
+
+updateBtn.addEventListener("click", startUpdate);
+document.getElementById("update-close").addEventListener("click", () => { updatePanel.hidden = true; });
+
 document.getElementById("search").addEventListener("input", e => { state.search = e.target.value.trim(); render(); });
 document.getElementById("source-filter").addEventListener("change", e => { state.source = e.target.value; render(); });
 document.getElementById("only-summarized").addEventListener("change", e => { state.onlySummarized = e.target.checked; render(); });
 
-load().catch(err => {
+load().then(pollStatus).catch(err => {
   document.getElementById("paper-list").innerHTML =
     `<div class="empty">加载数据失败: ${esc(err.message)}<br>请先运行 <code>python scripts/fetch_papers.py</code> 生成 data/papers.json，并通过 http 服务访问本页面。</div>`;
 });

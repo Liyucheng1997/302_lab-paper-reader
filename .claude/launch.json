@@ -4,7 +4,7 @@
     {
       "name": "paper-site",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8303"],
+      "runtimeArgs": ["serve.py", "8303"],
       "port": 8303
     }
   ]

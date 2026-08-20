@@ -3035,7 +3035,21 @@
    "abstract": "Modern pretrained encoders make representations from heterogeneous views increasingly reusable, but the procedure that determines view utility and combines evidence is still relearned for each downstream task. Consequently, knowledge about view relevance, complementarity, reliability, and missingness is repeatedly discarded rather than transferred across tasks. We therefore reformulate multi-view learning as learning a reusable, task-conditioned inference procedure rather than a fixed fusion function. Based on this perspective, we propose SIMPLE, a prior-fitted multi-view in-context learner that predicts query labels by conditioning on a small labeled support set. Since existing real-world datasets cover only a limited range of view configurations and task structures, we construct a controllable synthetic task prior in embedding space. It generates diverse support-query episodes with varying class structures, shared and view-specific factors, representation geometries, cross-view dependencies, reliability levels, missingness patterns, and distribution shifts. A hierarchical inference architecture then performs reasoning within views, across views, and across support and query samples. Experiments on multi-view and multi-omics benchmarks demonstrate that the frozen variant of SIMPLE achieves competitive performance without updating the inference backbone, while lightweight adapter calibration attains leading performance on most evaluated datasets. Together, the results under frozen, one-shot, and missing-view settings support the central hypothesis that multi-view reasoning itself can be pretrained and reused, while lightweight adapter calibration provides task-specific alignment when needed.",
    "url": "https://arxiv.org/abs/2608.19115v1",
    "pdf": "https://arxiv.org/pdf/2608.19115v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "提出SIMPLE框架通过合成任务先验学习可重用的多视图推理程序，实现任务间的视图策略迁移",
+    "points": [
+     "将多视图学习重新表述为学习任务条件推理程序而非固定融合函数，使视图策略可跨任务迁移",
+     "构建可控合成任务先验生成多样视图配置、缺失模式和分布偏移，解决数据覆盖不足问题",
+     "冻结模型和轻量级适配器在多视图和多组学基准上实现竞争力性能"
+    ],
+    "tags": [
+     "多视图学习",
+     "元学习",
+     "合成数据",
+     "特征融合"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.19098v1",
@@ -3058,7 +3072,21 @@
    "abstract": "Multi-teacher on-policy distillation (M-OPD) has emerged as a promising paradigm for consolidating domain-specialized reinforcement learning (RL) experts into a single generalist student via dense, token-level reward supervision. Despite its practical success, the optimization dynamics governing multi-teacher capability integration remain poorly understood, and open, rigorously reproducible recipes are conspicuously lacking. In this work, we establish a controlled M-OPD benchmark on SmolLM3-3B-Base with oracle routing, isolating capability integration from routing ambiguity. Our investigation reveals a pronounced capability integration gap: standard M-OPD captures only 35.6% of the available headroom relative to a domain-routed oracle ensemble, with concise tasks such as instruction following suffering severe degradation and premature stagnation. Crucially, we show that this failure stems not from gradient conflict, but from a severe misallocation of the token-level optimization budget. This pathology is driven by three orthogonal factors: structural sequence-length disparities across domains, dynamic convergence drift due to non-uniform learning rates, and multi-step reward staleness from asynchronous policy updates. To resolve these imbalances, we introduce Open-MOPD, a principled framework incorporating token-share balancing, gap-aware dynamic budget allocation, and student reward refresh. Together, these mechanisms systematically restore cross-domain balance, elevating headroom recovery from 35.6% to 83.4% in a single deployable student. We fully open-source our end-to-end post-training recipe, training trajectories, and evaluation suites on an academically accessible hardware budget.",
    "url": "https://arxiv.org/abs/2608.19098v1",
    "pdf": "https://arxiv.org/pdf/2608.19098v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "诊断多教师知识蒸馏中的能力整合失衡问题，通过令牌预算优化将性能提升64.8个百分点",
+    "points": [
+     "揭示标准M-OPD仅恢复35.6%性能空间的根本原因是令牌级优化预算分配不当而非梯度冲突",
+     "识别序列长度差异、学习率不均匀、奖励陈旧等三个失衡因素",
+     "提出Open-MOPD框架通过令牌共享平衡和动态预算分配将性能恢复至83.4%"
+    ],
+    "tags": [
+     "知识蒸馏",
+     "强化学习",
+     "多任务学习",
+     "模型压缩"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.19088v1",
@@ -3079,7 +3107,21 @@
    "abstract": "Object detection models deployed in safety-critical applications remain vulnerable to backdoor attacks that cause targeted misbehaviors when a hidden trigger is present. Existing detection methods either rely on trigger inversion or exploit architecture-specific assumptions, and critically, representative existing methods fail to generalize reliably to scene-level attacks, where a single trigger induces anomalous behavior across all objects in the scene simultaneously. We present DistScan, a backdoor detection framework based on a simple but previously unexploited observation: backdoor injection systematically shifts a model's pre-NMS prediction class distribution away from its training class frequencies, even on clean inputs without any trigger present. DistScan aggregates intermediate class predictions over a clean validation set and flags a model as backdoored if the resulting distribution deviates significantly from the training class frequencies, requiring no model weight access, no trigger knowledge, and no additional training. Extensive experiments on MS-COCO and PASCAL VOC across two architectures and three scene-level attack scenarios demonstrate that DistScan substantially outperforms existing methods, improving average detection accuracy over the best-performing applicable baseline by 27.32 percentage points.",
    "url": "https://arxiv.org/abs/2608.19088v1",
    "pdf": "https://arxiv.org/pdf/2608.19088v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "提出DistScan利用后门引起的预NMS类分布偏移检测目标检测模型中的后门攻击，超越现有方法27个百分点",
+    "points": [
+     "关键发现：后门注入使预NMS预测类分布系统性偏离训练频率，即使在无触发的清晰输入上也成立",
+     "方法无需模型权限、触发器知识或额外训练，仅基于验证集类分布对比",
+     "在MS-COCO和PASCAL VOC上显著超越现有方法，平均检测准确度提升27.32个百分点"
+    ],
+    "tags": [
+     "后门检测",
+     "目标检测",
+     "对抗攻击",
+     "模型安全"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.19084v1",
@@ -3095,7 +3137,21 @@
    "abstract": "S-JEPA uses soft Gaussian mixture model (GMM) posteriors instead of hard cluster labels to preserve uncertainty. It remains unclear whether the probability values alone are sufficient, or whether it also matters which GMM components receive the non-maximal probabilities. We test this with two matched controls. FIXED-RANDPERM keeps the top-1 component and probability together with the multiset of non-maximal probability values, but reassigns those non-maximal values using a mapping fixed for each physical frame. UNIFORM-TAIL keeps the top-1 component, its probability, and total non-maximal mass but distributes that mass uniformly. Across three independent seeds, REAL SOFT outperforms both controls on two frozen Encoder readouts. It provides better recovery of the original GMM tail and greater accessibility of spectral dynamics over short time scales after controlling for the complete spectrum of the current frame. In two exposure experiments, both readouts improved overall as more frames retained the original mapping. We also descriptively follow one Phase 2 trajectory after the switch to the online GMM. These results show that the numerical probability structure of the soft target does not fully determine the learned Encoder representation. The mapping of non-maximal probabilities to GMM components also matters.",
    "url": "https://arxiv.org/abs/2608.19084v1",
    "pdf": "https://arxiv.org/pdf/2608.19084v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过对照实验证实S-JEPA中非最大概率映射到GMM组件的方式影响编码器表示的学习",
+    "points": [
+     "验证软目标中概率值的数值结构和组件映射方式都对表示学习产生实质影响",
+     "相比分布均匀的控制，真实软映射在编码器读出上性能更优，更好保留原始GMM尾部结构",
+     "证明编码器表示的可学习性不仅取决于概率值本身，组件映射方式同样关键"
+    ],
+    "tags": [
+     "自监督学习",
+     "聚类",
+     "表示学习",
+     "不确定性"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.19082v1",
@@ -3112,7 +3168,21 @@
    "abstract": "We present a new data-driven learning of a Random Geometric Graph (RGG) of a multivariate dataset, where the graph is drawn in a probabilistic metric space. This graph learning works for generic datasets, irrespective of the type of the observables; their probability distributions; or size of the data. We identify a metric of the space that the graph is drawn in, as a probability distribution of a random variable that we introduce, namely, a variable that represents the disparity between the connectedness of two vertices of the graph, and the correlation between the two random variables that are attached to the respective vertex. It is the closed-form {\\it{cdf}} of this disparity variable that we advance as the distance function of the host space of the learnt RGG, such that the edge exists between any two nodes, if this inter-nodal distance falls short of a chosen cutoff probability. Drawing the RGG in this probabilistic space leads to the graph being an Soft RGG, such that any edge - if it exists - exists with an identified probability. We forward a simple Rejection Sampling-based technique for learning the probability of any edge. The expected degree distribution of a vertex of this RGG is identified as local, and dependent on the inter-observable correlation matrix. If said correlation matrix is not known, it can be learnt given the data, using its closed-form posterior probability density function, that we forward. We illustrate our graph learning method by learning multiple RGGs of highly multivariate real datasets.",
    "url": "https://arxiv.org/abs/2608.19082v1",
    "pdf": "https://arxiv.org/pdf/2608.19082v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "提出在概率度量空间中学习随机几何图的方法，用节点连通性与相关性差异的分布作为距离函数",
+    "points": [
+     "定义新型概率度量空间，其距离函数为节点之间关联性与对应变量相关性差异的CDF",
+     "提出基于拒绝采样的边概率学习技术，期望度数由局部相关矩阵决定",
+     "方法通用于任意多元数据集，不依赖变量类型、分布或数据规模"
+    ],
+    "tags": [
+     "图学习",
+     "概率图模型",
+     "距离度量",
+     "关联分析"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.18254v1",
@@ -3133,7 +3203,21 @@
    "abstract": "Trajectory planning for autonomous driving requires both high-level reasoning and precise low-level control. Large Language Models (LLMs) offer semantic-rich planning capabilities, however, their application is limited by hallucinated reasoning, poor grounding in environment dynamics, and limited numerical precision in control. We propose GAPL (Grounded Action-effect Policy Learning), a unified framework that integrates LLM-based effect estimation, simulation-based effect grounding, and policy optimization into a closed-loop system. GAPL consists of three modules: (1) an LLM-based Effect Evaluator for structured multi-dimensional action-effect estimation; (2) a Simulation-based Effect Grounder that predicts dynamics-consistent effects from simulator rollouts; and (3) an Effect-Aware Decision Maker that grounds LLM effect estimates against simulation via a distiller to guide Proximal Policy Optimization (PPO)-based policy learning. Experiments on four Highway-env scenarios demonstrate that GAPL consistently outperforms baselines, achieving average reductions of {0.76, 0.86, 2.00} in collision rate, average displacement error (ADE), and final displacement error (FDE), and an average reward gain of 1.44.",
    "url": "https://arxiv.org/abs/2608.18254v1",
    "pdf": "https://arxiv.org/pdf/2608.18254v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "提出GAPL框架整合LLM效果估计、仿真接地和强化学习实现自动驾驶可靠轨迹规划",
+    "points": [
+     "设计三模块系统：LLM效果评估器进行结构化效果估计、仿真器提供动力学接地、决策器通过蒸馏对齐",
+     "通过效果感知蒸馏将LLM估计与仿真结果对齐，指导PPO策略学习克服LLM幻觉",
+     "在Highway-env上显著降低碰撞率0.76、轨迹误差2.00、奖励提升1.44"
+    ],
+    "tags": [
+     "自动驾驶",
+     "轨迹规划",
+     "大语言模型",
+     "强化学习"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.18035v1",
@@ -3157,7 +3241,21 @@
    "abstract": "Traffic elements such as traffic lights and road signs play a fundamental role in human driving decisions and should naturally influence end-to-end driving performance. However, existing end-to-end driving research predominantly focuses on dynamic road participants (e.g., vehicles and pedestrians), while the role of traffic elements remains largely unexplored. The community still lacks a systematic study quantifying their impact, largely because public datasets rarely provide structured traffic-element annotations and modern driving systems vary widely in architecture and training paradigm. In this work, we present the first systematic investigation of traffic element awareness for end-to-end autonomous driving. We construct a unified research infrastructure by augmenting multiple public driving datasets with comprehensive traffic-element annotations. To support diverse model families, we adopt a minimal and universal integration design that incorporates traffic-element signals into existing pipelines in a plug-and-play manner with negligible architectural modification. We evaluate this design across modern paradigms, including perception-prediction-planning pipelines, vision-language-action models (VLA), regression-based planners, diffusion-based policies, and trajectory-scoring frameworks, on nuScenes, NAVSIM-v1, NAVSIM-v2, and Bench2Drive. Across all paradigms and datasets, this simple integration consistently improves driving performance, demonstrating that traffic element awareness provides a robust and generalizable signal for end-to-end driving systems. Notably, on the challenging NAVSIM-v2 benchmark, our approach significantly improves state-of-the-art architectures and data pipelines, establishing a new state of the art.",
    "url": "https://arxiv.org/abs/2608.18035v1",
    "pdf": "https://arxiv.org/pdf/2608.18035v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "首次系统研究交通信号灯和道路标志对端到端驾驶的影响，提出即插即用集成方案通用于多种驾驶系统",
+    "points": [
+     "构建统一研究基础，为nuScenes等多个公开数据集增加完整交通信号标注",
+     "采用最小化通用设计，以即插即用方式集成到VLA、扩散策略等多种现代驾驶系统",
+     "在多数据集多范式上一致提升性能，证明交通元素识别的通用泛化价值"
+    ],
+    "tags": [
+     "端到端驾驶",
+     "交通信号识别",
+     "多模态学习",
+     "自动驾驶"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17902v1",
@@ -3172,7 +3270,21 @@
    "abstract": "This paper reviews Adaptive Model Predictive Control (AMPC) methods for Autonomous Vehicles (AVs), focusing on control strategies that dynamically adapt to uncertainties and changing conditions in real-time. The critical role of Adaptive Model Predictive Control (AMPC) in addressing the challenges of autonomous vehicle control are discussed. For the scope of this paper, AMPC is defined as a class of Model Predictive Control (MPC) techniques that modify the system model, cost function, constraints, or prediction horizon, based on real-time data. Traditional MPC, while effective for constrained optimization, struggles with model inaccuracies, computational demands, and dynamic environments, necessitating AMPC methods. The review covers existing literature on Gain scheduled MPC, Online Model Estimation MPC, Weight Adaptive MPC, Horizon Adaptive MPC, Learning Based MPC, and Hybrid MPC that combines MPC with other control methods. In addition to the survey, a demonstrative simulation of an adaptive MPC controller is presented that illustrates practical aspects of weight and speed adaptation in trajectory tracking.",
    "url": "https://arxiv.org/abs/2608.17902v1",
    "pdf": "https://arxiv.org/pdf/2608.17902v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "综述自适应MPC在自主车辆中的方法体系，涵盖参数自适应、在线模型估计等并提供实现演示",
+    "points": [
+     "定义AMPC为根据实时数据动态修改系统模型、代价函数、约束或预测地平线的MPC技术",
+     "系统综述增益调度MPC、在线模型估计、权重自适应、混合MPC等六类方法体系",
+     "提供自适应MPC控制器仿真演示，展示权重和速度自适应在轨迹跟踪中的实际应用"
+    ],
+    "tags": [
+     "模型预测控制",
+     "自适应控制",
+     "自动驾驶",
+     "轨迹跟踪"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17882v1",
@@ -3190,7 +3302,21 @@
    "abstract": "Trajectory prediction is central to safety in autonomous driving, yet learning-based predictors tend to degrade sharply when encountering scenarios poorly represented by their training data. Many methods attempt to mitigate distribution shift degradation through data-centric or test-time adaptation approaches; however, they are typically validated along fragmented axes of generalization, leaving the field without a standardized way to compare robustness across shifts a model may encounter. To address this, we introduce ControlledShifts, a framework and benchmark suite that systematically re-splits existing trajectory datasets into in-distribution (seen) and out-of-distribution (unseen) partitions, via a shared characterization-and-splitting formulation, in which a characterization function fixes the axis of variation a benchmark probes and a splitting function fixes how the tail of that axis is withheld. The suite comprises three benchmarks targeting key topological and behavioral distribution shifts. Furthermore, to aggregate multi-dimensional performance metrics across these benchmarks, we propose a unified robustness score that evaluates models along two complementary dimensions: prediction quality (relative performance gain) and prediction stability (performance preservation under shift). We showcase ControlledShifts by benchmarking prominent transformer-based architectures, exposing critical differences in how models of varying capacities handle latent relevance and environmental structure.",
    "url": "https://arxiv.org/abs/2608.17882v1",
    "pdf": "https://arxiv.org/pdf/2608.17882v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "建立轨迹预测的标准化分布偏移评估框架，提出统一鲁棒性评分方法。",
+    "points": [
+     "系统地将数据集重新分割为分布内外两部分，标准化评估路径",
+     "提出统一鲁棒性评分，综合预测质量和稳定性两个维度",
+     "通过Transformer架构基准测试，揭示模型容量对环境结构适应的差异"
+    ],
+    "tags": [
+     "轨迹预测",
+     "分布偏移",
+     "鲁棒性评估",
+     "Transformer"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17779v1",
@@ -3208,7 +3334,21 @@
    "abstract": "Controlling an autonomous vehicle at the limits of handling is a challenging task. Due to external influences, such as road conditions or weather, a vehicle can easily become unstable. Since most control algorithms assume stable vehicle behavior, they might fail in these situations. Especially when operating expensive vehicles without a safety driver on board, as in autonomous racing, this poses a significant challenge. To enable safe operation at the vehicle's dynamic limits, we present a comprehensive stability control system that safeguards motion control algorithms in autonomous driving. The proposed system consists of an electronic stability control (ESC), a slip control (SC), and a countersteer system (CS), which collectively adapt steering and brake commands from the motion controller to maintain vehicle stability. We validate our approach through both simulation and experiments on a real-world, full-scale vehicle. The results show that the stability control system maintains vehicle stability in critical situations and extends the operational feasible region. To simplify integration, we provide an open-source implementation at github.com/TUMFTM/tam-stability-control.",
    "url": "https://arxiv.org/abs/2608.17779v1",
    "pdf": "https://arxiv.org/pdf/2608.17779v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "为自主赛车设计多层稳定性控制系统，确保在动态极限下的安全操控。",
+    "points": [
+     "集成电子稳定控制(ESC)、滑移控制(SC)和反打方向系统(CS)",
+     "通过适应方向盘和制动命令维持车辆稳定，扩展可操作区域",
+     "在模拟和真实赛车上验证，开源实现提高集成便利性"
+    ],
+    "tags": [
+     "稳定性控制",
+     "自主驾驶",
+     "车辆动力学",
+     "开源"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17567v1",
@@ -3224,7 +3364,21 @@
    "abstract": "Pretrained molecular language models are increasingly used as molecular encoders for learning structure-property relationships. However, their practical suitability for molecular discovery within and beyond their pretraining domain remains unclear. Herein, we systematically benchmark four molecular language models across six virtual molecular libraries spanning drug discovery, organic materials, and catalysis. Native molecular language model embeddings show substantial variation in discovery performance across libraries, whereas molecular fingerprints provide a consistently strong and robust baseline. Consistent with a potential domain-representation mismatch, we show that explicit domain adaptation substantially improves representation performance. Fine-tuning molecular language model encoders on structures from the target virtual library consistently improves sample efficiency, with several adapted encoders emerging as the top-performing representations across the benchmark tasks. These results show that molecular representation quality depends strongly on the target domain and that explicit adaptation can improve the practical utility of molecular foundation models. More broadly, our findings establish domain-adapted molecular representations as a promising strategy for sample-efficient adaptive decision making in virtual screening and self-driving laboratories.",
    "url": "https://arxiv.org/abs/2608.17567v1",
    "pdf": "https://arxiv.org/pdf/2608.17567v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过领域适应改进分子语言模型的分子库搜索效率和表示质量。",
+    "points": [
+     "对比四种分子语言模型在六个虚拟库上的性能，发现表示严重依赖目标域",
+     "证明目标库微调显著提升样本效率，超越分子指纹基线",
+     "为虚拟筛选和自驾实验室提供样本高效的自适应决策方案"
+    ],
+    "tags": [
+     "分子表示学习",
+     "领域适应",
+     "虚拟筛选",
+     "预训练模型"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17420v1",
@@ -3245,7 +3399,21 @@
    "abstract": "Driving scene reconstruction and rendering, especially with 3D Gaussian Splatting, has become an important component of autonomous driving simulation. However, rendered views often degrade under extrapolated ego trajectories and scene edits, producing blurry structures, temporal flicker, and foreground-background misalignment. Existing refinement methods are commonly designed for a specific setting, such as image-level novel-view repair or object-editing correction. In this paper, we introduce SPVC, a structured and panoptic video fixing framework for cross-dataset driving scene rendering. The name summarizes four design principles. (1) Structured fixing denotes the use of explicit spatial conditions, including camera pose, 3D bounding boxes, and HD maps, to guide the repair process and reduce uncontrolled hallucination. (2) Panoptic fixing refers to correcting both background rendering artifacts, such as distorted roads, buildings, and lanes, and foreground vehicle artifacts introduced by scene editing, such as inconsistent object appearance. (3) Video fixing means that the model operates on driving sequences rather than isolated frames, allowing temporal cues to be used during artifact correction. (4) Cross-dataset fixing means that a single shared network is trained and applied across multiple driving datasets, reducing the need for dataset-specific or scene-specific fixers. Concretely, we construct paired degraded-clean training data by simulating under-constrained 3DGS rendering and foreground vehicle insertion artifacts, and train a two-stage controllable video diffusion model that first addresses video-level appearance and then refines scene layout with structured controls.",
    "url": "https://arxiv.org/abs/2608.17420v1",
    "pdf": "https://arxiv.org/pdf/2608.17420v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过结构化全景视频修复框架解决高斯溅射驾驶场景渲染的跨数据集伪影。",
+    "points": [
+     "利用显式空间条件(相机位姿、3D框、HD地图)指导修复过程减少幻觉",
+     "同时修复背景(失真道路建筑)和前景(一致性对象)伪影",
+     "可控视频扩散模型支持跨数据集泛化，共享网络避免数据集特定微调"
+    ],
+    "tags": [
+     "场景渲染",
+     "3D高斯溅射",
+     "视频修复",
+     "扩散模型"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17819v1",
@@ -3264,7 +3432,21 @@
    "abstract": "Aerial manipulation extends robotic operations to previously inaccessible aerial environments. Unlike arm-equipped aerial systems, tiltable-multirotors can directly generate six-degree-of-freedom wrenches through their flight bases, enabling both efficient movement and omnidirectional operation by tilting the thrust direction. This work presents a design analysis and a wrench-based control framework for tiltable-multirotors in aerial manipulation. We show that a four-rotor tiltable configuration provides a balance between interference-free propeller sizing and hovering efficiency across different attitudes, and its null-space redundancy is crucial for traversing singular configurations under physical constraints. We further show that an upward end-effector placement yields a favorable trade-off between geometric clearance and available wrench. To address disturbances, we propose a dual strategy consisting of a modified integral term for model error and an acceleration-based estimator for external wrenches. Building on these insights, we develop an effector-centric nonlinear model predictive control (NMPC) framework that integrates design choices, singularity handling, and disturbance compensation into a unified formulation. The proposed framework runs fully onboard at 100 Hz on a custom-built tiltable-quadrotor. Real-world experiments, including a 90-deg step cartwheel rotation, whiteboard pushing, and continuous 360-deg valve turning, demonstrate the feasibility of wrench-based omnidirectional manipulation with singularity traversal on a one-DoF-per-arm tiltable-quadrotor.",
    "url": "https://arxiv.org/abs/2608.17819v1",
    "pdf": "https://arxiv.org/pdf/2608.17819v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "为可倾斜多旋翼设计效应器中心NMPC框架实现六自由度空中操控。",
+    "points": [
+     "分析可倾斜四旋翼的力矩生成机制和奇异点处理，验证零空间冗余的重要性",
+     "基于扭矩的NMPC框架集成设计、奇异点处理和扰动补偿",
+     "在自定义可倾斜四旋翼上100Hz运行，完成旋转、推动、转阀等复杂操控"
+    ],
+    "tags": [
+     "模型预测控制",
+     "空中操作",
+     "多旋翼无人机",
+     "六自由度"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17794v1",
@@ -3280,7 +3462,21 @@
    "abstract": "Vehicular consumer electronics increasingly support computation-intensive and latency-sensitive services, imposing stringent efficiency, reliability, and security requirements on vehicular edge computing (VEC) systems. In dynamic vehicular environments, inference-based information leakage and anomalous communication behaviors further threaten system performance and data privacy. To address these challenges, this paper proposes a UAV-assisted cooperative VEC architecture that integrates threat-aware task offloading with intelligent spatiotemporal caching across roadside units (RSUs) and UAV edge nodes. A security-aware uplink transmission model is developed to capture potential information leakage risks and abnormal communication patterns, enabling adaptive offloading decisions. We formulate a joint optimization problem to minimize end-to-end task execution delay while improving cache utilization under limited computing and storage resources. To efficiently solve this problem, a Threat-Aware Joint Optimization (TAGO) framework is designed by combining proximal policy optimization for adaptive task offloading and a gradient-based caching update derived from the Frank-Wolfe algorithm to capture spatiotemporal service popularity. Simulation results demonstrate that the proposed approach significantly reduces task delay and improves cache efficiency compared with several baseline strategies, showing its effectiveness for secure and efficient UAV-assisted vehicular consumer electronics systems.",
    "url": "https://arxiv.org/abs/2608.17794v1",
    "pdf": "https://arxiv.org/pdf/2608.17794v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "设计威胁感知的无人机辅助车辆边缘计算框架，优化任务卸载和缓存策略。",
+    "points": [
+     "建立安全感知上行传输模型，捕获信息泄露风险和异常通信行为",
+     "TAGO框架结合PPO和Frank-Wolfe梯度优化，最小化端到端延迟",
+     "相比基线方法显著降低任务延迟，提升缓存利用率和数据隐私保护"
+    ],
+    "tags": [
+     "边缘计算",
+     "任务卸载",
+     "无人机辅助",
+     "安全"
+    ]
+   }
   },
   {
    "id": "s2:f0f3f3dff0e398fa24ad66e76e76d826db26b8eb",
@@ -3296,7 +3492,21 @@
    "abstract": "Existing detectors calculate the outlier scores of objects independently, neglecting the consistency between score similarity and object similarity. Consequently, these detectors do not guarantee that the variance in scores among similar normal objects remains minimal. This can lead to normal objects receiving scores that surpass those of outliers, thereby increasing the likelihood of misclassification. Therefore, smoothing outlier scores becomes crucial for enhancing detectors' performance by generating more consistent scores for similar objects. Existing score smoothing techniques exhibit a computational complexity of at least $\\mathcal {O}({n}\\log {n})$ , where $n$ is the sample size, limiting their utility in scenarios involving large datasets. In response to this challenge, a pragmatic and effective score smoothing method called scoring rounded data (SRD) is proposed. Given a dataset with values between 0 and 1, SRD leverages established outlier detectors to compute outlier scores based on rounded data with reduced precision rather than original data with full precision. By assigning identical scores to objects that yield the same rounding results, which are defined as similar objects, SRD effectively reduces the variance of these scores, thereby facilitating score smoothing. Utilizing detectors on rounded data, which contains fewer bits, can lead to decreased memory usage and computational time during detector computing scores. SRD has a time complexity of $\\mathcal {O}({n})$ , making it more suitable for large-scale data. Experiments involving 15 distinct outlier detectors, encompassing both deep-learning (DL)-based and non-DL-based methods, and 20 real-world datasets demonstrated that SRD can improve the average AUROC by 6.91% while using only 26.25% of the original data volume.",
    "url": "https://doi.org/10.1109/TNNLS.2026.3707635",
    "pdf": "https://doi.org/10.1109/tnnls.2026.3707635",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "通过舍入数据实现线性时间的离群点评分平滑，改进检测器性能。",
+    "points": [
+     "将数据四舍五入至低精度，对产生相同舍入结果的相似对象赋予一致评分",
+     "时间复杂度为O(n)，相比现有方法的O(n log n)大幅降低，适合大规模数据",
+     "在15种离群检测器上验证，有效减少类似正常对象的评分方差"
+    ],
+    "tags": [
+     "离群检测",
+     "评分平滑",
+     "异常检测",
+     "大规模数据"
+    ]
+   }
   },
   {
    "id": "s2:dcfd7d0f2094bec909af4186be51b4f62a028b20",
@@ -3315,7 +3525,21 @@
    "abstract": "",
    "url": "https://doi.org/10.1109/TPAMI.2026.3725315",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "结合深度学习和对抗训练实现鲁棒哈希方法用于高效图像检索。",
+    "points": [
+     "引入监督学习信号增强哈希编码的判别性和一致性",
+     "对抗鲁棒性训练提升模型对对抗扰动的抵抗能力",
+     "在标准检索基准上优于现有哈希方法，具有实际应用价值"
+    ],
+    "tags": [
+     "哈希检索",
+     "对抗鲁棒性",
+     "深度学习",
+     "图像检索"
+    ]
+   }
   },
   {
    "id": "s2:c58490ccb6f416ee9bd836c0a9cfc4fcbab13b74",
@@ -3330,7 +3554,20 @@
    "abstract": "Graph Neural Networks (GNNs) are popular deep learning models designed to process graph-structured data through recursive neighborhood aggregations in the message passing process. When applied to semi-supervised node classification, the message-passing enables GNNs to understand short-range spatial interactions, but also causes them to suffer from over-smoothing and over-squashing. These challenges hinder model expressiveness and prevent the use of deeper models to capture long-range node interactions (LRIs) within the graph. Popular solutions for LRIs detection are either too expensive to process large graphs due to high time complexity or fail to generalize across diverse graph structures. To address these limitations, we propose a mechanism called information flow control, which leverages a novel connectivity measure, called information flow score, to address over-smoothing and over-squashing with linear computational overhead, supported by theoretical evidence. Building on this mechanism, we introduce DeltaGNN, to the best of our knowledge among the first scalable (featuring linear computational and memory complexity overhead) and generalizable (capable of effectively handling graphs with diverse homophily, density, and topology) architectures for long-range and short-range interaction detection. We benchmark our model across 10 real-world datasets, including graphs with varying sizes, topologies, densities, and homophilic ratios, showing superior performance with limited computational complexity.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3725398",
    "pdf": "https://arxiv.org/pdf/2501.06002",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "提出信息流控制机制的图神经网络DeltaGNN，线性复杂度高效捕捉长距离节点交互",
+    "points": [
+     "针对GNN消息传递导致的过平滑和过挤压问题，引入信息流分数度量",
+     "信息流控制机制实现线性计算和内存复杂度开销",
+     "在10个真实数据集上表现优异，支持多种图拓扑、密度和同质性"
+    ],
+    "tags": [
+     "图神经网络",
+     "长距离交互",
+     "过平滑"
+    ]
+   }
   },
   {
    "id": "s2:6abcd3d5017291f0b3ad5ea0ac0d59c9d089d9c9",
@@ -3351,7 +3588,20 @@
    "abstract": "",
    "url": "https://doi.org/10.1109/TPAMI.2026.3724818",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "通过累积统一优化实现持续学习中的高效低秩模型适配",
+    "points": [
+     "针对持续学习中的灾难性遗忘和参数效率问题",
+     "低秩适配方法结合累积优化策略",
+     "实现参数高效的持续学习"
+    ],
+    "tags": [
+     "持续学习",
+     "低秩适配",
+     "参数效率"
+    ]
+   }
   },
   {
    "id": "s2:59479d5d1691a9c713bd65c83486adf04f5a4a01",
@@ -3369,7 +3619,20 @@
    "abstract": "",
    "url": "https://doi.org/10.1109/TNNLS.2026.3722558",
    "pdf": "",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "关系动作图网络缓解稀疏奖励强化学习中的路径固化问题",
+    "points": [
+     "解决稀疏奖励强化学习中策略陷入局部最优的路径固化问题",
+     "通过关系动作图网络表示状态和动作的关系",
+     "改进探索效率和策略泛化能力"
+    ],
+    "tags": [
+     "强化学习",
+     "动作图网络",
+     "探索策略"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17178v1",
@@ -3385,7 +3648,20 @@
    "abstract": "Video self-supervised learning through masked spatiotemporal prediction has emerged as a promising paradigm for learning feature representations from unlabeled data. However, existing methods typically rely on random masking, which indiscriminately removes regions irrespective of their semantic or temporal relevance. In ego-centric driving videos, this can weaken the pretext signal since safety-critical cues such as pedestrians, vehicles, lane boundaries, and dynamic interactions often occupy only a small portion of the frame, yet are central to downstream perception. We introduce V-JEPA4A, a domain-specialized variant of V-JEPA for autonomous driving that is pre-trained on publicly available driving videos with a novel saliency-driven masking policy. It accounts for semantically and temporally relevant context. The proposed policy preserves and predicts context according to semantic importance and temporal relevance, yielding more informative representation learning while retaining the efficiency of masked prediction. We evaluate the resulting encoders on four driving benchmarks spanning tracking, semantic segmentation, and depth estimation. The results demonstrate that V-JEPA4A reduces identity switches on BDD100k MOT by 25% over V-JEPA with random masking, achieves 73.2 mIoU on Cityscapes, and 3.75 RMSE on KITTI-2015 depth, while incurring only ~14% additional pre-training iteration overhead.",
    "url": "https://arxiv.org/abs/2608.17178v1",
    "pdf": "https://arxiv.org/pdf/2608.17178v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "显著性引导的掩码自监督学习框架，针对自动驾驶感知优化特征学习",
+    "points": [
+     "提出基于显著性而非随机的掩码策略，突出行人、车辆等安全关键元素",
+     "在V-JEPA基础上引入语义和时间相关性的上下文保留机制",
+     "MOT身份切换减少25%，Cityscapes达73.2mIoU，计算开销仅增14%"
+    ],
+    "tags": [
+     "自监督学习",
+     "显著性掩码",
+     "自动驾驶感知"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17092v1",
@@ -3402,7 +3678,20 @@
    "abstract": "Autonomous vehicles (AVs) depend on reliable Global Navigation Satellite System (GNSS) positioning. However, spoofed GNSS signals can induce plausible but incorrect vehicle states. This study develops a small language model (SLM)-based framework for detecting and classifying GNSS spoofing attacks by comparing vehicle behaviors independently derived from GNSS and other sensing sources. The framework converts independent driving states from GNSS and other sensing sources into structured semantic narratives that are provided to an SLM for spoofing detection and attack classification. The performance of the SLM-based framework is compared with large language models (LLMs) fine-tuned on identical training data and evaluated on the same test set. The evaluation considers five classes: no attack, overshoot attack, stopped attack, turn-by-turn attack, and wrong-turn attack. The framework is also evaluated with geographically unseen field data collected in Clemson, South Carolina, United States. Experimental results indicate that the evaluated SLMs achieve performance similar to the LLMs, achieving an average accuracy of 96.99%, precision of 99.05%, recall of 95.59%, and F1-score of 97.18%. In terms of computational efficiency and resource utilization, the SLMs demonstrate advantages over the LLMs by requiring lower inference latency and less GPU memory during both fine-tuning and inference. Evaluation using field data collected in a geographically distinct location further demonstrated its efficacy. The presented framework can detect and classify GNSS spoofing attacks in real-time while requiring relatively low computational and memory resources, and is therefore suitable for deployment on resource-constrained vehicular computing platforms.",
    "url": "https://arxiv.org/abs/2608.17092v1",
    "pdf": "https://arxiv.org/pdf/2608.17092v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "基于小语言模型的结构化叙述框架，实时检测和分类GNSS欺骗攻击",
+    "points": [
+     "将GNSS和多传感器融合的驾驶状态转换为结构化语义叙述",
+     "小语言模型检测5类攻击：无攻击、过冲、静止、转向、转错弯，准确率96.99%",
+     "相比大模型推理延迟低、显存占用少，在未见地区数据上有效"
+    ],
+    "tags": [
+     "GNSS安全",
+     "小语言模型",
+     "异常检测"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17009v2",
@@ -3421,7 +3710,20 @@
    "abstract": "Whole-pattern fitting methods, such as Rietveld refinement, excel at extracting detailed structural, chemical, and microstructural information from powder diffraction data. Obtaining reliable results requires both considerable expertise and software-specific knowledge, and applying these methods at scale typically relies on custom scripts written for each application. High-throughput experiments and autonomous self-driving laboratories increasingly utilize powder diffraction analysis to proceed programmatically and to return structured, machine-readable results. Here, we introduce PowderLine, a Python application that encapsulates a complete refinement into a single declarative recipe, validates that recipe against a versioned schema, and executes it through refinement software to return structured results. The refinement recipe is an all-inclusive, machine-readable and -writable description of either Rietveld or single peak analysis that users, scripts, and automated agents can specify and run in the same way. As a result of PowderLine's composability, it naturally fits into interactive, scripted, and autonomous workflows alike.",
    "url": "https://arxiv.org/abs/2608.17009v2",
    "pdf": "https://arxiv.org/pdf/2608.17009v2",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "声明式配方驱动的粉末衍射自动分析应用，支持高通量和自动化工作流",
+    "points": [
+     "将Rietveld精化和单峰分析封装为机器可读写的声明式配方",
+     "配方通过版本化模式验证并由分析软件执行，返回结构化结果",
+     "适配交互、脚本和自主工作流，便于高通量实验和自动实验室规模应用"
+    ],
+    "tags": [
+     "程序化分析",
+     "自动化工作流",
+     "高通量实验"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16710v1",
@@ -3442,7 +3744,20 @@
    "abstract": "As autonomous vehicles (AVs) approach Level 4 and Level 5 operational capability [SAE International, 2018], their on- board decision systems must handle not only safety-critical locomotion but also their subsequent moral weight. This paper details the Ethical Decision Head (EDH), a deep re- inforcement learning (RL) framework that encodes ethical reasoning as a differentiable reward signal, enabling a pol- icy gradient agent to learn morally-aligned driving behavior in scenarios whose state representation is aligned with the CARLA simulation environment [Dosovitskiy et al., 2017]. Two normative frameworks are instantiated and evaluated: a Utilitarian framework minimizing total casualties and a Kan- tian framework enforcing course maintenance as a categori- cal imperative. The EDH is trained via Proximal Policy Op- timization (PPO) [Schulman et al., 2017] against a Bradley- Terry reward model [Bradley and Terry, 1952] learned from pairwise human preference annotations over 200 collision- imminent scenarios. Results reveal an asymmetry in the learnability of normative ethical frameworks under human su- pervision. The Kantian condition, which reduces to a con- stant prediction task under the codebook, serves as a pipeline control: it confirms training stability and rules out infrastruc- ture failure as an explanation for the utilitarian result. The Utilitarian agent learned something more unsettling: human raters rewarded self-sacrifice over casualty minimization, and the model learned that preference faithfully. This divergence between what humans prescribe in theory and what they re- ward in practice suggests that RLHF does not learn ethics as philosophers define it, but as humans live it.",
    "url": "https://arxiv.org/abs/2608.16710v1",
    "pdf": "https://arxiv.org/pdf/2608.16710v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过人类反馈强化学习编码伦理推理，实现自动驾驶的道德对齐决策",
+    "points": [
+     "提出伦理决策头框架，将功利主义和康德主义等规范伦理编码为可微分奖励信号",
+     "利用PPO和Bradley-Terry模型从200个碰撞场景的人类偏好学习",
+     "发现人类实际偏好与理论规范不一致：倾向自牺牲而非伤害最小化"
+    ],
+    "tags": [
+     "伦理学习",
+     "价值对齐",
+     "强化学习"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16696v1",
@@ -3459,7 +3774,20 @@
    "abstract": "Physical AI systems such as autonomous vehicles and robots rely on timely exchange of high-dimensional sensory signals under tight bandwidth, latency, and energy budgets. Because the task driving downstream decisions evolves over time, a task-specific codec is brittle and retraining one per task is infeasible in the field. We propose UniTAC, a single learned image codec spanning universal (task-agnostic) to task-specialized operation, re-targeted at runtime without retraining. The task is abstracted as a per-component importance vector, derived, e.g., from gradient attribution of any downstream model, and transmitted as low-overhead side information that conditions both encoder and decoder. Trained once over a broad, randomized family of such vectors against weighted-reconstruction distortion, UniTAC keeps a fixed backbone and a single human-viewable reconstruction whose fidelity is steered to the active task by swapping the injected vector. We analyze the underlying weighted rate-distortion problem, characterizing when a diagonal weighted distortion is task-consistent and how weights relate to task sensitivity. Guided by this, we design a Vision Transformer (ViT) codec whose token-level conditioning natively realizes this weight-driven code. On a localized task at 0.034 bpp, a single UniTAC model reaches 91.4% accuracy, only 1.9% below a task-based codec (93.3%) and above universal codecs (76.9%).",
    "url": "https://arxiv.org/abs/2608.16696v1",
    "pdf": "https://arxiv.org/pdf/2608.16696v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通用任务感知图像编码器，通过加权失真自适应在带宽约束下优化任务性能",
+    "points": [
+     "解决物理AI系统在带宽、延迟、能耗约束下的高维感知信号交换问题",
+     "单一编码器通过注入任务相关重要性向量在运行时调整，无需重训练",
+     "0.034bpp达91.4%准确率，仅低于任务专用编码器1.9%，超越通用编码器"
+    ],
+    "tags": [
+     "图像压缩",
+     "任务感知",
+     "神经编码器"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16490v1",
@@ -3475,7 +3803,21 @@
    "abstract": "LiDAR scene completion is a key component of 3D perception in autonomous driving, where the scene must be completed in real time to be usable in downstream tasks. Existing approaches typically follow an initialize-and-refine paradigm, in which a coarse initialization of the scene is first constructed, then refined into complete 3D geometry. Generative models are slower because they iteratively refine random Gaussian noise into the scene, while non-generative methods perturb the partial scene with a fixed noise scale, which limits coverage of large gaps and occluded regions and requires manual recalibration for each new sensor configuration. We present RapidLiDAR, a LiDAR scene completion method that treats the initialization itself as a learned, data-driven component. We propose an adaptive initialization module that predicts a spatially varying displacement for each partial input point, expanding the partial observations into a coarse scene initialization adapted to the local geometry, without requiring manual noise tuning. To refine this coarse initialization into a complete and coherent scene, we additionally propose a multi-scale reconstruction module that further refines point positions by querying multi-scale 3D voxel and 2D BEV feature maps constructed from the input scan. By replacing point-neighborhood operators such as farthest point sampling and $k$-nearest neighbor search with voxel- and BEV-based feature extraction, our architecture is faster and can handle different input resolutions by design. Experiments on SemanticKITTI and KITTI-360 show that our method achieves completion performance on par with the state of the art while completing a full scene in 0.1 seconds, which is 2.3 times faster than the fastest prior method. This matches the 10 Hz acquisition rate of typical automotive LiDAR sensors, taking a step toward real-time LiDAR scene completion.",
    "url": "https://arxiv.org/abs/2608.16490v1",
    "pdf": "https://arxiv.org/pdf/2608.16490v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "自适应初始化和多尺度重建实现实时LiDAR场景补全",
+    "points": [
+     "问题：现有初始化-精化方法要么生成模型慢，要么固定噪声需手动调参",
+     "方法：提出自适应初始化预测空间变化位移，多尺度模块用体素/BEV特征精化",
+     "效果：在SemanticKITTI和KITTI-360验证，支持不同输入分辨率的实时推理"
+    ],
+    "tags": [
+     "LiDAR补全",
+     "自适应初始化",
+     "实时感知",
+     "3D重建"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16354v1",
@@ -3496,7 +3838,21 @@
    "abstract": "Driving video generation models support autonomous-driving development by predicting controllable future scenes for simulation, planning evaluation, and offline data generation. Diffusion-based driving generators repeatedly evaluate large backbones across denoising steps, which limits generation throughput. Existing diffusion acceleration methods reduce this cost, but general-purpose designs omit driving signals available before generation, such as ego speed and planned trajectories. Experiments across driving motions show that cache tolerance varies with ego translation and rotation, denoising progress, and consecutive reuse length. We propose DriveCache, a training-free, action-aware controller that uses planned motion to allocate reuse across scenes and dynamic programming to place it across denoising steps under a calibrated response budget. A causal drift check refreshes features and replans the remaining schedule when generation departs from calibration. Across three generator configurations, DriveCache improves the overall fidelity-efficiency trade-off over evaluated cache methods. Our code will be publicly available.",
    "url": "https://arxiv.org/abs/2608.16354v1",
    "pdf": "https://arxiv.org/pdf/2608.16354v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "行为感知缓存加速扩散模型驾驶视频生成推理",
+    "points": [
+     "问题：扩散模型多步降噪评估大主干，推理吞吐量受限",
+     "方法：利用规划运动分配缓存复用，动态规划跨降噪步优化缓存布置",
+     "效果：相比基准缓存方法改进效率-保真度权衡，支持无训练部署"
+    ],
+    "tags": [
+     "扩散模型",
+     "缓存加速",
+     "视频生成",
+     "行为感知"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16285v1",
@@ -3516,7 +3872,21 @@
    "abstract": "Audio-Visual Segmentation (AVS) is a fundamental task in multimodal perception that performs pixel-level segmentation of sounding objects in videos by leveraging both visual and audio cues. It has broad applications in video understanding, human-computer interaction, and autonomous driving. However, most existing AVS methods do not explicitly model geometric cues such as relative distance and occlusion, thereby limiting the robustness of cross-modal alignment. In human perception, spatial structure is naturally integrated with audio-visual evidence to accurately localize sounding objects. Motivated by this, we incorporate estimated depth as a spatial structural cue for AVS and propose DGCM-AVS, a tri-modal framework that jointly models audio, visual, and depth information. Specifically, we design a Depth-Aware Dynamic Modulator to improve the separation of adjacent objects while preserving intra-object feature consistency. Furthermore, we propose Depth-Guided Progressive Fusion, which uses depth as an intermediate bridge to progressively align audio cues with visual features. Compared to state-of-the-art methods, DGCM-AVS achieves relative improvements of 10.2 percent in M_J and 8.7 percent in M_F on the AVSS dataset. We believe our study highlights depth as a promising yet underexplored modality for AVS and may encourage further research in this direction.",
    "url": "https://arxiv.org/abs/2608.16285v1",
    "pdf": "https://arxiv.org/pdf/2608.16285v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "三模态融合通过深度引导实现高精度音频-视觉分割",
+    "points": [
+     "问题：现有AVS缺少几何线索导致跨模态对齐不足和遮挡处理差",
+     "方法：设计深度感知动态调制器分离相邻物体，深度引导渐进融合对齐音视觉",
+     "效果：相对改进MJ 10.2%和MF 8.7%，深度作为新有效模态"
+    ],
+    "tags": [
+     "多模态融合",
+     "音频-视觉分割",
+     "深度估计",
+     "跨模态对齐"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16031v1",
@@ -3534,7 +3904,21 @@
    "abstract": "Camera-based object detectors are vulnerable to physical adversarial attacks designed to suppress detections. While adversarial training and input purification offer some protection, they often overfit to specific attack distributions and fail on adaptive adversaries. This paper presents AdROD, an embedded, stochastic ensemble defense software designed for autonomous driving. AdROD employs {\\em low-rank HyperNetworks}, which require only 1.6\\% of the parameter footprint of standard HyperNetworks, to generate diverse detectors at a per-frame rate, making it impractical for attackers to obtain the deployed detectors in time. To further improve adversarial robustness, AdROD incorporates a novel \\emph{functional diversity} mechanism, which couples stochastic weight updates with unique input-space transformations. We design two serving modes of AdROD that strike different trade-offs between robustness and runtime overhead: AdROD-I, a continuous protection mode for maximum resilience that leverages inter-detector disagreement to recover compromised detections, and AdROD-II, an on-demand mode triggered by kinematic discontinuities in object tracking. Through comprehensive evaluation with synthetic benchmarks, physically deployed adversarial patches, and end-to-end safety tests in the OpenCDA co-simulator, AdROD outperforms five baseline defenses and exhibits superior generalizability compared with the evaluated adversarial-training baselines, while maintaining real-time performance for safely stopping the vehicle at a stop sign instrumented with adversarial patches.",
    "url": "https://arxiv.org/abs/2608.16031v1",
    "pdf": "https://arxiv.org/pdf/2608.16031v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "低秩超网络和函数多样性防护自动驾驶物体检测对抗攻击",
+    "points": [
+     "问题：对抗训练和输入净化易过拟合，对自适应攻击脆弱",
+     "方法：低秩超网络按帧生成多样化检测器，函数多样性耦合权重和特征空间变换",
+     "效果：优于5个防御基准，对物理对抗补丁实现实时安全停车"
+    ],
+    "tags": [
+     "对抗鲁棒性",
+     "超网络",
+     "目标检测",
+     "集成防御"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17093v1",
@@ -3550,7 +3934,21 @@
    "abstract": "Existing automotive intrusion detection systems (IDSs) for the Controller Area Network (CAN) largely target discrepancies in message timing, frequency, or sequencing and cannot detect attacks that preserve these properties while manipulating the payload. Digital twins (DTs) have been used to emulate CAN traffic and generate attack scenarios for IDS evaluation, but their use for intrusion detection remains unexplored. This study develops a DT-based IDS that jointly models physical relationships among decoded powertrain signals and identifies attacks through residuals between predicted and observed behavior. A shared-encoder LSTM DT was trained on 17 decoded signals from a real Hyundai/Kia CAN log to jointly predict seven numeric and two categorical gear signals over a 24-step window. A timestep is flagged when a residual exceeds a calibrated threshold, while adaptive rollout protects the twin's input history from sustained contamination. Four attacks (plateau, continuous drift, masquerade, and gear masquerade) were evaluated against the twin and a range-and-plausibility baseline. The DT outperformed the baseline across all attacks, achieving detection rates of 94.6% for continuous drift and 89.2% for masquerade, while the baseline detected almost none of the fabricated payload attacks. These results demonstrate that learning coupled vehicle dynamics enables detection of stealthy payload manipulations that preserve normal CAN communication patterns. False positive rates reached 39.6%, highlighting the need for improved robustness under sustained attacks. The DT-based IDS shows promise for detecting stealthy payload-level CAN attacks that preserve normal communication patterns, supporting behavior-based cybersecurity for connected and automated vehicles.",
    "url": "https://arxiv.org/abs/2608.17093v1",
    "pdf": "https://arxiv.org/pdf/2608.17093v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "数字孪生建模物理关系检测CAN总线隐蔽有效载荷攻击",
+    "points": [
+     "问题：传统IDS检测时序异常，无法检测保留通信模式的有效载荷操纵",
+     "方法：LSTM数字孪生联合预测动力总成解码信号，残差阈值和自适应回滚检测",
+     "效果：连续漂移94.6%、冒充89.2%检测率，演示学习耦合动力学的优势"
+    ],
+    "tags": [
+     "数字孪生",
+     "入侵检测",
+     "CAN总线",
+     "异常检测"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.17165v1",
@@ -3566,7 +3964,21 @@
    "abstract": "Hurricane debris removal is planned, contracted, and federally reimbursed on the basis of volume estimates, yet operational practice still relies on parametric forecasts with 41-90% documented over-estimation or on truck-load tallies that arrive only after hauling begins. We present DebrisHeightNet, a segmentation-conditioned monocular debris-height network that estimates spatially explicit debris volume from a single pass of post-event aerial RGB imagery, the kind of survey routinely flown within days of a hurricane landfall. We train only a lightweight 1.08 M-parameter head on top of two frozen vision foundation models. This head regresses height from a Depth Anything V2 backbone, conditioned on the debris segmentation of CLIPSeg-debris from our prior work. Because no post-hurricane debris-height ground truth exists, we synthesize the training target by confidence-weighted LiDAR-monocular fusion (CW-LMF), designed to suppress non-debris LiDAR returns. This fused target is a constructed supervision signal rather than ground truth, so we corroborate it against external references rather than claiming it as truth. A region-level power-law calibration, driven by each region's low-density debris fraction, converts model volume into an estimate of the reported hauled debris with quantified uncertainty. Across ten regions spanning five hurricanes and three states, the uncalibrated model agrees with an independent uncrewed-aerial-vehicle (UAV) survey of the training region at Spearman $ρ= 0.87$ and lands within 30% of the reported record where the Hazus and FEMA-hybrid parametric forecasts over-predict it by 2.7-4.8$\\times$. Deployment requires no LiDAR, no ground access, and no second flight, so the method can produce spatially explicit volume estimates wherever single-pass post-event imagery is flown.",
    "url": "https://arxiv.org/abs/2608.17165v1",
    "pdf": "https://arxiv.org/pdf/2608.17165v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "轻量级深度网络从单次航拍快速估算飓风碎片体积",
+    "points": [
+     "问题：参数预报过估计41-90%，卡车统计滞后，规划困难",
+     "方法：冻结视觉基础模型训练1.08M轻量头，信心加权LiDAR-单目融合构造监督",
+     "效果：与无人机调查相关性0.87，误差30%内，支持5个飓风10个区域验证"
+    ],
+    "tags": [
+     "灾害评估",
+     "深度估计",
+     "图像分割",
+     "体积估计"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16828v1",
@@ -3581,7 +3993,21 @@
    "abstract": "High-Altitude Platform Stations (HAPS) operate in the lower stratosphere at 17-27 km, between satellites and Unmanned Aerial Vehicles (UAVs). For this third tier the architectural case has long outpaced the flight evidence, but a wave of 2020-2026 stratospheric flights now permits a direct comparison. We evaluate HAPS function by function across sensing, navigation, and communication, taking operational satellite and UAV implementations as the reference. We define a strict evidence rule, counting a function as flight-validated only on operationally relevant stratospheric data return at or above 18 km, and apply it to nineteen functions. The resulting count is lower than the literature implies: five functions have credibly crossed over (optical Earth observation, hyperspectral imaging, methane imaging, RF/SIGINT, and broadband relay), yet these rest on only four flight programs, with at most one carrying peer-reviewed flight evidence. One function is ground-demonstrated, two are partially demonstrated, three are conceptual, and eight remain unflown. Four engineering domains (size, weight, and power; station-keeping; aperture; and viewing geometry), bounded by an operational envelope of platform stability and payload operability, explain the pattern. The governing advantage is persistence at close range, not altitude. Eight use cases, supported by same-sensor forward simulations, translate the pattern into missions, led by resilient public-safety mission-critical services (MCX). On this evidence, HAPS fits as a persistent regional tier in a multi-tier non-terrestrial network and as the seed of an emerging High Altitude Economy. Carrier-grade service, station-keeping precision, and regulation remain the principal open problems, and we pose the persistent-tier reading as a testable hypothesis with dated 2030 markers.",
    "url": "https://arxiv.org/abs/2608.16828v1",
    "pdf": "https://arxiv.org/pdf/2608.16828v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "HAPS功能评估显示五项已验证，持久区域覆盖为核心优势",
+    "points": [
+     "问题：HAPS理论案例强但飞行证据不足，功能验证状态不清",
+     "方法：严格飞行验证标准逐功能对标卫星和无人机，评估18km+高度数据",
+     "效果：5项功能验证（光学遥感、高光谱、甲烷、射频、宽带中继），8项未飞"
+    ],
+    "tags": [
+     "高空平台",
+     "无人系统",
+     "多层网络",
+     "飞行验证"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16770v1",
@@ -3599,7 +4025,21 @@
    "abstract": "This paper develops fluid antenna array (FAA)-inspired subarray sizing and transmit-power design for a two-hop amplify-and-forward (AF) unmanned aerial vehicle (UAV) relay using progressively contracting user-location posteriors. A contiguous reconfigurable subarray is shared by first-hop reception and second-hop forwarding, such that its active size jointly determines the receive gain, forwarding gain, and beamwidth. By adaptively controlling the effective aperture, the proposed design exploits geometric reconfigurability to balance array gain against pointing robustness under location uncertainty. Projecting the position covariance onto the array direction yields a closed-form direction-limited size inversely proportional to directional uncertainty. Posterior samples are propagated through the two-hop rate model, and the subarray size and transmit power are then selected to minimize UAV power subject to a worst-user lower-tail rate requirement and hardware power limits. The planned configuration is further audited over instantaneous two-hop Rician channels at the true user positions. At t = 8 s, the proposed design saves 3.17 dB over full-array narrow-beam transmission on paired feasible geometries and achieves 60.0% service success at a 0.15-W budget, compared with 43.2% for a fixed eight-element subarray.",
    "url": "https://arxiv.org/abs/2608.16770v1",
    "pdf": "https://arxiv.org/pdf/2608.16770v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "流体天线启发的自适应孔径和功率控制优化位置不确定下的无人机中继",
+    "points": [
+     "问题：位置不确定性影响波束指向和阵列增益平衡",
+     "方法：利用位置后验动态调整子阵列大小和发射功率，最小化功率满足速率要求",
+     "效果：相比全阵列窄波束节省3.17dB，0.15W预算下60%服务成功率"
+    ],
+    "tags": [
+     "无人机中继",
+     "自适应波束",
+     "功率控制",
+     "位置不确定性"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16640v1",
@@ -3617,7 +4057,21 @@
    "abstract": "Vision-based Unmanned Aerial Vehicles (UAVs) often suffer from navigation failures in dead ends due to limited sensing accuracy and range. To address this challenge, this paper proposes a systematic solution for efficient dead-end prediction and avoidance. The proposed method introduces a lightweight neural network to predict the relative distance and bearing of potential dead ends within the current field of view using RGB-D inputs. These predictions prune a predefined, compact trajectory library, enabling the planner to proactively avoid dead ends while maintaining navigational smoothness. Notably, our approach transfers across real-world scenarios without manual annotation or fine-tuning on real-world data. The system achieves high-frequency replanning at 50 Hz onboard. Extensive simulation benchmarks demonstrate superior performance in success rate, flight time, and trajectory length, and real-world experiments further validate its effectiveness in complex scenarios.",
    "url": "https://arxiv.org/abs/2608.16640v1",
    "pdf": "https://arxiv.org/pdf/2608.16640v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "轻量级网络预测死胡同并修剪轨迹库，实现视觉无人机50Hz高效避障",
+    "points": [
+     "利用RGB-D输入预测视野内死胡同的相对距离和方位",
+     "通过修剪预定义轨迹库实现主动避障同时保证导航平滑性",
+     "50Hz高频重规划，无需真实数据微调即可跨场景迁移"
+    ],
+    "tags": [
+     "无人机导航",
+     "死胡同预测",
+     "实时规划",
+     "轨迹修剪"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16326v1",
@@ -3638,7 +4092,21 @@
    "abstract": "Multi-unmanned aerial vehicle (UAV) systems provide scalable service platforms for large-scale environmental tasks, such as grassland ecosystem restoration. However, coordinating fleet operations requires solving the restoration area maximization problem (RAMP). This non-linear combinatorial optimization challenge is complicated by payload-dependent energy dynamics and heterogeneous ecological degradation. We propose a novel knowledge-guided collaborative bilevel formerpointer reinforcement learning framework (KC-BFPRL) to address this complexity. Using a hierarchical paradigm, KC-BFPRL decomposes RAMP into global task allocation and local restoration planning, with the latter further divided into upper-level trajectory planning and lower-level restoration area allocation. Our specialized architecture pairs featuring a Transformer-based encoder that fuses static environmental features with dynamic UAV states, and a Pointer Network decoder trained via a robust actor-critic framework. By embedding ecological priority rules and heuristic logic, KC-BFPRL achieves a structured warm-start, solving the RL cold-start problem while ensuring strict constraint satisfaction. Extensive experiments demonstrate that KC-BFPRL consistently outperforms state-of-the-art baselines, achieving superior objective values and efficiency. It maintains a $0.00\\%$ optimality gap in the most complex scenarios U8-R160 and operates nearly three times faster than MAPDP, validating its robustness, scalability, and real-time applicability for large-scale automated ecological restoration.",
    "url": "https://arxiv.org/abs/2608.16326v1",
    "pdf": "https://arxiv.org/pdf/2608.16326v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "双层强化学习框架解决多无人机协作草地修复面积最大化问题，0%最优性间隙",
+    "points": [
+     "将修复面积最大化问题分解为全局任务分配和局部修复规划两层",
+     "Transformer编码器融合环保特征与无人机状态，Pointer网络配以Actor-Critic训练",
+     "嵌入生态优先规则实现结构化热启动，速度超基准3倍"
+    ],
+    "tags": [
+     "多无人机协作",
+     "强化学习",
+     "生态修复",
+     "组合优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16281v1",
@@ -3654,7 +4122,21 @@
    "abstract": "Autonomous operation in GNSS-denied environments requires heterogeneous mapping pipelines to maintain a consistent spatial reference. This paper presents a framework using camouflage-matched fiducial markers fabricated from Cholesteric Spherical Reflectors (CSRs) as pre-surveyed visual anchors. The anchors georeference both a lightweight LiDAR-odometry trajectory and a dense RTAB-Map reconstruction, allowing their outputs to be expressed in a common LUREF frame (geodetic coordinate reference system used in Luxembourg) without requiring GNSS measurements during operation. The method combines coarse similarity alignment with marker-constrained pose-graph optimization. We evaluate it using two handheld acquisition sessions with ground-level and elevated motion profiles emulating UGV and UAV operation. A single iMarker was relocated among six surveyed positions, with the first position revisited to quantify drift correction. Marker-anchor correction reduced revisit inconsistency by 97.9% and 99.1% for the UAV- and UGV-emulating sessions, respectively, and improved held-out anchor prediction compared with one-time alignment. Separately georeferenced dense reconstructions achieved a median cross-session nearest-neighbour distance of 58 cm without explicit cross-session registration. Marker processing operated in real time, while trajectory correction required less than 0.25 s per session. These results demonstrate a proof of concept for georeferencing lightweight odometry and dense reconstructions using visually unobtrusive, pre-surveyed anchors during GNSS-denied operation.",
    "url": "https://arxiv.org/abs/2608.16281v1",
    "pdf": "https://arxiv.org/pdf/2608.16281v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "视觉标记锚点结合姿态图优化，在GNSS失效环境下97.9%修正轨迹漂移",
+    "points": [
+     "用微伪装球形反射体标记作为预测量测的视觉锚点进行地理参考",
+     "结合相似度对齐与标记约束姿态图优化实现跨平台一致空间参考",
+     "重访不一致性修正率达97.9%-99.1%，标记处理实时完成"
+    ],
+    "tags": [
+     "GNSS失效",
+     "位置定位",
+     "视觉锚点",
+     "姿态图优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16142v1",
@@ -3673,7 +4155,21 @@
    "abstract": "UAV on-board vision systems are widely used for different activities, including monitoring in no-fly zones. In this case, the vision-equipped UAV streams a video to a ground server where an operator assists its activities. The latency of video transmission has a profound impact on the effectiveness of the operator assistance. However, most techniques available for video transmission still incur significant latency costs. In this paper, we propose a graph convolutional neural network-assisted (GCN-Assisted A2C) deep reinforcement learning (DRL) system model to find the optimal pixel-correlated area of a suspicious object. We combine the Lagrangian dual form with gradient descent to prevent lack of convergence and over- and under-penalization constraint violation during latency optimization. The proposed system model sends a sub-group pixel-correlated area of the frame from the UAV to the server rather than the transmission of the whole video frame. The proposed framework utilizes the GCN model to explore hidden representations of feature-correlated groups of pixels. Moreover, the GCN supervises the A2C model, which selects a subgroup to enhance transmission latency, thus supervising the training of UAV actions in A2C. Experimental results show that GCN-assisted A2C reduces video frame transmission latency together with false detection rate in UAV vision systems over other DRL and state-of-the-art models.",
    "url": "https://arxiv.org/abs/2608.16142v1",
    "pdf": "https://arxiv.org/pdf/2608.16142v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "GCN辅助A2C学习发送关键像素区域，降低无人机视频传输延迟和误检率",
+    "points": [
+     "图卷积网络探索特征相关像素组的隐表示，指导A2C选择子组传输",
+     "仅发送可疑目标相关像素而非整帧，用拉格朗日对偶形式保证约束满足",
+     "相比其他DRL和SOTA方法降低延迟同时降低误检率"
+    ],
+    "tags": [
+     "深度强化学习",
+     "边缘计算",
+     "图神经网络",
+     "视频压缩"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15929v1",
@@ -3689,7 +4185,21 @@
    "abstract": "Pedestrian path prediction is crucial for enhancing the safety of autonomous vehicles and advanced driver-assistance systems. Previous studies explored different learning-task formulations for pedestrian path prediction and compared these formulations using shallow neural networks, but did not extend this analysis to more complex deep-learning models. This paper adapts the Spatial-Temporal Graph Attention Network (STGAT) to a unified pedestrian path prediction framework and introduces state and action definitions specific to STGAT. The resulting formulations support deterministic and stochastic policies, one-time and sequential decision-making, and reinforcement-learning algorithms including REINFORCE and proximal policy optimization. The proposed learning-task formulations improve prediction performance across the selected benchmark datasets compared with the standard supervised-learning formulation. These results demonstrate that reformulating the decision process and training objective can improve an advanced pedestrian trajectory prediction architecture and may provide a path toward improving other graph-based prediction models.",
    "url": "https://arxiv.org/abs/2608.15929v1",
    "pdf": "https://arxiv.org/pdf/2608.15929v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "空间时间图注意网络融合反向强化学习，行人轨迹预测性能超监督基准",
+    "points": [
+     "将STGAT适配为支持确定性/随机策略和单次/顺序决策的统一框架",
+     "支持REINFORCE和PPO等强化学习算法，改进决策过程和目标函数",
+     "多个基准数据集上性能优于标准有监督学习"
+    ],
+    "tags": [
+     "行人预测",
+     "强化学习",
+     "图注意网络",
+     "自动驾驶"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15731v1",
@@ -3704,7 +4214,21 @@
    "abstract": "Deep Neural Networks (DNNs) deployed in high-risk domains, such as healthcare and autonomous driving, must be not only accurate but also understandable to ensure user trust. In real-world computer vision tasks, these models often operate on complex images containing background noise and are heavily annotated. To make such models explainable, Concept-based Explainable AI (CXAI) methods need to be assessed for their applicability and problem-solving capacity. In this work, we explore CXAI use cases in multi-label classification by training two DNNs, VGG16 and ResNet50, on the 20 most annotated labels in the MS-COCO dataset (Microsoft Common Objects in Context). We apply two CXAI methods, CRP (Concept Relevance Propagation) and CRAFT (Concept Recursive Activation FacTorization), to generate concept-level explanations and investigate the overall evaluations. Our analysis reveals three key findings: (1) CXAI highlights learning weaknesses in DNNs, (2) higher concept distinctiveness reduces label and concept confusion, and (3) environmental concepts expose dataset-induced biases. Our results demonstrate the potential of CXAI to enhance the understanding of model generalizability and to diagnose bias instigated by the dataset.",
    "url": "https://arxiv.org/abs/2608.15731v1",
    "pdf": "https://arxiv.org/pdf/2608.15731v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "概念基础XAI方法揭示深度网络学习弱点和数据集诱导偏差",
+    "points": [
+     "在MS-COCO多标签分类上应用CRP和CRAFT生成概念级解释",
+     "发现概念区分度与标签混淆的关系，识别环境概念暴露的数据偏差",
+     "证明CXAI增强模型可泛化性理解和诊断能力"
+    ],
+    "tags": [
+     "可解释性",
+     "概念解释",
+     "多标签分类",
+     "模型诊断"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15830v1",
@@ -3722,7 +4246,21 @@
    "abstract": "Real-time tiny target perception in high-resolution imagery is critical for embodied Search-and-Rescue (SAR) missions. However, strict Size, Weight, and Power (SWaP) constraints on edge devices like UAVs create a bottleneck: traditional image downsampling causes severe feature loss, while slice-based processing incurs prohibitive latency. To address this gap, this paper introduces a comprehensive framework encompassing a novel architecture, specialized datasets, and hardware-level benchmarks. First, we propose MITE-Net, a SWaP-optimized cascaded architecture, which couples a bio-inspired, learning-free Tiny Target Motion-Based Region Proposal Network (TTM-RPN) with a sub-0.14M-parameter R-CNN-like head. Second, to standardize 4K tiny target evaluation, we construct the SAR-Tiny Datasets by relabeling two challenging UAV datasets: SeaDroneSee-Tiny (dynamic maritime scenes, tiny targets predominantly of 64-256 pixels ) and UAVID-Tiny (cluttered urban scenes, extremely tiny targets, less than 64 pixels). Third, we benchmark against state-of-the-art YOLO models on an edge device, NVIDIA Jetson AGX Xavier, where MITE-Net directly processes 4K maritime imagery, achieving a 100\\% search success rate at 30.33 FPS. Consuming merely 3.19 W (9.51 FPS/W), MITE-Net vastly outperforms YOLO baselines in target recall and energy efficiency. Conversely, UAVID-Tiny evaluations expose a compound structural limitation: the learning-free bionic front-end struggles against urban backgrounds, while the ultra-lightweight head lacks representational capacity for complex features. Ultimately, this work delivers an efficient onboard perception paradigm and a rigorous baseline guiding future end-to-end SAR architectures.",
    "url": "https://arxiv.org/abs/2608.15830v1",
    "pdf": "https://arxiv.org/pdf/2608.15830v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "轻量级级联架构（0.14M参数）实现4K视频微小目标30.33FPS实时检测",
+    "points": [
+     "运动基础RPN+轻量级R-CNN头解决高分辨率下微小目标检测",
+     "构建SAR-Tiny数据集标准化4K微小目标评估，覆盖海事和城市场景",
+     "Jetson AGX Xavier上达成100%搜索成功率，仅耗3.19W功率"
+    ],
+    "tags": [
+     "目标检测",
+     "边缘计算",
+     "搜救应用",
+     "能效优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15821v2",
@@ -3742,7 +4280,21 @@
    "abstract": "Over the past decade, semiconductor diodes have served as the primary switching elements in adaptive electromagnetic (EM) protection, yet their performance has been compromised by parasitic effects and thermal accumulation, rendering them inadequate against the rapidly evolving landscape of high-power microwave (HPM) threats. Here we show that on-chip nanoplasma switches (NPMS), composed of gallium nitride electrodes on silicon carbide substrates, exhibit superior radio frequency (RF) and thermal characteristics, positioning them as ideal field-driven switches in RF front-end protectors. By integrating NPMS into metasurfaces, antennas and circuit limiters, we achieve an adaptive response that ensures low-loss transmission for normal signals and high shielding against HPMs, while offering extended operating bandwidth and substantially higher tolerance than conventional solid-state devices. This robust, nanoscale structure has significant potential for protecting unmanned aerial vehicles, radars, satellites and other highly integrated platforms requiring strength and stability in EM environments. The findings of this study open up new routes to support EM safety of high-precision detection and imaging for next-generation RF front ends, with straightforward scalability to millimetre-wave and terahertz frequencies.",
    "url": "https://arxiv.org/abs/2608.15821v2",
    "pdf": "https://arxiv.org/pdf/2608.15821v2",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "GaN/SiC纳米等离子体开关实现低损耗传输与高功率微波自适应屏蔽",
+    "points": [
+     "片上纳米等离子体开关相比二极管具有更优RF和热特性",
+     "集成到超表面、天线和限流器实现宽带自适应电磁响应",
+     "应用于无人机、雷达、卫星等高精密平台的电磁防护"
+    ],
+    "tags": [
+     "电磁防护",
+     "纳米材料",
+     "高功率微波",
+     "射频前端"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15790v2",
@@ -3761,7 +4313,21 @@
    "abstract": "Crevasse mapping from uncrewed aerial vehicle (UAV) imagery matters for glaciological research and for field safety in glaciated terrain. Yet, pixel-level annotation of glacier surfaces is costly and requires domain experts. We introduce CrevasseSeg, a framework for binary segmentation over the terminus of Borebreen, Svalbard, comprising 1,938 unlabelled UAV orthomosaic tiles for self-supervised/unsupervised fine-tuning, 24 labelled tiles for validation and 176 labelled tiles for testing. Using CrevasseSeg, we benchmark five self-supervised objectives -- BYOL, a Jensen-Shannon Divergence (JSD) objective, Barlow-Twins, VICReg, and a combined BYOL-JSD objective -- across three architectures: O-Net, O-Net++, and a DINOv3-initialised O-Net. Each configuration is evaluated under two frozen-feature readouts that differ only in the form of their decision boundary: a linear probe and a non-linear XGBoost classifier fit only on the 24 labelled validation images. Our central finding is a consistent inversion between the two readouts: DINOv3 features are the weakest under linear probing but the strongest under a non-linear readout. A UMAP analysis of the learned feature space shows that DINOv3 fragments pixels into many small clusters in which the classes are locally interleaved, whereas the convolutional architectures (O-Net and O-Net++) embed them onto a single class-sorted manifold. Satellite-pretrained DINOv3 improves over natural-image initialisation across objectives, and our label-efficient DINOv3-ViT-L-Sat-O-Net-BYOL-JSD pipeline reaches 75.33 mDSC / 61.28 mIoU, outperforming standard machine learning baselines fit on the same 24 labelled images with the RGB pixel values used as features. We release CrevasseSeg to support label-efficient segmentation research in remote sensing.",
    "url": "https://arxiv.org/abs/2608.15790v2",
    "pdf": "https://arxiv.org/pdf/2608.15790v2",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "自监督学习框架用于无人机冰川裂缝分割，采用多种对比学习目标",
+    "points": [
+     "利用无标注正射影像自监督预训练，解决标注成本高问题",
+     "对比BYOL、JSD、Barlow-Twins等五种自监督目标在三种架构上的表现",
+     "发现DINOv3在非线性分类器下最优，卫星预训练特征优于自然图像初始化"
+    ],
+    "tags": [
+     "自监督学习",
+     "图像分割",
+     "对比学习",
+     "遥感"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15741v1",
@@ -3776,7 +4342,21 @@
    "abstract": "The one-stage planner YOPO maps a single depth image and the robot state directly to a set of candidate trajectories, trained by backpropagating through differentiable trajectory costs. This yields dense, geometrically informative supervision, but inherits the pathologies of soft-constrained optimization: the safety cost competes with the smoothness and goal-reaching terms, is non-convex across homotopy classes, and the single-piece polynomial is limited in expressiveness. In this report, we summarize several effective modifications. We adopt a two-piece MINCO parameterization, trading time for smoothness without altering the trajectory's spatial profile. We further lift YOPO's multi-modal prediction to span distinct homotopy classes, treating each motion primitive as a homotopy anchor that confines the trajectory to a feasible basin - without explicit safe-flight-corridor construction or front-end search. For dynamic feasibility, we impose barrier penalties on velocity and acceleration together with a curvature-dependent speed limit whose gradient acts only on the velocity, producing an adaptive-speed behavior that decelerates in cluttered regions or sharp turns. We replace score regression with a ranking loss, preventing small score errors from reordering the candidate set. These yield richer trajectory representations, safer obstacle avoidance, and more direct flight paths.",
    "url": "https://arxiv.org/abs/2608.15741v1",
    "pdf": "https://arxiv.org/pdf/2608.15741v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "改进端到端无人机轨迹规划器，增强安全性和多模态预测能力",
+    "points": [
+     "采用两段MINCO参数化和同伦类多模态预测，提升轨迹表达能力",
+     "引入自适应曲率依赖速度限制和排序损失，改进障碍避免和轨迹质量",
+     "结合动态可行性约束和软约束权衡，产生更安全直接的飞行路径"
+    ],
+    "tags": [
+     "轨迹规划",
+     "端到端学习",
+     "障碍避免",
+     "无人机"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.16955v1",
@@ -3794,7 +4374,21 @@
    "abstract": "Post-disaster damage to terrestrial infrastructure can disrupt wireless coverage,while Uncrewed Aerial Vehicle (UAV) swarms provide a promising solution for rapid restoration.However, due to the limitations in local geometry observations hidden radio impact,and inter-UAV communication,there exists a significant gap between locally visible movement choices and swarm-level coverage outcomes.To combat this gap,we propose a raido World-model-based Optimized Negotiation framework for Distributed UAV covERage (WONDER).Particularly, to tackle the unavailability of the future radio field from onboard observations, WONDER uses a Joint-Embedding Predictive Architecture (JEPA)-based radio world model to learn and predict the incremental radio effect of each candidate trajectory from deployment-available information.Multi-round negotiation in WONDER then coordinates ranked proposals by committing one trajectory at a time and re-evaluating the remaining proposals under the updated context. Our theoretical analyses further validate the effectiveness of such a world model-based framework. WONDER also adopts a Proximal Policy Optimization (PPO)-style Actor and alternates between updating the world model and the actor. Furthermore,we build RadioDynamics,a comprehensive simulation environment that integrates UAV mobility,radio propagation, inter-UAV communication modeling,and digital-twin geometry with ray-traced fields in $62$ metropolitan scenes.Experiments on $11$ testing scenes in RadioDynamics show that WONDER achieves the highest balanced score among seven evaluated methods,reaching $0.870$ with a $0.162$ coverage advantage over STACCA, while maintaining $100\\%$ connectivity between UAVs.",
    "url": "https://arxiv.org/abs/2608.16955v1",
    "pdf": "https://arxiv.org/pdf/2608.16955v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "基于无线电世界模型的多智能体无人机协调框架，用于灾后覆盖恢复",
+    "points": [
+     "利用JEPA无线电世界模型预测候选轨迹的无线电增量效应，弥合局部观测与全局覆盖的鸿沟",
+     "多轮协商机制逐轨迹承诺并重新评估，PPO代理训练",
+     "在RadioDynamics仿真环境62个城市场景验证，表现优于七种基准方法"
+    ],
+    "tags": [
+     "多智能体协调",
+     "世界模型",
+     "无线通信",
+     "无人机群"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15440v1",
@@ -3813,7 +4407,21 @@
    "abstract": "Motion planning problems such as collision-free navigation and contact-rich manipulation can be naturally formulated as optimization problems that couple discrete decisions with continuous trajectories. The Graphs of Convex Sets (GCS) framework offers a practical solution to these problems. It represents discrete decisions as nodes of a graph and encodes continuous trajectories in the edges connecting them. However, the resulting optimization subproblems can become computationally prohibitive for online replanning. In this work, we propose a learning-based strategy to mitigate this limitation. Specifically, we replace the costly convex relaxation step required by nominal GCS with a single forward pass through a Graph Attention Network that predicts a set of highly probable candidate paths through the graph. A lightweight ranking network then orders these candidates by their estimated trajectory cost. Evaluating them in this order, we terminate our search early while still recovering a near-optimal motion plan. We validate the resulting pipeline across diverse robotic tasks, including collision-free motion planning for a 3D quadrotor and a 7-DoF manipulator, and planning through contact for planar pushing. Across both convex and non-convex cost and constraint settings, our approach yields up to two orders of magnitude speedup over nominal GCS while maintaining a 100% success rate, at the cost of some suboptimality in the recovered solutions. Code implementations and video demonstrations can be found at https://neural-gcs.github.io/.",
    "url": "https://arxiv.org/abs/2608.15440v1",
    "pdf": "https://arxiv.org/pdf/2608.15440v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "神经网络加速离散-连续混合运动规划，用于无人机和机械臂",
+    "points": [
+     "图注意网络替代GCS框架中昂贵的凸松弛步骤，预测高概率候选路径",
+     "排序网络按估计轨迹代价排序，提前终止搜索获得近最优解",
+     "四个机器人任务上实现100倍加速，保持100%成功率仅牺牲部分最优性"
+    ],
+    "tags": [
+     "运动规划",
+     "神经网络",
+     "图学习",
+     "凸优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15322v1",
@@ -3827,7 +4435,21 @@
    "abstract": "This paper presents an iterative model predictive control algorithm that stabilizes constrained nonlinear systems without evaluating a single plant derivative. By factoring the exact nonlinear dynamics into a pseudo-linear form using state- and control-dependent coefficients (SCDCs), we replace the standard nonconvex optimization with a sequence of constrained linear-quadratic programs. Refreezing the coefficient matrices along the previously predicted trajectory drives the iteration. Near the origin, we prove this sequence contracts to a unique fixed point. We explicitly bound the number of iterations required to reach any stopping tolerance, and we quantify the distance from the fixed point to a true Karush-Kuhn-Tucker point, showing this optimality gap vanishes quadratically as the state approaches the origin. Inflating the discrete algebraic Riccati equation generates terminal ingredients that guarantee recursive feasibility and asymptotic stability, even when the solver terminates early. We adapt the terminal penalty online, proving it remains uniformly bounded, and we secure output feedback through the block-observable canonical form, which extracts the exact system state directly from past inputs and outputs. Retaining the block-banded structure of the subproblem forces the computational cost to scale linearly with the horizon length $\\ell$. This $O(\\ell)$ complexity matches the iterative linear quadratic regulator (iLQR) but sharply undercuts the $O(\\ell^3)$ scaling of dense sequential quadratic programming (SQP). Numerical studies on a saturated quadrotor, a nonholonomic integrator, and a nonminimum-phase plant illustrate the theoretical bounds and map how the algorithm compares with iLQR, SQP, and linear-parameter-varying MPC.",
    "url": "https://arxiv.org/abs/2608.15322v1",
    "pdf": "https://arxiv.org/pdf/2608.15322v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "无导数迭代MPC算法，用伪线性形式解决约束非线性系统控制",
+    "points": [
+     "状态控制依赖系数(SCDC)将精确非线性动力学分解为伪线性形式，避免求导",
+     "序列线性二次规划收敛到唯一不动点，与iLQR相比复杂度O(ℓ)而SQP需O(ℓ³)",
+     "严格证明最优性间隙二次收敛，端子条件保证递推可行性和渐近稳定性"
+    ],
+    "tags": [
+     "模型预测控制",
+     "非线性系统",
+     "无导数优化",
+     "凸优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15289v1",
@@ -3842,7 +4464,21 @@
    "abstract": "Autonomous UAVs enter enclosed environments such as caves and collapsed structures that confine the vehicle and degrade perception. Conformal prediction provides a distribution-free guarantee by calibrating how far an obstacle keep-out must expand to absorb perception error at a target coverage level. However, existing keep-out regions use convex primitives whose bulges consume narrow passages and grow as perception degrades. Our main contribution defines the nonconformity score on a signed distance field (SDF). This produces a non-convex keep-out that tightly follows obstacle geometry and avoids the unnecessary bulging of equal-margin convex regions. Two supporting components keep this geometry usable as perception degrades. First, a voxelwise union of complementary sensor observations certifies voxels that any single sensor misses. Second, the margin around the obstacle adapts to measured visibility without weather labels or the online ground-truth feedback that single-pass flight cannot provide. Results on real subterranean data show that the resulting distribution-free, shape-conforming keep-out retains more usable free space than convex baselines at the same certified coverage, and produces safer closed-loop flight.",
    "url": "https://arxiv.org/abs/2608.15289v1",
    "pdf": "https://arxiv.org/pdf/2608.15289v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "形状一致的保形区域用于受限环境无人机自主飞行",
+    "points": [
+     "在符号距离场上定义非符合分数，生成紧贴障碍形状的非凸保持距离区域",
+     "多传感器观测互补融合和自适应边际机制应对感知退化",
+     "分布式无关型保证下相比凸基准保留更多自由空间，实现更安全的闭环飞行"
+    ],
+    "tags": [
+     "自主导航",
+     "保形预测",
+     "感知鲁棒性",
+     "符号距离场"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15259v1",
@@ -3858,7 +4494,21 @@
    "abstract": "Unmanned Aerial Vehicles (UAVs) play a crucial role in various scenarios ranging from disaster response to traffic surveillance. However, aerial video footage often suffers from severe motion blur due to rapid flight maneuvers, vibrations, and camera panning, which can significantly degrade downstream tasks such as target detection. Our goal is to explore a computationally-efficient and effective video deblurring approach to enhance UAV target detection performance. To reduce computational cost, we first propose an Adaptive Latent Scale Selector that dynamically adjusts the latent space resolution according to the intensity of UAV motion, thus balancing detail preservation with inference efficiency. To ensure temporal consistency, we introduce a Multi-Frame Alignment and Learnable Gating module to warp and gate the preceding frames, allowing the model to fuse only relevant temporal information and suppress misaligned or uninformative features. Our method can effectively recover sharp details from the UAV video stream. Extensive experiments on real UAV benchmarks demonstrate that our method not only yields superior deblurring performance but also significantly boosts target detection accuracy, making it highly applicable to robust aerial vision tasks.",
    "url": "https://arxiv.org/abs/2608.15259v1",
    "pdf": "https://arxiv.org/pdf/2608.15259v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "运动感知扩散模型去除无人机视频运动模糊，增强目标检测",
+    "points": [
+     "自适应隐空间尺度选择器根据运动强度动态调整，平衡细节保留和推理效率",
+     "多帧对齐和可学习门控机制融合相关时序信息，抑制错位特征",
+     "在无人机基准数据集表现优异，显著提升目标检测精度"
+    ],
+    "tags": [
+     "视频去模糊",
+     "扩散模型",
+     "目标检测",
+     "无人机视觉"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.15175v1",
@@ -3877,7 +4527,21 @@
    "abstract": "Uncrewed aerial vehicles (UAVs) are increasingly deployed for autonomous navigation in complex outdoor environments, where dynamic conditions and mission requirements require intelligent adaptive decision-making. Existing optimization-based, Machine Learning (ML), and Reinforcement Learning (RL) approaches often rely on predefined models or task-specific training, limiting their generalization and adaptability in uncertain scenarios. Recent Large Language Model (LLM)-assisted approaches offer promising reasoning capabilities but remain constrained by limited agentic functionality, including insufficient memory, planning, and tool interaction mechanisms.This paper proposes an LLM-Agent-Based Path Finder (LAPF) framework for autonomous UAV navigation in town-scale outdoor environments. LAPF extends LLM-assisted navigation by integrating perception, memory, planning, and action modules into a closed-loop cognitive architecture. The proposed agent leverages prior navigation experiences, performs Chain-of-Thought (CoT) reasoning, couples each detected hazard to a bounded corrective action, and dynamically refines waypoint decisions based on environmental feedback.The three independent trials per method demonstrate that LAPF achieves mean path lengths of 512.83 m and 506.37 m, compared to the straight-line optimum of 497.33 m, corresponding to path length reductions of 17.2% and 15.6% relative to CoT prompting and absolute path efficiencies of 97.1% and 98.1% in open-field and obstacle-injected scenarios, respectively. Furthermore, LAPF is the only evaluated approach that couples every detected hazard to a bounded, metric-neutral corrective action while maintaining near-goal stability, with zero clamp events in both scenarios, whereas CoT prompting increases from 9.7 to 14.0 events.",
    "url": "https://arxiv.org/abs/2608.15175v1",
    "pdf": "https://arxiv.org/pdf/2608.15175v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "大语言模型代理框架用于无人机自主导航，具有记忆和规划能力",
+    "points": [
+     "感知、记忆、规划、行动四模块闭环认知架构，支持链式思考推理和经验复用",
+     "动态细化航路点决策，将检测到的障碍耦合到有界纠正动作",
+     "开放障碍场景路径效率达97.1%-98.1%，仅比直线最优长2-3%"
+    ],
+    "tags": [
+     "大语言模型",
+     "自主导航",
+     "路径规划",
+     "认知代理"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.14448v1",
@@ -3894,7 +4558,21 @@
    "abstract": "Autonomous racecars operate at the limits of vehicle dynamics, where small control errors translate into safety-critical behavior and lost performance. Trajectory planners assume perfect tracking and remain blind to execution errors. To guarantee safety, trajectory planners therefore restrict themselves to conservative spatial margins, leaving usable track space untapped. To overcome these issues, we introduce a control-informed online trajectory planning framework that learns from its own execution errors. By measuring systematic tracking deviations during runtime, we dynamically adapt spatial track constraints and iteratively expand the free-space planning area. The planner remains time-optimal while compensating for accumulated execution errors. This method was analyzed in a high-fidelity closed-loop simulation environment with autonomous racecars. The results demonstrate that our approach reduces lap time by 1.8\\,s without increasing computational burden, maintaining a median runtime of 25 ms. Our finding indicates that feeding control-induced deviations back into the planning layer unlocks performance previously inaccessible to modular architectures and enables autonomous vehicles to exploit track limits systematically.",
    "url": "https://arxiv.org/abs/2608.14448v1",
    "pdf": "https://arxiv.org/pdf/2608.14448v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过学习控制执行误差在线调整轨迹约束，自主赛车圈速提升1.8秒",
+    "points": [
+     "问题：轨迹规划器假设完美跟踪，为保证安全采用过度保守约束，浪费可用赛道空间",
+     "方法：在线测量执行偏差并反馈至规划层，动态扩展自由空间区域，保持最小时间最优性",
+     "效果：圈速减少1.8秒，运行时间保持25ms，闭环仿真验证有效"
+    ],
+    "tags": [
+     "轨迹规划",
+     "自主赛车",
+     "执行反馈",
+     "约束自适应"
+    ]
+   }
   },
   {
    "id": "s2:856bbafc78fcc900032a62160227141a604c5249",
@@ -3917,7 +4595,21 @@
    "abstract": "SAM, a foundation model for promptable image segmentation, has been widely implemented in various applications. SAM2 extends SAM to process video by integrating a memory attention module. The transformer-based module propagates temporal information via a cross-attention mechanism between the current frame's representations and memory features (stored outputs of previous frames). Given the extensive length of memory features, the quadratic complexity of the attention mechanism (with respect to spatial tokens) scales linearly with the number of stored frames. To accelerate inference time, we propose a spatiotemporal token pruning method that reduces the sequence length of memory tokens. Our motivation stems from two findings: high attention sparsity in 99% of memory tokens and high attention accumulation in the other 1% of these tokens. We formulate the pruning strategy based on two principal requisites of the video dense-prediction task: boundary delineation and temporal trackability. This principle guides the design of our method, where we leverage three scoring functions to form a reference matrix that evaluates the importance of memory tokens. We apply these scoring functions layer-wise, reflecting the transformer layer's tendency to propagate either spatial or temporal information. Our method is a non-retraining approach, yet it can effectively compress up to 87% of memory tokens, accelerating per-frame inference time by 1.7× while causing a negligible disturbance to the original model performance in several benchmark datasets.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3723878",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "时空令牌剪枝压缩87%内存，SAM2视频分割推理加速1.7倍",
+    "points": [
+     "问题：SAM2视频处理的跨注意力机制二次复杂度随帧数线性增长，计算瓶颈",
+     "方法：基于99%注意力稀疏性，利用三层评分函数评估令牌重要性，无需重训练的层级剪枝",
+     "效果：压缩87%内存令牌，推理加速1.7倍，多基准测试性能无损"
+    ],
+    "tags": [
+     "视频分割",
+     "令牌剪枝",
+     "注意力机制",
+     "推理加速"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.10618v1",
@@ -3941,7 +4633,21 @@
    "abstract": "Embodied artificial intelligence aims to develop agents that perceive, reason, and act through continuous interaction with the physical world. However, most embodied systems are still evaluated within conservative safety margins or moderate interaction regimes, leaving their capability boundaries under extreme conditions insufficiently understood. Autonomous racing provides a stringent testbed by combining high-frequency localization and perception, adversarial interaction, near-saturated vehicle dynamics, and strict safety constraints. Existing systems push high-speed performance but rarely model and refine cognitive and physical limits jointly. Here we show that a world-model-centric autonomous racing agent provides a concrete step toward exploring these coupled limits. The framework learns predictive world models from near-limit successes and failures to capture interaction evolution, ego dynamics, and feasible-motion boundaries, coupling world-state construction, future-aware reasoning, and near-limit control in a closed-loop refinement process. Training data were collected from real-vehicle autonomous racing, where the onboard system maintained robust localization and perception at speeds up to 256.3 km/h and peak lateral acceleration of 26.8 m/s$^2$. In full-scale simulated racing, the well trained world-model-centric agent achieves an 88.3% interaction success rate across various challenging simulated racing scenarios. Closed-loop refinement of the world model and policy further improved utilization of cognitive-physical limits, recovery from failure modes, and generalization across varying conditions and unseen circuits. These results suggest a boundary-aware methodology in which world models help embodied agents represent, predict, and continually refine their capability boundaries for safer real-world deployment.",
    "url": "https://arxiv.org/abs/2608.10618v1",
    "pdf": "https://arxiv.org/pdf/2608.10618v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "世界模型驱动智能体在极限自主赛车中耦合认知-物理极限的学习与控制",
+    "points": [
+     "问题：自主系统在极限条件下的认知与物理极限耦合边界理解不足",
+     "方法：学习预测世界模型捕捉交互演化和动力学边界，耦合世界状态构建、前瞻推理、近极限控制的闭环优化",
+     "效果：真车256.3km/h验证，仿真88.3%交互成功率，失败恢复能力强"
+    ],
+    "tags": [
+     "世界模型",
+     "自主赛车",
+     "极限控制",
+     "预测学习"
+    ]
+   }
   },
   {
    "id": "s2:7a49b3108f99e121e93d85000d1c531835345395",
@@ -3958,7 +4664,21 @@
    "abstract": "With the widespread application of deep learning in various scenarios, the user data processed by deep neural networks during training and inference often contains sensitive information. Directly exposing this data may pose privacy risks. To prevent the leakage of user data privacy, previous research has proposed privacy-preserving schemes that use encrypted images for training and inference. However, existing schemes struggle to balance privacy protection with model accuracy and show limited adaptability across various visual tasks. To address these issues, this article presents a novel privacy-preserving scheme, quaternion rotation-enhanced differential privacy (QRDP), along with a dedicated neural network, the quaternion Fourier Transformer (QFT). Specifically, QRDP utilizes quaternion rotation operations to map the RGB representation of an image into quaternion space, generating an encrypted quaternion representation. Then, QRDP adds noise to the encrypted representation within a differential privacy (DP) framework, thereby providing theoretical privacy guarantees. QFT, in turn, extracts robust global feature representations from encrypted images through a quaternion patch embedding module and a Fourier feed-forward layer, meeting the requirements of various visual tasks. Through subjective and objective image quality assessments and corresponding attack experiments, this article verifies the security of QRDP. In tasks such as encrypted image classification and the more challenging cross-modal retrieval, the proposed scheme demonstrates outstanding performance, with both performance and security exceeding those of existing schemes.",
    "url": "https://doi.org/10.1109/TNNLS.2026.3707866",
    "pdf": "",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "四元数旋转增强微分隐私框架，在保护隐私同时维持图像任务高精度",
+    "points": [
+     "问题：深度学习处理敏感数据隐私风险高，现有方案难以平衡隐私与精度且适应性有限",
+     "方法：四元数旋转将RGB映射至加密空间，微分隐私添加噪声，四元数傅里叶变换器提取鲁棒特征",
+     "效果：加密图像分类和跨模态检索性能优异，攻击实验验证安全性"
+    ],
+    "tags": [
+     "差分隐私",
+     "四元数",
+     "图像加密",
+     "隐私保护"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.09653v1",
@@ -3974,7 +4694,21 @@
    "abstract": "Recent advances in learning-based control have enabled impressive achievements in solving complex control problems in various domains. However, since learning-based control may not be able to realize safety-guaranties, it is of great importance to enhance safety and robustness while maintaining good performances. Take vehicle motion \\& dynamics control as an example, in order to overcome the pain points of traditional methods such as heavy parameter calibration effort and learning-based control to bring better performance and efficiency in stability \\& agility over prior work for state-based vehicle control tasks, in this work, our method aims to develop a curriculum learning controller enhanced with physics-based predictive safety filter. The validation is conducted with the Python-CarSim platform, demonstrating better improvements and scalability under various maneuvers.",
    "url": "https://arxiv.org/abs/2608.09653v1",
    "pdf": "https://arxiv.org/pdf/2608.09653v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "预测安全滤波器增强课程学习控制，改进车辆动力学控制的安全性和性能",
+    "points": [
+     "问题：学习控制缺乏安全保障，传统方法参数标定复杂，控制性能在稳定性敏捷性上有限",
+     "方法：将物理基础的预测安全滤波与课程学习框架结合",
+     "效果：CarSim验证稳定性、敏捷性和可扩展性显著改进"
+    ],
+    "tags": [
+     "课程学习",
+     "安全滤波",
+     "车辆控制",
+     "强化学习"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.09413v1",
@@ -3992,7 +4726,21 @@
    "abstract": "Always-on direct yaw moment control (DYC) improves vehicle stability during critical maneuvers but can introduce unnecessary interventions under low-risk conditions. This paper proposes a Koopman risk-gated linear time-varying model predictive control (KRG-LTV-MPC) framework for low-intervention yaw stability assistance. Instead of replacing the physics-based execution model with a fully data-driven control predictor, this framework separates Koopman-based phase-risk preview from safety-critical execution. A Deep Koopman model predicts the nominal evolution of the sideslip-yaw rate phase risk to determine whether the constrained quadratic programming (QP) problem should be solved or skipped at each sampling time. When the gate is active, the LTV-MPC layer calculates the additional yaw moment; otherwise, the QP is skipped and the previously commanded moment is tapered to zero under a bounded-rate rule. Event-level shadow-mode evaluation shows that the Koopman predictor provides positive warning lead times of 0.19-0.28 s under low-friction and friction-transition conditions, whereas the LTV predictor gives delayed warnings. Under closed-loop low-friction conditions, KRG-LTV-MPC reduces the cumulative yaw-moment intervention by 43.9% relative to LTV-MPC and solves the QP for only 41.0% of the samples while maintaining vehicle stability within the phase plane. These results support the use of Koopman phase-risk information as an intelligent supervisory layer for low-intervention DYC.",
    "url": "https://arxiv.org/abs/2608.09413v1",
    "pdf": "https://arxiv.org/pdf/2608.09413v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "深度Koopman风险预测门控MPC，低干预偏航稳定控制减少43.9%不必要干预",
+    "points": [
+     "问题：持续直接偏航力矩控制在低风险条件下产生过度干预",
+     "方法：Koopman模型预测侧滑-偏航相位风险作为监督层，智能控制MPC求解器启停",
+     "效果：干预减少43.9%，仅41%采样需求解QP，维持车辆稳定性"
+    ],
+    "tags": [
+     "模型预测控制",
+     "Koopman算子",
+     "偏航控制",
+     "风险预测"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.09402v1",
@@ -4009,7 +4757,21 @@
    "abstract": "Simulation is crucial for developing and testing autonomous driving systems. In particular, the development of localization and control algorithms relies on an accurate vehicle dynamics simulation. However, most vehicle dynamics models are two-dimensional while real-world roads are three-dimensional. For example, effects from the three-dimensional road geometry on the Las Vegas Motor Speedway can increase the normal forces on the tires by more than 66% compared to the nominal load at standstill. As a result, even highly detailed planar vehicle dynamics models struggle to accurately reproduce the real vehicle's behavior. While solutions for three-dimensional vehicle dynamics exist, they are rarely adopted, computationally expensive, and complex. To address this issue, we present a novel method to couple planar vehicle dynamics models with real-world three-dimensional road geometry. We transform the planar vehicle state from the vehicle model's two-dimensional plane to its corresponding representation in three-dimensional space. Additionally, we calculate road-geometry-induced forces and moments and apply them to the planar vehicle model. We validate our approach using high-speed data recorded with a full-scale race car on the banked Las Vegas Motor Speedway. Furthermore, on synthetic tracks, we show that our method yields accurate results even in edge cases. Together, our results demonstrate that the gap between planar simulation and real-world three-dimensional roads can be closed without abandoning simpler planar models. To simplify adoption of our method, we provide the implementation as open-source software on github.com/TUMFTM/3d-road-geometry-coupling.",
    "url": "https://arxiv.org/abs/2608.09402v1",
    "pdf": "https://arxiv.org/pdf/2608.09402v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "耦合平面车辆动力学与三维道路几何，精确捕捉高速银行赛道的动力学影响",
+    "points": [
+     "问题：平面动力学模型忽视三维道路几何影响，拉斯维加斯赛道正向力偏差超66%",
+     "方法：将平面模型状态变换至三维空间，计算道路几何诱导的力和力矩耦合应用",
+     "效果：真车高速数据验证有效，合成赛道边界情况精度高"
+    ],
+    "tags": [
+     "车辆动力学",
+     "三维几何",
+     "轨道仿真",
+     "控制验证"
+    ]
+   }
   },
   {
    "id": "s2:a887e65ad1bdd4d32d034242f0f6c2e2173b6a54",
@@ -4027,7 +4789,21 @@
    "abstract": "Recent developments in planetary exploration have shown the potential of Unmanned Aerial Vehicles (UAVs), such as the Ingenuity helicopter that provided valuable mapping data. However, limited payload capabilities constrain the flight times and compute available for localization, which restrict their applicability. By providing a tethered connection, issues such as battery and computational constraints are offloaded to the base rover. At the same time, the cable can be exploited for non-drifting localization. This work presents a novel Tether-Inertial Localization approach that uses tether length and angle measurements to estimate the UAV position relative to its base. The method combines a computationally efficient analytical catenary model with a Gaussian Process (GP) residual error compensation. This accounts for systematic sensor inaccuracies and model limitations. Experimental validation across circular, triangular, and figure-eight trajectories with tether lengths up to 4.5 m and a total flight time of 37 minutes demonstrates the effectiveness of the proposed approach. Using only tether-based position estimates for feedback, the analytical catenary model achieves an average RMSE of 7.4 cm, which is further reduced to 5.2 cm through GP-based residual compensation, one order of magnitude better than the state-of-the-art. These results establish Tether-Inertial Localization as a practical alternative to vision- and GNSS-based localization for Tethered Unmanned Aerial Vehicles (TUAVs).",
    "url": "https://doi.org/10.1109/lra.2026.3723306",
    "pdf": "https://arxiv.org/pdf/2608.09515",
-   "venue": "IEEE Robotics and Automation Letters"
+   "venue": "IEEE Robotics and Automation Letters",
+   "summary": {
+    "tldr": "缆绳长度角度加高斯过程补偿，行星无人机定位精度5.2cm超越现有方案",
+    "points": [
+     "问题：行星无人机受载荷限制，视觉/GNSS定位能力受限",
+     "方法：缆绳长度和角度测量结合解析悬链线模型与高斯过程残差补偿",
+     "效果：RMSE 5.2cm相比7.4cm基线，精度超越现有方案一个数量级，飞行37分钟验证"
+    ],
+    "tags": [
+     "无人机定位",
+     "缆绳传感",
+     "高斯过程",
+     "行星探测"
+    ]
+   }
   },
   {
    "id": "s2:fd81c09471d827e79ebe159b2aebccd83871f0c4",
@@ -4043,7 +4819,21 @@
    "abstract": "Achieving unified scene parsing that simultaneously outputs cross-domain semantic segmentation and depth estimation without scene-specific retraining is crucial for robust perception in complex real-world environments, yet remains a challenging goal. While recent monocular depth estimation models such as DepthAnything V2 exhibit strong domain generalization, semantic segmentation still suffers from severe structural degradation under domain and viewpoint shifts. We observed a persistent hierarchical calibration gap, where Euclidean representations exhibit larger calibration gaps between child and parent categories under domain shifts, suggesting limitations of existing Euclidean-based methods in preserving semantic hierarchies. To address this issue, we propose HyperMapper, a hyperbolic structure-aware mapping framework that bridges semantic understanding and geometric priors through hyperbolic token-to-feature interactions. By exploiting the negative curvature of hyperbolic space, HyperMapper helps capture hierarchical relationships and maintains geometric consistency across domains. Furthermore, by combining the expressive priors of vision foundation models (VFMs) with parameter-efficient fine-tuning (PEFT), HyperMapper achieves cross-domain adaptation with minimal trainable parameters in backbone while retaining the strong depth estimation capability of DepthAnythingV2 without retraining. Extensive experiments on multiple cross-domain and cross-viewpoint benchmarks demonstrate that HyperMapper achieves a higher mIoU for both parent and child categories while consistently improving segmentation accuracy over strong baselines. Our approach establishes a promising direction for task-preserving dual-task adaptation, bridging semantic and geometric learning and paving the way toward unified, cross-domain scene parsing.",
    "url": "https://doi.org/10.1109/TNNLS.2026.3680295",
    "pdf": "",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "利用双曲空间几何特性实现跨域场景解析，同时进行语义分割和深度估计",
+    "points": [
+     "问题：欧氏表示在域转移下语义层级校准偏差大，难以保持类别层级关系",
+     "方法：HyperMapper通过双曲空间负曲率捕捉层级关系，结合VFM和参数高效微调",
+     "效果：实现跨域适应中父子类mIoU均提升，保持参数最小化"
+    ],
+    "tags": [
+     "双曲学习",
+     "场景解析",
+     "跨域适应",
+     "参数高效"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.08356v1",
@@ -4059,7 +4849,21 @@
    "abstract": "Accurate models of underwater vehicle motion are needed for autonomous execution of marine tasks like infrastructure inspection and scientific sampling. However, such motion is challenging to characterize using traditional physics-based methods. This paper presents a novel data-driven framework for learning stochastic underwater vehicle dynamics. Using Euler-Poincaré dynamics and the geometry of Lie groups, we develop a stochastic physics-informed neural network architecture that respects the physical and geometric constraints of underwater vehicles. Our approach leverages structure-preserving stochastic integration and builds upon moment matching and finite dimensional matching to ensure geometrically-consistent training. We evaluate our approach in simulation and on an underwater vehicle navigating dock pylons in a harbor environment. The results demonstrate that our method learns accurate and robust dynamics models, enabling safe model-based control in challenging marine environments.",
    "url": "https://arxiv.org/abs/2608.08356v1",
    "pdf": "https://arxiv.org/pdf/2608.08356v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "基于李群和随机物理信息神经网络学习水下车辆动力学模型",
+    "points": [
+     "问题：传统物理方法难以刻画水下车辆非线性复杂运动特性",
+     "方法：利用Euler-Poincaré动力学和李群几何约束，构建结构保持的随机PINN",
+     "效果：学习准确鲁棒的动力学模型，支持安全的模型预测控制"
+    ],
+    "tags": [
+     "物理信息神经网络",
+     "李群",
+     "水下机器人",
+     "动力学建模"
+    ]
+   }
   },
   {
    "id": "s2:65c05affd5f7f0b26daf3bae2f13747e809a24f3",
@@ -4075,7 +4879,21 @@
    "abstract": "This letter presents a novel trajectory optimization method for nonlinear <inline-formula> <tex-math notation=\"LaTeX\">$\\ell ^{1}$ </tex-math></inline-formula>-optimal control problems in which the control horizon is treated as a free variable, allowing both the control duration and the <inline-formula> <tex-math notation=\"LaTeX\">$\\ell ^{1}$ </tex-math></inline-formula>-norm of the control input to be evaluated. Unlike traditional approaches that minimize the <inline-formula> <tex-math notation=\"LaTeX\">$\\ell ^{1}$ </tex-math></inline-formula>-norm of the input under a fixed control horizon, the proposed method treats both the control input and control horizon as design variables, enabling joint optimization of energy and temporal efficiency. The method extends a Newton-based algorithm to accommodate this objective, leveraging gradient information with respect to both variables. This formulation enables one to find high-fidelity optimal trajectories without pre-specifying the control horizon. The effectiveness and robustness of the method are demonstrated through numerical simulations, in which the proposed algorithm recovers the analytical solution to the spacecraft Hohmann transfer, and determines an optimal control horizon for an Earth–Moon transfer.",
    "url": "https://doi.org/10.1109/LCSYS.2026.3710786",
    "pdf": "https://arxiv.org/pdf/2608.07108",
-   "venue": "IEEE Control Systems Letters"
+   "venue": "IEEE Control Systems Letters",
+   "summary": {
+    "tldr": "提出自由地平线牛顿法进行非线性L1最优控制，同时优化控制输入和时间长度",
+    "points": [
+     "问题：传统方法固定控制地平线，无法同时优化能量和时间效率",
+     "方法：扩展牛顿算法，将控制输入和地平线都作为优化变量处理",
+     "效果：恢复Hohmann转移解析解，自动确定最优控制时间"
+    ],
+    "tags": [
+     "轨迹优化",
+     "最优控制",
+     "牛顿法",
+     "地平线优化"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.07740v1",
@@ -4091,7 +4909,21 @@
    "abstract": "This study introduces an advanced lateral control strategy for autonomous vehicles using a clothoid-based approach integrated with an adaptive lookahead mechanism. The primary focus is on enhancing lateral stability and path-tracking accuracy through the application of Euler spirals for smooth curvature transitions, thereby reducing passenger discomfort and the risk of vehicle rollover. An innovative aspect of our work is the adaptive adjustment of lookahead distance based on real-time vehicle dynamics and road geometry, which ensures optimal path following under varying conditions. A quasi-feedback control algorithm constructs optimal clothoids at each time step, generating the appropriate steering input. A lead filter compensates for the vehicle's lateral dynamics lag, improving control responsiveness and stability. The effectiveness of the proposed controller is validated through a comprehensive co-simulation using TruckSim and Simulink, demonstrating significant improvements in lateral control performance across diverse driving scenarios. Future directions include scaling the controller for higher-speed applications and further optimization to minimize off-track errors, particularly for articulated vehicles.",
    "url": "https://arxiv.org/abs/2608.07740v1",
    "pdf": "https://arxiv.org/pdf/2608.07740v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "基于Clothoid曲线和自适应前视距离实现自动驾驶高精度横向控制",
+    "points": [
+     "问题：提高横向稳定性和路径跟踪精度，降低乘客不适和翻车风险",
+     "方法：欧拉螺旋实现平滑曲率过渡，自适应前视距离，铅补偿改善响应性",
+     "效果：仿真验证横向控制性能显著提升，多驾驶场景适用"
+    ],
+    "tags": [
+     "横向控制",
+     "Clothoid",
+     "自动驾驶",
+     "路径跟踪"
+    ]
+   }
   },
   {
    "id": "s2:29521e6e2d48dd2b92eea0b8fe260425cf062809",
@@ -4109,7 +4941,21 @@
    "abstract": "Semantic segmentation has rapidly advanced with deep learning; however, challenges remain in effectively capturing local and global contexts as well as addressing the long-tailed distribution problem. To tackle these issues, we present Contextrast++, a robust contrastive learning method for semantic segmentation that improves multi-scale feature integration and mitigates class imbalance issues. Our method consists of two key components: 1) contextual contrastive learning (CCL) and 2) boundary-aware negative (BANE) sampling. CCL includes three subcomponents: adaptive fusion module, pixel-to-anchor (PA) loss, and anchor-to-anchor (AA) loss. The adaptive fusion module dynamically balances local and global feature integration, resulting in a more context-aware representation. While the PA loss leverages the fused multi-scale features to improve feature representation learning, the AA loss focuses on addressing the long-tailed distribution problem by utilizing a memory bank that stores a fixed number of class-balanced representative anchors. Meanwhile, BANE sampling enhances segmentation precision by selecting hard negatives from misclassified boundary regions, which refines fine-grained details during contrastive learning. As verified in extensive experiments using public datasets, we demonstrate that Contextrast++ substantially improves semantic segmentation performance over existing contrastive learning-based state-of-the-art approaches, while introducing no additional computational overhead during inference.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3721845",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "通过多尺度上下文对比学习和边界感知采样改进语义分割",
+    "points": [
+     "问题：难以有效捕捉局部全局上下文，长尾分布导致类不平衡",
+     "方法：自适应融合整合多尺度特征，像素-锚点和锚点-锚点损失，边界负样本采样",
+     "效果：显著超越已有对比学习方法，推理无额外计算开销"
+    ],
+    "tags": [
+     "语义分割",
+     "对比学习",
+     "多尺度融合",
+     "长尾分布"
+    ]
+   }
   },
   {
    "id": "s2:f93ffdff6c381a1195666579615ffeca4b9b0ea2",
@@ -4128,7 +4974,21 @@
    "abstract": "",
    "url": "https://doi.org/10.1080/00423114.2026.2711738",
    "pdf": "",
-   "venue": "Vehicle System Dynamics"
+   "venue": "Vehicle System Dynamics",
+   "summary": {
+    "tldr": "研究车辆动力学和轮对设计对轮轨耦合波磨的影响机制",
+    "points": [
+     "问题：轨道波磨严重困扰轨道运输系统安全和舒适性",
+     "方法：分析车辆动力学参数与轮对几何设计对轮轨模式耦合的影响",
+     "效果：揭示波磨形成机理，为轨道维护和改进提供科学指导"
+    ],
+    "tags": [
+     "车辆动力学",
+     "波磨",
+     "轮对设计",
+     "轮轨相互作用"
+    ]
+   }
   },
   {
    "id": "s2:d38c1c2c4cda74886355c5c393f1b312be3ad23f",
@@ -4143,7 +5003,21 @@
    "abstract": "Robust reinforcement learning (RRL) aims to develop a robust policy that maintains stable performance across diverse environments characterized by an uncertainty set. This set consists of perturbed environments derived from a nominal (training) environment that generates samples, thereby capturing potential discrepancies between training and real-world conditions. Recently, an adjacent uncertainty set has been introduced, providing more realistic perturbations compared to conventional formulations. Despite its solid theoretical foundation, the existing sample-based implementation of the robust Bellman update suffers from limited scalability and practical applicability in real-world scenarios. In this brief, we present, for the first time, scalable RRL algorithms that overcome these challenges by leveraging expectile regression. Extensive experiments demonstrate that the proposed methods significantly enhance the robustness of state-of-the-art (SOTA) RL algorithms while maintaining a practical computational cost comparable to strong off-policy baselines. In particular, the proposed methods exhibit up to a 23.6% average improvement in robustness under environmental perturbations over SOTA RL baselines while maintaining comparable computational complexity.",
    "url": "https://doi.org/10.1109/TNNLS.2026.3717684",
    "pdf": "",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "利用期望分位数回归实现可扩展的鲁棒强化学习算法",
+    "points": [
+     "问题：现有鲁棒RL实现可扩展性差，计算复杂度高，实际应用困难",
+     "方法：通过期望分位数回归改进鲁棒Bellman更新，克服计算瓶颈",
+     "效果：相比SOTA基线鲁棒性提升23.6%，计算复杂度相当"
+    ],
+    "tags": [
+     "强化学习",
+     "鲁棒性",
+     "期望分位数",
+     "环境扰动"
+    ]
+   }
   },
   {
    "id": "s2:82ad42dd2735cead9f2e4d5e06bdc096e542280b",
@@ -4159,7 +5033,21 @@
    "abstract": "Handwritten text recognition (HTR) in examination scenarios has gained increasing attention for its role in intelligent grading systems. However, existing studies have not systematically modeled the complex handwriting phenomena inherent in exam settings, hindering a comprehensive understanding of the recognition challenges and limitations of current methods. Specifically, handwriting artifacts pose significant challenges to recognition models in two complementary aspects: sequentially, they disrupt the reading order and lead to non-monotonic sequences, while visually, they distort character structures and induce attention drift. To enable systematic benchmarking of exam handwriting, we first construct BNU-Exam-HTR, a large-scale dataset of handwritten exam text, and establish BNU-Exam-Benchmark, a fine-grained evaluation framework defining 12 representative challenges observed in real exam handwriting. To overcome these challenges, we further propose EduOCR, a recognition model with a collaborative dual-branch decoder. The Sequential Symbol Module (SSM) uses autoregressive decoding to handle non-monotonic sequences, while the Permutation-Aware Prediction Head (PPH) simulates artifact perturbations to guide the shared encoder in distinguishing characters from noise, thus stabilizing attention and mitigating alignment errors. Extensive experiments show that EduOCR consistently outperforms state-of-the-art HTR models, OCR tools, and multimodal large language models across all 12 challenges, demonstrating superior robustness and adaptability.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3721731",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "构建考试手写文本识别数据集和基准，提出EduOCR模型应对识别挑战",
+    "points": [
+     "问题：考试手写体存在序列非单调和字符结构扭曲两类识别难题",
+     "方法：构建BNU-Exam-HTR数据集和12项挑战基准，提出双分支解码器EduOCR",
+     "效果：在所有挑战上超越SOTA模型和多模态大语言模型，鲁棒性强"
+    ],
+    "tags": [
+     "手写文本识别",
+     "OCR",
+     "考试场景",
+     "注意力机制"
+    ]
+   }
   },
   {
    "id": "arxiv:2608.04412v1",
@@ -4176,7 +5064,21 @@
    "abstract": "High-quality driving data are essential for autonomous-driving systems and generative world models. However, rare and safety-critical scenarios involving adverse weather, braking under low tire--road friction, and uneven road geometry are costly and risky to collect at scale. Existing video-generation and 3D Gaussian editing methods can modify weather appearance or road geometry, but typically do not couple these edits with tire--road interaction and vehicle dynamics. As a result, an edited video may retain its original trajectory even when the modified road condition should alter braking, wheel slip, load transfer, and ego-camera motion. We present muSync-GS, a physics-synchronized framework for driving video synthesis under adverse-weather and road-elevation hazards. A precipitation-derived road-surface condition jointly controls road appearance and tire friction, while a shared road-elevation profile drives both visible road-geometry editing and axle excitation. A calibrated vehicle model predicts speed, slip ratio, normal loads, and pitch for constructing the ego-camera trajectory and synchronized physical annotations. On 12 held-out CarSim cases spanning precipitation levels, brake inputs, and road-profile parameters, the model achieves mean case-wise RMSEs of 0.0273 m/s for speed, 0.0590 degrees for pitch, 0.0101 for slip ratio, and 26.61 N for per-wheel normal load. Together with the reconstructed-scene experiments, these results show that muSync-GS accurately reproduces vehicle responses under held-out controls while synchronizing them with controllable scene edits and ego-camera motion.",
    "url": "https://arxiv.org/abs/2608.04412v1",
    "pdf": "https://arxiv.org/pdf/2608.04412v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "结合物理模型的自动驾驶视频生成框架，在编辑恶劣天气和路面条件时同步调整车辆动力学",
+    "points": [
+     "解决现有视频编辑方法忽视物理响应的问题",
+     "通过路面条件和高度轮廓耦合控制外观与摩擦、几何与车轴激励",
+     "在CarSim上验证速度、俯仰角、滑移比和轮载预测精度"
+    ],
+    "tags": [
+     "自动驾驶",
+     "物理同步",
+     "视频生成",
+     "高斯编辑"
+    ]
+   }
   },
   {
    "id": "s2:d6ccf8e93bd3461a4bdd26d641d7c070497c18f1",
@@ -4197,7 +5099,21 @@
    "abstract": "Federated learning (FL) has emerged as a collaborative approach that allows multiple clients to jointly learn a machine learning model without sharing their private data. The concern about privacy leakage, albeit demonstrated under specific conditions [1], has triggered numerous follow-up research in designing powerful attacking methods and effective defending mechanisms aiming to thwart these attacking methods. Nevertheless, privacy-preserving mechanisms employed in these defending methods invariably lead to compromised model performances due to a fixed obfuscation applied to private data or gradients. In this article, we, therefore, propose a novel adaptive obfuscation mechanism, coined FedAdOb, to protect private data without yielding original model performances. Technically, FedAdOb utilizes passport-based adaptive obfuscation to ensure data privacy in both horizontal and vertical federated learning settings. The privacy-preserving capabilities of FedAdOb, specifically with regard to private features and labels, are theoretically proven through Theorems 1 and 2. Furthermore, extensive experimental evaluations conducted on various datasets and network architectures demonstrate the effectiveness of FedAdOb by manifesting its superior trade-off between privacy preservation and model performance, surpassing existing methods.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3715766",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "自适应混淆机制实现隐私保护与模型性能的均衡，适用于横向和纵向联邦学习",
+    "points": [
+     "针对固定混淆导致模型性能下降的问题",
+     "采用护照式自适应混淆机制，理论证明隐私特征和标签保护",
+     "实验显示隐私-性能权衡优于现有方法"
+    ],
+    "tags": [
+     "联邦学习",
+     "隐私保护",
+     "自适应混淆",
+     "梯度防护"
+    ]
+   }
   },
   {
    "id": "s2:3f4b01ab93555877c9b0fb8d3417f46f6d538e11",
@@ -4214,7 +5130,21 @@
    "abstract": "Driving topology reasoning is an important perception task in autonomous driving, which requires detecting road centerlines (lane) and traffic elements, further reasoning their topology relationship. However, deploying this in real-world scenarios faces two significant challenges: designing high-performance pipelines and cost-effectively annotating topological data. To overcome these obstacles, we first introduce a robust \"first-detect-then-reason\" framework, named TopoMLP++. The core of TopoMLP++ lies in its emphasis on designing a powerful 3D lane detector that leverages global attention modeling and geometry-aware enhancements. Additionally, it includes 2D traffic detectors augmented by YOLOv8 results. After detection, MLP-based heads are employed for lane topology prediction, where we extend traditional binary classification by integrating a geometry-aware strategy, ensuring that connected points are geometrically close. To further minimize annotation efforts and facilitate data scalability, we propose an agent-based data engine that utilizes the predictions from TopoMLP++. This framework incorporates a large language model (LLM) as an agent, which first employs TopoMLP++ to generate pseudo-labels. The agent then detects potential inconsistencies in the predictions and coordinates external tools to iteratively refine the predicted lane centerlines. This iterative process ultimately boosts the performance of TopoMLP++. Experiments on the OpenLane-V2 dataset demonstrate that TopoMLP++ achieves state-of-the-art results. Its initial version is the 1st solution for 1st OpenLane Topology in IEEE CVPR Autonomous Driving Challenge. Additionally, with just 50% labeled data, TopoMLP++ augmented by our agent-based data engine achieves 96% of the performance attained by full-data training.",
    "url": "https://doi.org/10.1109/TPAMI.2026.3721163",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "自动驾驶中的车道拓扑推理框架，结合LLM辅助的数据标注引擎实现高性能和高可扩展性",
+    "points": [
+     "提出先检测后推理的TopoMLP++框架，使用全局注意力和几何感知的3D车道检测",
+     "通过LLM代理生成伪标签并迭代优化，减少标注成本",
+     "在OpenLane-V2数据集达到SOTA，排行榜第一名"
+    ],
+    "tags": [
+     "自动驾驶",
+     "拓扑推理",
+     "车道检测",
+     "大语言模型"
+    ]
+   }
   },
   {
    "id": "s2:0b13a1ee517013ab2548db60a72b37d2c77bcafd",
@@ -4232,7 +5162,21 @@
    "abstract": "Accurate segmentation of intracranial arteries in digital subtraction angiography (DSA) sequences is critical for cerebrovascular diagnosis but remains challenging due to limited annotations and complex vascular structures. We propose the temporal-adaptive fusion (TAF)-Net, a semisupervised dual-path framework that integrates a vision foundation model, MedSAM, and a task-specific UNet to leverage anatomical priors and fine-grained vascular features. To address interframe inconsistency and vessel discontinuity, we introduce a TAF strategy that dynamically fuses model predictions based on framewise confidence and temporal priors. In addition, we design a spatiotemporal topology-aware loss to enforce structural continuity by penalizing critical disconnection components across frames. Extensive experiments on two public multiframe DSA datasets (DIAS and DSCA) demonstrate that the TAF-Net consistently outperforms state-of-the-art methods in both overlap accuracy (DSC, IoU) and topological integrity (Cost, 95HD), especially under low-label regimes.",
    "url": "https://doi.org/10.1109/TNNLS.2026.3718595",
    "pdf": "",
-   "venue": "IEEE Transactions on Neural Networks and Learning Systems"
+   "venue": "IEEE Transactions on Neural Networks and Learning Systems",
+   "summary": {
+    "tldr": "时间自适应融合框架结合视觉基础模型用于脑动脉分割，在低标注情况下保证拓扑连续性",
+    "points": [
+     "解决脑血管动脉分割中标注稀少和血管结构复杂的问题",
+     "融合MedSAM和UNet，引入时间自适应融合和时空拓扑感知损失",
+     "在DIAS和DSCA数据集上优于SOTA，低标注场景表现尤佳"
+    ],
+    "tags": [
+     "医学图像分割",
+     "半监督学习",
+     "时空融合",
+     "拓扑连续性"
+    ]
+   }
   },
   {
    "id": "s2:6fb98ba0432d2f94e66153af9b78eb9ad01c22d9",
@@ -4252,7 +5196,21 @@
    "abstract": "Infrared and visible image fusion is pivotal for robust visual perception across all weather conditions and scenes. Although deep learning-based methods have made notable progress, most either assume pre-aligned inputs or rely on implicit feature-space alignment, which fails to fundamentally address the amplification of registration errors and the loss of semantic structure in the fused results. To this end, we propose a universal representation and end-to-end framework for jointly registering and fusing unaligned infrared-visible image pairs, dubbed URMIF. Each image is mapped into modality-invariant (homogeneous) and modality-specific (heterogeneous) features: the invariant \"structural skeleton\" encodes geometry and semantics to stabilize alignment, while the specific \"texture carrier\" preserves thermal saliency and visible details to enable complementary fusion. Therefore, we propose a bi-directionally coupled registration-fusion module. This module performs hierarchical deformation estimation from coarse to fine, effectively mitigating visual mismatches caused by complex parallax in real-world scenes. Within this framework, the fusion component acts as the \"evaluator\" of registration, providing feedback regularization to update the deformation and suppress error accumulation. Furthermore, we introduce a dominant-plane prior as a scene-level constraint, seeding stable global and patch-wise homographies and reconciling cross-modal detail conflicts, to reinforce geometric consistency and semantic reliability. We also release a large-scale dataset comprising 1,500+ unaligned infrared/visible pairs with registration ground truth, spanning diverse illumination conditions and fields of view. Based on this dataset and additional benchmarks, extensive experiments validate that our framework achieves robust alignment and high-quality fusion on misaligned inputs, markedly reducing artifacts and improving the performance of downstream tasks such as detection and segmentation. Code and benchmark are available at https://github.com/ZengxiZhang/URMIF.",
    "url": "https://doi.org/10.1109/tpami.2026.3720312",
    "pdf": "",
-   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+   "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+   "summary": {
+    "tldr": "统一表示框架同时实现红外-可见光图像对齐与融合，保留几何结构和细节信息",
+    "points": [
+     "针对隐式特征对齐导致的注册误差和语义丢失问题",
+     "使用模态不变和模态特定特征分离，双向耦合配准-融合模块和主导平面先验",
+     "发布1500+幅真实未对齐图像数据集，实现几何一致和语义可靠"
+    ],
+    "tags": [
+     "图像融合",
+     "多模态配准",
+     "红外可见光",
+     "空间变换"
+    ]
+   }
   },
   {
    "id": "s2:a4c1f8c22e6f960213126ef74f77462574e42d4d",
@@ -4268,7 +5226,21 @@
    "abstract": "Robust control in multiagent systems (MASs), understood as the ability to solve a cooperative distributed task despite uncertainties and disturbances in the agents’ dynamics or the shared networking environment, is a crucial aspect of the practical applicability of the MAS paradigm. In this work, novel control mechanisms involving adaptation and cooperation are proposed to enhance the robust performance of MASs. A comprehensive case study is presented to illustrate the potential of the proposed techniques.",
    "url": "https://doi.org/10.1109/TAC.2026.3670759",
    "pdf": "",
-   "venue": "IEEE Transactions on Automatic Control"
+   "venue": "IEEE Transactions on Automatic Control",
+   "summary": {
+    "tldr": "多智能体系统中的自适应协作控制机制，实现面对不确定性和干扰的鲁棒分布式控制",
+    "points": [
+     "提出自适应和协作机制增强MAS鲁棒性能",
+     "处理智能体动力学和网络环境的不确定性与干扰",
+     "通过案例研究验证方法的实际可用性"
+    ],
+    "tags": [
+     "多智能体系统",
+     "分布式控制",
+     "自适应控制",
+     "鲁棒性"
+    ]
+   }
   },
   {
    "id": "s2:6c44e9bf287b96431ce8fae30499ed510b9ad91c",
@@ -4284,7 +5256,21 @@
    "abstract": "In this article, we study the optimal exploratory control for an entropy-regularized backward stochastic control system with partial information. The stochastic maximum principle are given for the concerned nonlinear system. Then, the existence and uniqueness of optimal control for the entropy-regularized linear quadratic control problem with partial information is proved. Based on theoretical results, we design an efficient iterative algorithm for optimal control of linear-convex stochastic systems with partial information in the case that the state variable and the control variable are separated in the cost functional, and moreover, we prove that the algorithm has an $1\\over {n}$-order convergence rate. Finally, numerical examples are given to demonstrate the effectiveness of our proposed algorithm.",
    "url": "https://doi.org/10.1109/TAC.2026.3665129",
    "pdf": "",
-   "venue": "IEEE Transactions on Automatic Control"
+   "venue": "IEEE Transactions on Automatic Control",
+   "summary": {
+    "tldr": "部分信息条件下的熵正则化后向随机控制最优性理论与高效算法实现",
+    "points": [
+     "建立熵正则化随机最大值原理，证明线性二次问题的最优控制存在唯一性",
+     "设计迭代算法处理状态和控制分离的线性凸随机系统",
+     "算法具有1/n阶收敛速率，数值实验验证有效性"
+    ],
+    "tags": [
+     "随机控制",
+     "部分信息",
+     "熵正则化",
+     "迭代算法"
+    ]
+   }
   },
   {
    "id": "s2:627b96d53aa40a61ebfefeee029b22933df3313d",
@@ -4300,7 +5286,21 @@
    "abstract": "In this article, we address the distributed source seeking (DSS) problem using model predictive control (MPC). In our approach, the signal field is modeled as a weighted combination of convex functions, and we employ a distributed set-membership estimation to gain a global exploration of the field. This estimated field is then treated as the output of the resulting connected system, enabling the DSS problem to be formulated as an output tracking problem that can be solved using a distributed adaptive MPC (DAMPC) approach. To ensure the recursive feasibility of DAMPC, we propose a parametrized terminal set design, derived from the characteristics of the signal field and system dynamics. We also demonstrate that the closed-loop system is practically stable. Simulation results validate the effectiveness of our method and highlight its superiority over existing DSS algorithms.",
    "url": "https://doi.org/10.1109/TAC.2026.3666701",
    "pdf": "",
-   "venue": "IEEE Transactions on Automatic Control"
+   "venue": "IEEE Transactions on Automatic Control",
+   "summary": {
+    "tldr": "分布式模型预测控制框架用于源寻找，通过全局场估计实现鲁棒的分布式控制",
+    "points": [
+     "使用凸函数加权模型和分布式集合隶属度估计进行全局场探索",
+     "提出自适应MPC方法，通过参数化终端集设计保证递归可行性",
+     "系统具有实际稳定性，优于现有分布式源寻找算法"
+    ],
+    "tags": [
+     "模型预测控制",
+     "分布式控制",
+     "源寻找",
+     "全局优化"
+    ]
+   }
   },
   {
    "id": "s2:3e2498de8b3e5bb104dda0925dd3b7fe7e81b8c5",
@@ -4316,7 +5316,21 @@
    "abstract": "This article investigates the adaptive control of nonlinear systems with parametric uncertainties and time delays, utilizing a time-varying gain feedback approach. A novel adaptive control framework is first developed based on the solution of a time-varying parametric Lyapunov equation that incorporates adaptive parameters. Building on this framework, we design an adaptive time-varying feedback controller that guarantees global asymptotic stability for nonlinear systems with both uncertain parameters and time delays. Unlike classical robust control approaches based on fixed solutions to algebraic Riccati equations, which require prior knowledge of the uncertainty bounds to guarantee solvability, the proposed time-varying gain framework can globally stabilize the system with completely unknown and arbitrarily large parametric uncertainties. Compared with conventional backstepping-based adaptive control approaches, the proposed method features a simpler structure and improved implementation feasibility. Finally, the effectiveness of the proposed scheme is demonstrated through a standard simulation example.",
    "url": "https://doi.org/10.1109/TAC.2026.3669442",
    "pdf": "",
-   "venue": "IEEE Transactions on Automatic Control"
+   "venue": "IEEE Transactions on Automatic Control",
+   "summary": {
+    "tldr": "提出时变增益自适应控制框架，无需先验不确定性界限即可全局稳定参数未知的时延非线性系统",
+    "points": [
+     "解决参数完全未知且任意大不确定性下的非线性系统全局稳定问题",
+     "基于时变Lyapunov方程的自适应框架，相比Riccati代数方程无需不确定性上界",
+     "结构简洁可行性强，相比反步法自适应控制有明显优势"
+    ],
+    "tags": [
+     "自适应控制",
+     "时间延迟",
+     "Lyapunov稳定性",
+     "非线性系统"
+    ]
+   }
   },
   {
    "id": "s2:23be136dd17c964c7d43ca888d009ffc161efa50",
@@ -4331,7 +5345,21 @@
    "abstract": "",
    "url": "https://doi.org/10.1016/j.automatica.2026.112957",
    "pdf": "https://arxiv.org/pdf/2410.11107",
-   "venue": "Automatica"
+   "venue": "Automatica",
+   "summary": {
+    "tldr": "递推可行的随机模型预测控制应对时变线性系统无界扰动下的鲁棒控制问题",
+    "points": [
+     "解决时变线性系统在无界扰动下的可行性保证问题",
+     "递推可行的随机模型预测控制方法确保约束满足",
+     "在无界扰动约束下实现稳定控制"
+    ],
+    "tags": [
+     "模型预测控制",
+     "随机控制",
+     "鲁棒性",
+     "时变系统"
+    ]
+   }
   },
   {
    "id": "s2:f41662402f856c65c18acd58394729c7cd53ea14",
@@ -4350,7 +5378,21 @@
    "abstract": "The rapid development of intelligent transportation systems, such as cloud-vehicle cooperative architectures, has opened new opportunities for enhancing vehicle safety control. Stability control for autonomous vehicles is a critical task in intelligent transportation systems. This paper presents a cloud-vehicle collaborative framework that integrates physics-based modeling with learning-based prediction to achieve stability-aware intelligent control. A Lyapunov-based sum-of-squares algorithm is developed for region-of-attraction estimation, explicitly incorporating a combined-slip LuGre tire model. These stability regions are embedded as constraints into a variable-matrix model predictive control scheme, ensuring region-of-attraction-constrained decision making. Meanwhile, a gated recurrent unit network, trained using nonlinear vehicle simulation data, predicts feedforward steering sequences to capture lateral-longitudinal coupling. The heavy computational tasks of network training and stability domain computation are offloaded to cloud computing, enabling efficient real-time execution onboard vehicles. Simulation results validate that the proposed approach improves both stability margins and trajectory tracking performance, highlighting its potential for future cooperative and safe autonomous driving systems.",
    "url": "https://doi.org/10.1109/TITS.2026.3678145",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "云-车协作框架通过学习变矩阵MPC与引力域约束实现自动驾驶稳定性控制",
+    "points": [
+     "集成LuGre轮胎模型和物理建模，处理横纵向耦合的稳定性控制",
+     "Lyapunov基SOS算法估计引力域，嵌入MPC约束；GRU网络预测前馈控制",
+     "云端卸载训练和域计算，车端实时执行，改善稳定裕度和轨迹跟踪"
+    ],
+    "tags": [
+     "模型预测控制",
+     "云边协作",
+     "自动驾驶",
+     "引力域约束"
+    ]
+   }
   },
   {
    "id": "s2:cc74cfe37393fc124660481aa4e65753e7cba4bd",
@@ -4367,7 +5409,21 @@
    "abstract": "With the increasing demand for connected and autonomous vehicle (CAV) platoons in the intelligent transportation system, optimizing communication resources while ensuring control performance has emerged as a critical challenge. To this end, this paper proposes a novel event-triggered reinforcement learning (ETRL) scheme for cooperative control of heterogeneous CAV platoons. The platooning control problem is first formulated as a multi-agent differential graphical game. Within this framework, each vehicle’s error dynamics and predefined performance functions depend solely on local and neighboring information. Then, a data-driven and off-policy integral reinforcement learning algorithm is developed to solve the coupled Hamilton-Jacobi equations which latently characterize the distributed optimal control policy. To further conserve communication resources, a dynamic event-triggered mechanism is introduced, and a single-critic network structure is used to implement the ETRL-based platooning control scheme. The stability and optimality of the vehicular platoon system are substantiated by strict theoretical analysis. Finally, through comprehensive simulations incorporating aggressive stop-and-go behaviors and periodic longitudinal disturbances, the effectiveness and superior performance of the proposed scheme are definitively validated against existing benchmark algorithms across multiple indicators.",
    "url": "https://doi.org/10.1109/TITS.2026.3681134",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "事件触发强化学习实现异构车队协作控制，优化通信资源同时保证控制性能",
+    "points": [
+     "解决异构车队的分布式最优协作控制和通信资源优化问题",
+     "多智能体微分博弈框架，偏差动力学依赖本地邻域信息；离策积分强化学习求解耦合Hamilton-Jacobi方程",
+     "动态事件触发机制节省通信资源，单评论家网络结构，理论和仿真验证稳定性最优性"
+    ],
+    "tags": [
+     "强化学习",
+     "协作控制",
+     "编队",
+     "事件触发"
+    ]
+   }
   },
   {
    "id": "s2:b8bcda8a6167034c9563b912239be47ef4109a0b",
@@ -4384,7 +5440,21 @@
    "abstract": "The prediction of future trajectories for vehicle in the field of autonomous driving is of utmost importance to ensure safe driving. However, it is challenging as the existing methods still suffer from noise sensitivity, limited representation ability and time-consuming inference. To this end, we propose a novel Driving Mode Centric Denoising Diffusion Model for trajectory prediction, namely DMC-Diffuser. Specifically, we first devise a driving mode token generator by utilizing different time-scale information from noisy trajectories. Subsequently, we employ an attention-based denoiser, which leverages the driving mode token along with the driving context to learn the potential trajectories. Furthermore, aided by a flexible denoiser structure with an accelerated sampling algorithm, the proposed method can achieve the comparable performance at the cost of low-complexity inference. Experimental results on two datasets show that DMC-Diffuser has achieved superior performance compared to the state-of-the-art methods, e.g., a comprehensive performance gain of nearly 9% over other diffusion based methods.",
    "url": "https://doi.org/10.1109/TITS.2026.3678944",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "驾驶模式中心的去噪扩散模型实现轨迹预测，相比现有方法性能提升9%且推理高效",
+    "points": [
+     "解决现有轨迹预测方法的噪声敏感、表达能力有限、推理耗时问题",
+     "驾驶模式令牌生成器捕捉多时间尺度噪声信息，注意力去噪器融合驾驶上下文",
+     "加速采样算法降低计算复杂度，综合性能提升接近9%"
+    ],
+    "tags": [
+     "轨迹预测",
+     "扩散模型",
+     "自动驾驶",
+     "深度学习"
+    ]
+   }
   },
   {
    "id": "s2:af29ff3d0ab226ecbc3cd437220aedfa4e561f9f",
@@ -4402,7 +5472,21 @@
    "abstract": "Most studies developing car-following controllers for AVs in mixed traffic primarily focus on maximizing the utility of the AVs. However, the utility of the entire mixed traffic flow is largely ignored, which may lead to self-centered AVs. This study aims to develop a leading cruise controller for AVs that can “look behind” the mixed traffic flow. It enables the AV to adapt its car-following behaviors according to the states of both the leading human-driven vehicle (LHDV) and the following human-driven vehicle (FHDV). Car-following trajectories are extracted, processed, and analyzed based on the real-world autonomous driving dataset – the Waymo Open Dataset. Then car-following behaviors of HDVs are approximated through an inverse reinforcement learning (IRL) approach. After that, this study proposes a preference-based soft actor-critic (PbSAC) algorithm to optimize the speed of AVs in the three-vehicle car-following scenario. In addition to safety, efficiency, and string stability for AV, these metrics for FHDV are also included in the reward function. An adaptive preference-adjusting module is developed to update the weights in the reward function based on expert knowledge. Experimental results indicate that the proposed algorithm can improve safety, efficiency, and string stability for both AV and FHDV. Moreover, if behavioral changes of human drivers when they are following AVs are not accurately captured, the learned AV controller may result in suboptimal performance.",
    "url": "https://doi.org/10.1109/TIV.2024.3412977",
    "pdf": "",
-   "venue": "IEEE Transactions on Intelligent Vehicles"
+   "venue": "IEEE Transactions on Intelligent Vehicles",
+   "summary": {
+    "tldr": "偏好强化学习跟车控制器考虑后车利益，同时改善自车和后车的安全效率与弦稳定性",
+    "points": [
+     "解决混合交通中自车只顾自身效用、忽视后车利益的问题",
+     "基于Waymo数据学习HDV跟车行为，使用PbSAC算法优化三车场景速度控制",
+     "在安全、效率、弦稳定性方面同步改善自车和后车性能"
+    ],
+    "tags": [
+     "强化学习",
+     "跟车模型",
+     "混合交通",
+     "弦稳定性"
+    ]
+   }
   },
   {
    "id": "s2:aab8bfdebe509b1a80e828f71209af5f3601a655",
@@ -4419,7 +5503,21 @@
    "abstract": "Connected autonomous vehicles (CAVs) platoons rely on V2V communication and onboard sensing to maintain safe inter-vehicle spacing, yet cyberattacks on links and sensors can inject false data and destabilize platoon control. This paper proposes a hierarchical Secure Tiny Model Predictive Control (Secure TinyMPC) framework for real-time resilient platooning. A verifiable secret sharing (VSS)-based security layer distributes state shares across communication links to reconstruct trusted states and to support distributed, online detection and estimation of communication and radar attacks. A low-computation TinyMPC control layer then uses these trusted states to rapidly compute control inputs suitable for resource-limited onboard hardware. Simulation studies under diverse communication attacks and radar measurement tampering demonstrate accurate spacing regulation, fast speed convergence, and effective real-time distributed attack detection.",
    "url": "https://doi.org/10.1109/TITS.2026.3678409",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "可验证秘密共享与TinyMPC框架实现编队车队对虚假数据注入的抗性实时控制",
+    "points": [
+     "解决V2V通信和传感器遭虚假数据注入导致编队失稳的问题",
+     "VSS安全层分布式共享状态并在线检测通信/雷达攻击，重建可信状态",
+     "低计算TinyMPC层快速生成控制输入，适配车端硬件约束"
+    ],
+    "tags": [
+     "网络安全",
+     "模型预测控制",
+     "编队控制",
+     "攻击防御"
+    ]
+   }
   },
   {
    "id": "s2:a877f1baf3119967a564cc9daf4ac3836875b866",
@@ -4438,7 +5536,21 @@
    "abstract": "Pedestrian-vehicle interactions are critical problems in the development of autonomous driving technologies. However, there is still a lack of comprehensive understanding of pedestrian behaviors during pedestrian-vehicle interactions, especially considering the impact of group behaviors. This study proposes an Actor-Relation-Graph-based Game-Adversarial Inverse Reinforcement Learning (AR2G-AIRL) algorithm to understand pedestrian behaviors during pedestrian-vehicle interactions, considering the influence of surrounding pedestrians and vehicles. Specifically, we first identify pedestrian-vehicle interactions from a naturalistic driving dataset as the data basis. Subsequently, the AR2G-AIRL algorithm is constructed with three components: Actor-Relation Graphs (ARGs) to capture the features within groups, evolutionary game theory to extract the features between groups, and the Adversarial Inverse Reinforcement Learning (AIRL) algorithm to recover the reward function. The experiment results illustrate that the AR2G-AIRL algorithm can accurately simulate pedestrian behaviors during pedestrian-vehicle interactions and outperform all the baseline methods and ablation studies. Meanwhile, the trajectory and ARG weight visualization results demonstrate the importance of surrounding pedestrians under diverse interactions. Moreover, the analysis of the recovered reward function validates the “safety in numbers” effect and reveals the basic patterns of pedestrians interacting with vehicles without surrounding pedestrians and the heterogeneous impact of the size and morphologies of pedestrian groups on pedestrian behaviors. These results highlight the importance of incorporating group behaviors, offering insights into enhancing road safety and the efficiency of autonomous systems.",
    "url": "https://doi.org/10.1109/TITS.2026.3683394",
    "pdf": "https://doi.org/10.2139/ssrn.5125253",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "行为图与游戏逆强化学习建模行人-车辆交互，融合群体行为影响因素",
+    "points": [
+     "解决行人-车辆交互中对群体行为影响的理解不足问题",
+     "Actor-Relation-Graph捕捉群体内特征，进化博弈论提取群体间特征，AIRL恢复奖励函数",
+     "准确模拟交互行为，验证'安全在人多处'效应，揭示行人-车辆交互基本模式"
+    ],
+    "tags": [
+     "逆强化学习",
+     "行人建模",
+     "自动驾驶",
+     "博弈论"
+    ]
+   }
   },
   {
    "id": "s2:a319be81c4bf4b7c8cf9eca0488676d9cd9f1b02",
@@ -4456,7 +5568,21 @@
    "abstract": "The mobility and safety benefits of Connected and Automated vehicles (CAVs) are an ongoing area of research. While several studies demonstrate the advantages of CAVs, there remains a gap in quantifying these benefits over conventional Automated Vehicles (AVs). Roadworks (RWs) are particularly challenging driving environment for AVs/CAVs. This paper evaluates the safety and mobility benefits of CAVs over AVs in RW conditions. The primary focus is on examining the lane change behaviour of AVs/CAVs at different design speeds, specifically 40 km/h, 60 km/h, and 80 km/h. A simulated environment is developed to integrate CAVs and RW areas featuring lane closure. To achieve this, state-of-the-art models (lateral behaviour: Minimising Overall Braking Induced by Lane Changes (MOBIL); and longitudinal behaviour: Intelligent Driver Model (IDM)) were utilised, incorporating improvements to simulate near misses and crashes incidents. Furthermore, the study delves into the crucial aspect of safety by investigating the effects of model parameters on the chances of traffic crashes. The research findings demonstrate that CAVs start lane change manoeuvre early, particularly under high traffic flow conditions. Specifically, at a speed of 40 km/h and under high traffic conditions, CAVs demonstrated a success rate ranging from 91% to 96%, while AVs exhibited a substantially lower success rate, ranging only between 10% and 11%. The simulation results further highlight a lack of collisions in AVs/CAVs during lane change at RW. This research serves as a valuable contribution to the field of automated driving, providing insights into the optimisation of lane change behaviours and safety considerations at RW environments.",
    "url": "https://doi.org/10.1109/TIV.2024.3419916",
    "pdf": "",
-   "venue": "IEEE Transactions on Intelligent Vehicles"
+   "venue": "IEEE Transactions on Intelligent Vehicles",
+   "summary": {
+    "tldr": "对比CAVs与AVs在施工区的协作变道行为，CAVs在复杂场景下显著提升安全性与成功率。",
+    "points": [
+     "在施工区高流量条件下，CAVs变道成功率91-96%，远高于AVs的10-11%",
+     "使用MOBIL和IDM模型模拟变道，并融入碰撞预测改进",
+     "CAVs提前启动变道，通过车间通信实现协作决策"
+    ],
+    "tags": [
+     "协作变道",
+     "施工区",
+     "连接自动驾驶",
+     "安全评估"
+    ]
+   }
   },
   {
    "id": "s2:90b9c97901ad9357b57d9c50c029bba5c2fd4583",
@@ -4474,7 +5600,21 @@
    "abstract": "LiDAR simulation is essential for developing and evaluating autonomous vehicles, particularly for testing perception algorithms in realistic, safety-critical environments such as urban driving. However, accurately simulating LiDAR intensity remains challenging, as simulations often fall short in capturing the complex interactions between the laser beam and objects, including surface reflectivity and incidence angle. Existing physics-based simulations often oversimplify these interactions, resulting in a substantial simulation-to-real gap. This paper introduces a novel architecture, the Physics-Informed Cycle-Consistent Generative Adversarial Network (PICGAN), which leverages cycle consistency and physics-based constraints to reduce this gap, enabling simulated point clouds to be assigned realistic intensities comparable to those from real-world LiDAR sensors. By integrating physical parameters of range, incidence angle, and material reflectance along with their interrelationships, PICGAN leverages unpaired real and simulated LiDAR data to more accurately replicate real-world intensity characteristics. PICGAN achieves a low KL divergence (e.g., 0.057 for cars) and a high average SSIM of 0.73 (±0.04), reflecting strong alignment with real LiDAR intensity. These enhancements also benefit downstream perception tasks in complex traffic scenes (up to 5.4% IoU improvement), highlighting the potential of our method to advance LiDAR-based perception for autonomous vehicles.",
    "url": "https://doi.org/10.1109/TITS.2026.3681982",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "通过物理约束的循环一致性GAN精确模拟LiDAR强度，有效缩小仿真与真实传感器差距。",
+    "points": [
+     "提出PICGAN融合物理参数（距离、入射角、材质反射率）和cycle consistency",
+     "实现KL散度0.057、SSIM 0.73的高精度强度模拟",
+     "感知下游任务（目标检测）性能提升5.4%的IoU"
+    ],
+    "tags": [
+     "LiDAR仿真",
+     "sim-to-real",
+     "生成对抗网络",
+     "感知算法"
+    ]
+   }
   },
   {
    "id": "s2:8e3fbc4b020aeee890cb0a8f1c6148dc81ef4b61",
@@ -4492,7 +5632,21 @@
    "abstract": "Pedestrian trajectory prediction is vital for safety-critical applications such as autonomous driving and video surveillance. While recent advances in deep learning have significantly improved predictive accuracy, most models struggle with underrepresented and diverse behaviors present in the long-tail distribution of pedestrian trajectories. To address this challenge, we propose Social Diverse Adaptive TrajectorNet (SDATNet), a novel deep learning framework designed to enhance prediction performance on rare and atypical trajectory patterns. SDATNet introduces three key innovations: 1) the ResGhost module, which incorporates residual connections and ghost operations to enrich multi-scale social feature diversity; 2) a Dynamic Weights Variety Loss (DWVL) that adaptively emphasizes rare behaviors by weighting loss based on prediction uncertainty; and 3) an Adaptive Gaussian Distribution module that stabilizes the modeling of outlier trajectories by aligning prediction distributions with behavioral variance. The results demonstrate that the SDATNet outperforms existing methods in predicting pedestrian trajectories, offering a reliable and versatile solution for real-world applications.",
    "url": "https://doi.org/10.1109/TITS.2026.3676929",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "针对长尾分布下罕见行人行为，通过自适应加权学习提升轨迹预测准确性。",
+    "points": [
+     "提出ResGhost模块和动态权重变异损失(DWVL)自适应强调稀有行为",
+     "适应性高斯分布模块稳定异常轨迹的建模",
+     "在长尾分布和真实场景中显著超越现有方法"
+    ],
+    "tags": [
+     "轨迹预测",
+     "长尾分布",
+     "深度学习",
+     "行人行为"
+    ]
+   }
   },
   {
    "id": "s2:83f7c2e4a8e2bc3c8f6241d0c2b764605f5e4261",
@@ -4510,7 +5664,21 @@
    "abstract": "As autonomous driving systems advance beyond Level 3, traditional unidimensional evaluation methodologies are proving insufficient. A critical need exists for a reliable and trustworthy evaluation framework that aligns with human subjective judgment. Current approaches, however, often lack consensus on the relative importance of key performance dimensions and fail to capture how these evaluation priorities shift under varying scenario complexities. To address these gaps, a novel human-centered autonomous driving intelligence evaluation model, termed the Subjective-Objective Mapping Model (SOMM), is proposed. An evaluation index system is first established through the Delphi method, comprising five performance dimensions (safety, efficiency, comfort, regulatory compliance, traffic coordination) and one scenario dimension (scenario complexity). The SOMM is developed to map objective vehicle metrics onto subjective evaluation scores, demonstrating high predictive accuracy. Weight analysis quantifies the relative importance of performance dimensions, identifying safety and efficiency as the dominant factors in overall intelligence. Furthermore, a sensitivity analysis confirms that evaluation priorities are highly dynamic and scenario-dependent, shifting from traffic coordination and compliance in simple scenarios to safety and efficiency in complex environments. The proposed SOMM provides an accurate, interpretable, and dynamic evaluation framework that effectively quantifies autonomous driving intelligence by aligning it with human-centered criteria.",
    "url": "https://doi.org/10.1109/TITS.2026.3677217",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "构建融合主观人类判断与客观指标的自动驾驶智能多维评估框架。",
+    "points": [
+     "通过德尔菲法建立5维评估体系（安全、效率、舒适、合规、协调）加场景复杂度",
+     "SOMM实现客观指标到主观评分的映射，准确性高且可解释",
+     "证明评估权重动态变化，场景复杂度显著影响评分逻辑"
+    ],
+    "tags": [
+     "智能评估",
+     "多维度评价",
+     "人机交互",
+     "场景复杂度"
+    ]
+   }
   },
   {
    "id": "s2:81969d283dca73d04f6912cb74a100d59af33e76",
@@ -4530,7 +5698,21 @@
    "abstract": "A new mixed traffic flow involving human-driven vehicles (HDVs) and connected and automated vehicles (CAVs) has emerged as a result of developments in autonomous driving and wireless communication. Deep reinforcement learning (DRL) is a promising method for addressing complex traffic flow control issues. However, the majority of DRL-based studies concentrated on optimizing either traffic signals or vehicle trajectories, often overlooking the interaction between these two elements. In this paper, we propose a cooperative control approach for traffic signals and vehicle trajectories using a multi-agent actor-critic (CCTV-MAC) in a mixed traffic flow environment. Our approach incorporates traffic signal control (TSC) agents that optimize signal cycles and green ratios by extracting trajectory features from HDVs and CAVs, as well as vehicle trajectory control (VTC) agents that optimize CAV trajectories based on information from the self-vehicle, the preceding vehicle, and the approaching signal timing provided by the TSC agents. A transformer-based spatio-temporal attention network and a reward-sharing mechanism are incorporated to enhance coordinated decision-making among adjacent TSC agents. Additionally, a vehicle-road-cloud integration structure (VRCIS) is designed for CCTV-MAC, where model training tasks are deployed on the cloud side to accelerate the learning process via parallel computing formulas and algorithms, while decision-making tasks are executed on the vehicle side and roadside to minimize response latency. With the support of VRCIS, cooperative control of TSC and VTC agents is achieved through effective information exchange. Simulations on real-world road networks show that our proposed CCTV-MAC outperforms traditional and other DRL methods.",
    "url": "https://doi.org/10.1109/TITS.2026.3681395",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "用多智能体强化学习协作控制信号灯与CAV轨迹，在混合交通中优化流量效率。",
+    "points": [
+     "同时优化信号灯控制和车辆轨迹控制，捕捉两者相互作用",
+     "多智能体actor-critic加Transformer注意力机制增强智能体协调",
+     "车-路-云一体化架构(VRCIS)平衡学习速度与决策延迟"
+    ],
+    "tags": [
+     "深度强化学习",
+     "多智能体控制",
+     "信号优化",
+     "混合交通"
+    ]
+   }
   },
   {
    "id": "s2:6ee119eff10fa20638d72f1c186b3319f1757859",
@@ -4548,7 +5730,21 @@
    "abstract": "",
    "url": "https://doi.org/10.1109/TITS.2026.3686061",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "基于行为引导的紧急变道场景自动生成方法，用于自动驾驶安全关键测试。",
+    "points": [
+     "针对紧急变道的安全关键场景自动生成",
+     "行为引导方法确保生成的场景现实可信",
+     "支持系统化验证自动驾驶的紧急应对能力"
+    ],
+    "tags": [
+     "场景生成",
+     "紧急变道",
+     "安全测试",
+     "行为建模"
+    ]
+   }
   },
   {
    "id": "s2:6b383ba5aab41b0803cef422a0274b677cf90599",
@@ -4567,7 +5763,21 @@
    "abstract": "Vision-based 3-D object detection is a core task for autonomous driving and intelligent transport systems. However, the idealized geometric assumptions and single-view modeling methods relied upon by existing methods are susceptible to geometric uncertainties, caused by external parameter perturbations and depth estimation noise in practical multi-scenario deployments. Building a unified and robust perception model suitable for multi-scenarios of both ego-vehicle and roadside remains challenging. To address these challenges, we propose an Uncertainty-Aware Geometric Modeling (UAGM) method that explicitly handles geometric uncertainty to achieve robust perception across multiple scenarios. We use a dual-branch architecture to establish a robust geometric foundation: the height branch introduces dynamic virtual coordinate calibration to compensate for camera extrinsic parameter perturbations in real time, while explicitly modeling height prediction uncertainty through Multi-Hypothesis Projection (MHP), thereby constructing a robust global geometric representation. Meanwhile, the depth branch integrates a Probabilistic Depth Smoothing (PDS) module that employs Conditional Random Fields (CRF) to model spatial consistency constraints, effectively mitigating geometric discontinuities arising from pixel-level predictions. To facilitate better information fusion and interaction, we first propose a Temporal Pyramid Fusion (TPF) module to effectively capture multi-scale spatio-temporal dynamics to reduce the uncertainty in single-frame estimation, instead of error-prone dynamic ego-motion compensation. Subsequently, our Hierarchical Refinement Decoder (HRD) refines BEV proposal localization by fusing image features with depth embeddings to compensate for spatial distortions caused by forward projection. Experimental results demonstrate that UAGM not only achieves state-of-the-art detection performance on both the nuScenes and DAIR-V2X benchmarks, but more importantly, it successfully demonstrates the strong generalization capability of a single model across different viewpoints and deployment conditions.",
    "url": "https://doi.org/10.1109/TITS.2026.3685623",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "通过不确定性感知的几何建模增强多场景多视角3D物体检测的鲁棒性。",
+    "points": [
+     "识别相机外参扰动和深度噪声对3D检测的几何不确定性影响",
+     "双分支架构：高度分支用多假设投影处理外参，深度分支用概率平滑处理噪声",
+     "时间金字塔融合捕捉多尺度时空动态，增强跨场景泛化能力"
+    ],
+    "tags": [
+     "3D目标检测",
+     "不确定性建模",
+     "多场景",
+     "视觉感知"
+    ]
+   }
   },
   {
    "id": "s2:669cfc7141b751eef5892e4de3b610a1f96673a2",
@@ -4586,7 +5796,21 @@
    "abstract": "Interacting with diverse and stochastic traffic participants is a critical challenge for autonomous vehicles (AVs), as it necessitates advanced decision-making systems to replicate the natural adaptability of human drivers. In particular, navigating safely and efficiently in dense traffic scenarios poses a significant challenge for decision-making, which is inherently an interactive task, i.e., nearby traffic participants will influence AVs’ action, and vice versa. Decision-making solutions that rely solely on unidirectional interaction schemes, neglecting the mutual influence between AVs and other traffic participants, may lead to overly defensive behaviors or the “freezing robot problem”. In recent years, researchers have been increasingly focused on incorporating bidirectional interactions into the decision-making process to make safe, intelligent, and socially compatible decisions. Currently, a comprehensive review of interaction-aware decision-making techniques remains lacking. To this end, this paper aims to provide a systematic review of interaction-aware decision-making methodologies for autonomous driving. Specifically, this paper analyzes the challenges in considering bidirectional interactions between AVs and other traffic participants. In addition, the state-of-the-art techniques for interaction-aware decision-making solutions are reviewed. More importantly, simulation and benchmarks for interaction-aware decision-making validation are also presented. Finally, research perspectives are highlighted to facilitate future studies for interaction-aware decision-making policy design.",
    "url": "https://doi.org/10.1109/TITS.2026.3678531",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "综述交互感知决策技术，阐述AVs与交通参与者的双向互动在安全驾驶中的关键作用。",
+    "points": [
+     "分析AVs与周围交通参与者的双向交互挑战，避免机器人冻结问题",
+     "综述交互感知决策的最新方法和技术框架",
+     "介绍仿真平台和基准数据集用于验证交互感知算法"
+    ],
+    "tags": [
+     "交互感知",
+     "决策制定",
+     "综述",
+     "双向互动"
+    ]
+   }
   },
   {
    "id": "s2:662051047c641de18e77c933267be51d37b3b208",
@@ -4605,7 +5829,20 @@
    "abstract": "Understanding vehicle-to-vehicle interactions is critical for safe and efficient autonomous driving in complex traffic scenarios. However, most existing behavior prediction and planning models implicitly account for interactions through soft weighting or metrics based on distance and risk, without a clear or quantitative definition of vehicle interaction. This paper proposes a metric called Vehicle Interaction Level (VIL) to quantify the degree to which a vehicle’s behavior is constrained by another vehicle. By applying a VIL threshold, strong-interaction vehicles are distinguished from weak ones. Then, the Feature Difference Level (FDL) is proposed to analyze feature-level behavioral differences across interaction categories, which is quantified using the Random Forest (RF) and the Gini Index (GI). Based on real-world vehicle trajectory pairs, an optimal VIL threshold of 0.2 is determined by maximizing FDL to identify strong-interaction vehicles, providing a more discriminative and broadly applicable interaction characterization than distance-based and risk-based metrics. Furthermore, the application of this strong-interaction vehicle identification method to trajectory prediction achieves consistently better performance than the baseline across multiple evaluation metrics, demonstrating its practical value for downstream autonomous driving tasks. Owing to its lightweight and model-agnostic formulation, the VIL-based method can be integrated into existing autonomous driving systems operating in highly interactive traffic scenarios.",
    "url": "https://doi.org/10.1109/TITS.2026.3676614",
    "pdf": "",
-   "venue": "IEEE transactions on intelligent transportation systems (Print)"
+   "venue": "IEEE transactions on intelligent transportation systems (Print)",
+   "summary": {
+    "tldr": "提出车辆交互等级(VIL)指标量化车间制约关系，用于自动驾驶轨迹预测",
+    "points": [
+     "定义VIL指标量化车辆间交互强度，比距离/风险指标更有区分度",
+     "利用随机森林和基尼指数分析交互类别间的特征差异",
+     "在轨迹预测任务中相比基线获得一致性性能提升"
+    ],
+    "tags": [
+     "车辆交互",
+     "轨迹预测",
+     "量化指标"
+    ]
+   }
   },
   {
    "id": "s2:abf5b9c3abc9cf7003f5d7dc5ab058ca2b2ce72e",
@@ -4623,7 +5860,20 @@
    "abstract": "This paper introduces a novel adaptive path tracking controller that integrates the Proximal Policy Optimization (PPO) algorithm with a Proportional-Integral-Derivative (PID) control framework. Designed for challenging autonomous driving scenarios, this hybrid approach addresses the limitations of traditional controllers, which lack adaptability, and typical Reinforcement Learning (RL) methods, which often face training inefficiency and stability issues. Key innovations include real-time PID gain optimization via PPO, an adaptive error fusion mechanism with dynamic weighting of lateral and heading deviations, and a speed-adaptive preview mechanism. Notably, this framework does not require an accurate vehicle dynamics model. Experimental results demonstrate that our approach significantly outperforms both conventional and learning-based methods across various high-curvature driving conditions, including S-curves and right-angle turns, achieving superior tracking accuracy and robust stability, thus validating its practical effectiveness.",
    "url": "https://doi.org/10.1109/TVT.2026.3673290",
    "pdf": "",
-   "venue": "IEEE Transactions on Vehicular Technology"
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "summary": {
+    "tldr": "融合PPO强化学习与PID控制实现自适应路径跟踪，无需精确动力学模型",
+    "points": [
+     "PPO实时优化PID增益，自适应误差融合机制动态加权横向偏差和航向偏差",
+     "引入速度自适应预瞄机制处理高曲率场景如S形和直角转弯",
+     "相比传统和学习方法性能优越，具有高精度和稳定性"
+    ],
+    "tags": [
+     "路径跟踪",
+     "强化学习",
+     "自适应控制"
+    ]
+   }
   },
   {
    "id": "s2:40e2e2aa31e1a28e95244b357b58614d2acf0daf",
@@ -4642,7 +5892,20 @@
    "abstract": "Robust trajectory prediction of traffic participants is crucial for autonomous driving in complex urban environments. Traditional data-driven models predominantly rely on feature correlations and fail to explicitly model the causal relationships underlying traffic interactions. Motivated by this challenge, we propose a novel Causally-aware Hierarchical Graph Network, called CHGNet, for accurate and reliable vehicle trajectory prediction. The proposed framework enhances the robustness of autonomous vehicles by incorporating lane-aware scene context and jointly modeling both individual vehicle dynamics and inter-vehicle interactions. CHGNet introduces three key innovations: (i) a lane-aware spatio-temporal Transformer module that mitigates the impact of trajectory deviations and uncertainties from both temporal and spatial perspectives; (ii) a hierarchical graph neural network that effectively captures multi-level interaction patterns within the driving scene; and (iii) a causal reasoning module that explicitly models causal dependencies among vehicles while suppressing spurious correlations. Experimental results on the real-world dataset demonstrate that the proposed framework is resilient to imperfect tracklets and achieves competitive performance relative to state-of-the-art approaches, validating its effectiveness in improving predictive accuracy and robustness in complex traffic scenarios.",
    "url": "https://doi.org/10.1109/TVT.2026.3672627",
    "pdf": "",
-   "venue": "IEEE Transactions on Vehicular Technology"
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "summary": {
+    "tldr": "因果感知分层图神经网络实现对轨迹误差鲁棒的车辆轨迹预测",
+    "points": [
+     "融合因果推理模块显式建模车间依赖关系，抑制虚假相关",
+     "分层图神经网络捕捉多层次交互，车道感知Transformer缓解轨迹偏差影响",
+     "对不完美轨迹数据具有鲁棒性，复杂交通场景达SOTA性能"
+    ],
+    "tags": [
+     "轨迹预测",
+     "因果推理",
+     "图神经网络"
+    ]
+   }
   },
   {
    "id": "s2:1d3881982f3b853a3bb7b610a4d3fd71901e6022",
@@ -4658,7 +5921,20 @@
    "abstract": "This paper proposes a new integrated chassis control (ICC) framework aimed at improving both lateral stability and maneuverability in electric vehicles (EVs) equipped with in-wheel motors (IWMs). As IWMs enable four-wheel independent braking (4WIB), driving (4WID), and steering (4WIS), the vehicle system becomes over-actuated, thereby requiring an efficient control allocation (CA) strategy. To address this challenge, we propose a novel algorithm, integrated grip margin-based control allocation (IGMCA). The upper-level controller integrates direct yaw-moment control and sliding mode control (SMC) to compute the control input, while the lower-level IGMCA allocates the optimal forces to individual actuators. Processor-in-the-loop (PIL) simulations on a Raspberry Pi 4B demonstrated that IGMCA achieved MAEs of 0.71 deg in side-slip angle and 1.67 deg/s in yaw-rate error, as well as an average execution time of 0.05 ms, which is well within the 10 ms sampling period. These results confirm both the real-time feasibility and the effective control performance of the proposed method. In particular, the fully integrated configuration (4WIS+4WIB+4WID) exhibited the highest overall performance, highlighting the potential of IGMCA as an effective ICC solution suitable for various vehicle configurations and driving scenarios.",
    "url": "https://doi.org/10.1109/TVT.2026.3675260",
    "pdf": "",
-   "venue": "IEEE Transactions on Vehicular Technology"
+   "venue": "IEEE Transactions on Vehicular Technology",
+   "summary": {
+    "tldr": "基于抓地力裕度的控制分配算法解决过驱动电动车集成底盘控制",
+    "points": [
+     "针对四轮独立转向/制动/驱动的过驱动系统设计IGMCA控制分配算法",
+     "上层融合直接横摆力矩和滑模控制，下层进行最优执行器力分配",
+     "实时处理性能优异(耗时0.05ms)，全集成配置达最佳效果"
+    ],
+    "tags": [
+     "控制分配",
+     "电动车",
+     "四轮独立驱动"
+    ]
+   }
   },
   {
    "id": "s2:3deba1fac794c223dc9c8dc5fd39dfd51730e6db",
@@ -4676,7 +5952,21 @@
    "abstract": "Most existing Uncrewed Aerial Vehicle (UAV) and Uncrewed Ground Vehicle (UGV) cooperative systems adopt a UAV-centric paradigm, in which the UAV carries onboard sensors to search for, localize, and land on the UGV. This UAV-centric architecture increases onboard payload and reduces endurance, and makes it difficult to reliably assess the safety of the entire landing airspace in unstructured environments. To address these limitations, we propose a ground-centric UAV-UGV cooperative system, wherein a UGV-mounted LiDAR serves as the primary perception unit for launch and recovery. The perception architecture operates in two modes, namely an overhead airspace assessment mode in which the UGV evaluates the overhead airspace for UAV landing and relocates to an open area to ensure landing safety, and a tracking mode that supports guided recovery of the returning UAV. This ground-centric design introduces a coordinate alignment challenge between heterogeneous platforms, which is addressed through an online calibration based on a short flight maneuver that aligns the UAV frame with the UGV frame. Real-world experiments validate the complete autonomous launch and recovery process and demonstrate robust system performance with centimeter-level landing accuracy.",
    "url": "https://doi.org/10.1109/LRA.2026.3707345",
    "pdf": "",
-   "venue": "IEEE Robotics and Automation Letters"
+   "venue": "IEEE Robotics and Automation Letters",
+   "summary": {
+    "tldr": "地面车LiDAR为主的无人机自主起降系统实现厘米级精度着陆",
+    "points": [
+     "地面中心架构减少空中负载，UGV LiDAR评估着陆空间安全性",
+     "在线校准方法通过短飞行机动实现异构平台坐标对齐",
+     "验证自主起降流程，具有厘米级着陆精度和良好鲁棒性"
+    ],
+    "tags": [
+     "多机器人",
+     "无人机",
+     "感知融合",
+     "自主着陆"
+    ]
+   }
   },
   {
    "id": "s2:0adede0aa957a4f32c817642f243399ced1fdb11",
@@ -4693,7 +5983,21 @@
    "abstract": "Autonomous quadrotor navigation in cluttered environments requires adaptive planning strategies under limited onboard computational resources. This letter presents CENav, a complexity-aware navigation framework that couples perception-derived environmental difficulty with downstream flight behavior. To this end, we formulate environmental complexity (EC) as a multi-dimensional representation that jointly captures geometric properties, topological structure, and motion-related risk of the surrounding environment, providing a unified measure of navigational difficulty. To enable efficient online deployment, we further develop a lightweight query-aware complexity estimation network (Q-CENet) that predicts EC at multiple locations using a KPConv-based hierarchical encoder and a motion-aware attention decoder. Finally, we propose a semantic decision interface that maps the estimated EC to navigation-related parameters, allowing existing planners to dynamically adapt flight speed, replanning frequency, planning horizon, and other decision-relevant settings accordingly. Extensive simulations and real-world experiments validate the proposed framework, and the code will be released as an open-source package.",
    "url": "https://doi.org/10.1109/LRA.2026.3707349",
    "pdf": "",
-   "venue": "IEEE Robotics and Automation Letters"
+   "venue": "IEEE Robotics and Automation Letters",
+   "summary": {
+    "tldr": "环境复杂度指导四旋翼自适应规划导航，实现低资源场景部署",
+    "points": [
+     "多维表示环境复杂度融合几何、拓扑和运动风险特征",
+     "轻量级KPConv网络快速预测复杂度，支持在线部署",
+     "语义决策接口动态调整飞行速度、规划频率等参数"
+    ],
+    "tags": [
+     "路径规划",
+     "自适应导航",
+     "四旋翼",
+     "复杂度估计"
+    ]
+   }
   },
   {
    "id": "s2:04ab4d1cbaf06ba2b3a963df05a94261f709a8ad",
@@ -4711,7 +6015,21 @@
    "abstract": "Aerial manipulation studies and benchmarks have mostly emphasized direct interaction and static or quasi-static tasks, leaving indirect dynamic manipulation insufficiently studied. We present Aerial-Balance-Bench, a controlled and reproducible drone-ball balancing benchmark in which a vertically constrained tethered drone tilts a beam to drive a rolling ball to a target position or along a reference trajectory. The benchmark unifies: 1) target-position balancing and trajectory-tracking tasks; 2) thrust-, velocity-, and position-command interfaces with corresponding dynamic models; 3) a Gym-style Isaac Lab environment with standardized observations, actions, and task-dependent rewards; and 4) evaluation metrics and robustness tests. To demonstrate the benchmark and provide reference results, we develop a delay-aware hierarchical control framework for the velocity-command interface, combining delay identification with model-based state prediction to compensate for low-level tracking latency. Within this framework, we compare three high-level baselines: cascaded PID, nonlinear model predictive control (MPC), and model-free reinforcement learning (RL). Simulation and real-world experiments show the benchmark’s feasibility. These results establish Aerial-Balance-Bench as a practical benchmark and baseline suite for studying the core balancing dynamics in indirect dynamic aerial manipulation.",
    "url": "https://doi.org/10.1109/LRA.2026.3710056",
    "pdf": "",
-   "venue": "IEEE Robotics and Automation Letters"
+   "venue": "IEEE Robotics and Automation Letters",
+   "summary": {
+    "tldr": "无人机球平衡基准对比MPC、RL等方法的间接动态航空操纵控制",
+    "points": [
+     "统一位置/速度/推力指令接口和动力学模型，标准化观测动作奖励",
+     "延时感知分层框架融合状态预测补偿低层跟踪延时",
+     "对比级联PID、MPC和RL方法，建立可复现基准和结果"
+    ],
+    "tags": [
+     "航空操纵",
+     "模型预测控制",
+     "强化学习",
+     "基准"
+    ]
+   }
   },
   {
    "id": "s2:febe66ebbff135804e6eefd9f0adb83aa0a243ed",
@@ -4725,7 +6043,21 @@
    "abstract": "Autonomous navigation in farmland is difficult because weak texture, crop occlusion, moving machinery, and illumination changes affect perception and control simultaneously. This study develops an adaptive unmanned aerial vehicle obstacle‐avoidance framework comprising a MobileViT‐XXS visual encoder, calibrated millimeter‐wave‐radar fusion, spatiotemporal trajectory prediction, an RRT* global planner, and a Soft Actor–Critic (SAC) local controller with semantic safety constraints. Under the matched‐SAC simulation protocol, the proposed perception backbone achieved an average mAP of 87.4%, exceeding YOLOv8n + SAC by 5.8 percentage points and EfficientViT‐L2 + SAC by 3.2 percentage points; the paired scene‐level difference relative to EfficientViT‐L2 + SAC was 3.2 percentage points (95% CI, 1.1–5.3; Holm‐adjusted\n p\n  = 0.006). The complete simulation framework yielded an obstacle‐avoidance success rate of 88.3%, an average path length of 138.4 m, an energy consumption of 14.2 Wh/km, and a path smoothness of 0.21 rad/m. The matched simulation success‐rate difference relative to YOLOv8n + SAC was 4.8 percentage points (95% CI, −1.2 to 10.8; Holm‐adjusted\n p\n  = 0.112), and therefore does not establish statistical superiority. Separately, the expanded field ledger contains 100 independent test flights across six scenario groups, below the prespecified target of at least 160; the field evidence is therefore reported descriptively. At 1920 × 1080 resolution, end‐to‐end latency was 49.2 ± 2.5 ms, whereas 3840 × 2160 required 92.1 ± 3.8 ms. A 60‐min 1080p sustained‐load test triggered thermal throttling at approximately 20 min and increased latency from 48.5 to 56.3 ms by 60 min. Accordingly, 1080p is the default closed‐loop mode and 4K is restricted to low‐speed inspection and ablation. The joint reward heatmaps and structured failure log further delimit the tested operating envelope. The results support technical feasibility under the evaluated conditions but not broad agricultural generalization or deployment readiness.",
    "url": "https://doi.org/10.1002/rob.70311",
    "pdf": "",
-   "venue": "Journal of Field Robotics"
+   "venue": "Journal of Field Robotics",
+   "summary": {
+    "tldr": "MobileViT视觉融合毫米波雷达，SAC强化学习实现农田无人机自适应避障",
+    "points": [
+     "MobileViT-XXS编码器加毫米波雷达融合农田感知，mAP达87.4%",
+     "RRT*全局规划结合SAC本地控制融合语义约束，避障成功率88.3%",
+     "端到端延时低(1080p 49.2ms)，支持长时间实飞验证"
+    ],
+    "tags": [
+     "路径规划",
+     "强化学习",
+     "多模态感知",
+     "农业无人机"
+    ]
+   }
   },
   {
    "id": "arxiv:2607.25717v1",
@@ -4742,7 +6074,21 @@
    "abstract": "This work addresses the problem of locating Road Side Units (RSUs) in vehicular networks with the aim of improving overall traffic efficiency. We propose a heuristic approach for determining the placement of RSUs on a road network, while vehicle dynamics are modeled through a microscopic follow-the-leader interaction in which drivers continuously adapt their speed according to the distance from the vehicle ahead. The RSUs share the collected information among themselves to cooperatively estimate the network state, which is then communicated to vehicles, allowing them to compute their fastest paths. We also assume that not all drivers comply with the provided recommendations, meaning that only a fraction of users follow the suggested routes. Since the aim is to improve network performance while minimizing the number of deployed units, the methodology adopts a nested optimization scheme: an outer module explores the optimal number k of RSUs, while an inner module identifies the best placement configuration for each k. To evaluate the effectiveness and the scalability of the proposed method, we tested two networks with different topologies and sizes. The results show a decrease in Total Travel Time (TTT) compared to the baseline scenario (i.e., without RSUs) of up to 36% on the smaller network and up to 20% on the larger one. Stochastic vehicle origin-destination pairs have also been considered.",
    "url": "https://arxiv.org/abs/2607.25717v1",
    "pdf": "https://arxiv.org/pdf/2607.25717v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "通过嵌套优化确定路边单元最优放置位置，将总旅行时间减少36%",
+    "points": [
+     "问题：在车联网中如何高效部署路边单元(RSU)以改善交通流",
+     "方法：采用嵌套优化框架，外层优化RSU数量k，内层确定最佳放置配置",
+     "效果：与无RSU基准相比，小网络TTT减少36%，大网络减少20%"
+    ],
+    "tags": [
+     "路边单元部署",
+     "车联网I2X",
+     "交通流优化",
+     "动态路由"
+    ]
+   }
   },
   {
    "id": "arxiv:2607.20967v1",
@@ -4761,7 +6107,21 @@
    "abstract": "While collaborative perception (CP) enhances the safety of autonomous driving, limited bandwidth can cause severe shared data staleness in CP systems. Existing age-of-information (AoI) minimization policies are not well-suited for CP, as they overlook the fact that a vehicle's AoI decreases not only through updates from the source (i.e., a base station) but also through the vehicle's local sensing. To address this issue, we propose a mobility-aware AoI minimization framework for CP that explicitly accounts for vehicles' dynamic sensing ranges. We first derive a closed-form expression for the long-term time average sum AoI within a considered region, accommodating an ever-changing vehicle population and their dynamic sensed areas. Based on this characterization, we develop Local-sensing-aware Max-Weight Scheduling (LocMW), an online learning algorithm designed for sensor information broadcast from a source to vehicles under unknown environmental statistics and delayed observations. We provide performance guarantees demonstrating that LocMW achieves a sublinear cumulative excess AoI compared to the optimal stationary randomized benchmark. Extensive simulations using vehicular trajectory datasets and 3D perception tasks demonstrate that our LocMW policy substantially outperforms competing baselines, reducing the time-averaged sum AoI by up to 31.6% and improving mAP detection accuracy by up to 16.3%.",
    "url": "https://arxiv.org/abs/2607.20967v1",
    "pdf": "https://arxiv.org/pdf/2607.20967v1",
-   "venue": "arXiv"
+   "venue": "arXiv",
+   "summary": {
+    "tldr": "考虑动态感知范围的在线学习算法，协作感知中AoI降低31.6%",
+    "points": [
+     "问题：协作感知中信息更新延迟影响安全，现有AoI最小化忽视本地感知贡献",
+     "方法：提出LocMW在线学习算法，显式建模车辆动态感知范围和信息年龄",
+     "效果：时均AoI减少31.6%，mAP检测精度提升16.3%"
+    ],
+    "tags": [
+     "协作感知",
+     "信息年龄(AoI)",
+     "在线学习",
+     "自动驾驶"
+    ]
+   }
   },
   {
    "id": "s2:2cd983addd6378b3d340fae3c8e982e512407a38",
@@ -4779,7 +6139,21 @@
    "abstract": "Multi-drone payload transportation has emerged as a promising research paradigm with potential applications in construction, logistics, and disaster response. However, the complex coupled dynamics among drones, cables, and payloads pose significant challenges, and existing approaches remain limited in safety and scalability, particularly in dynamic and unstructured environments. In this work, we propose a learning-based framework for safe and scalable multi-drone cooperative payload transport. We introduce a minimal 2D abstraction that preserves the task-relevant drone–payload coupling required for coordination and safety, while remaining computationally efficient for large-scale learning. Using domain randomization over team size and physical parameters, we train a fully distributed policy via Discrete Graph Control Barrier Function Proximal Policy Optimization (DGPPO), enabling robust zero-shot sim-to-real transfer without fine-tuning. Extensive real-world evaluations demonstrate that a single learned policy generalizes across varying team sizes and task scenarios. Furthermore, multi-group hardware experiments show that the same policy can safely operate in dynamic environments, where other drone teams act as moving obstacles. These results indicate that the proposed framework enables efficient, safe, and scalable multi-drone payload transportation with strong generalization to complex real-world conditions.",
    "url": "https://doi.org/10.1109/LRA.2026.3715346",
    "pdf": "https://arxiv.org/pdf/2607.20665",
-   "venue": "IEEE Robotics and Automation Letters"
+   "venue": "IEEE Robotics and Automation Letters",
+   "summary": {
+    "tldr": "基于控制屏障函数强化学习的多无人机安全运输，支持零样本仿真转实际",
+    "points": [
+     "问题：多无人机协作运输的耦合动力学复杂，难以保证安全和可扩展性",
+     "方法：使用2D抽象模型和DGPPO算法进行分布式策略训练，结合域随机化实现泛化",
+     "效果：单一策略支持任意团队规模，零样本仿真转实际无需微调，动态环境下安全运行"
+    ],
+    "tags": [
+     "多无人机协作",
+     "强化学习",
+     "控制屏障函数",
+     "仿真到实际"
+    ]
+   }
   },
   {
    "id": "s2:f6861f3bb792b02fae60d40db0c42dd9279f4b28",
@@ -4798,7 +6172,21 @@
    "abstract": "To address the limitations of traditional unmanned aerial vehicles (UAVs) and wall‐climbing robots in bridge‐pier defect detection, this research proposes a circular‐climbing robot specifically designed for bridge piers. First, based on the geometric characteristics of bridge piers and their construction environment, a circular robot frame is designed, and its mechanical behavior is analyzed to determine the conditions for stable climbing. Second, based on attitude information collected by multiple gyroscopes, an attitude estimation method for the circular robot and a multi‐wheel cooperative motion control algorithm are developed. On this basis, a multi‐motor master–slave fuzzy proportional integral derivative (PID) controller is implemented on a field programmable gate array (FPGA) platform to perform fuzzy inference on the attitude information, generate real‐time control parameters, and adaptively adjust the speeds of the crawling mechanisms, thereby achieving coordinated motion control of the multi‐wheel system. Finally, experiments are conducted to verify the system's reliability in terms of climbing stability and motion control accuracy. A comparative analysis further shows that the proposed robot exhibits a more stable mechanical structure and greater adaptability than existing wall‐climbing robots, and offers advantages in contact pressure adjustment, load capacity, and scalability, enabling it to carry various bridge pier inspection devices for different application needs. This work provides a practical platform for the automated health monitoring of bridge piers.",
    "url": "https://doi.org/10.1002/rob.70308",
    "pdf": "",
-   "venue": "Journal of Field Robotics"
+   "venue": "Journal of Field Robotics",
+   "summary": {
+    "tldr": "圆形框架多轮协调爬壁机器人用于桥墩缺陷检测，稳定性优于传统方案",
+    "points": [
+     "问题：传统无人机和爬壁机器人在复杂桥墩检测中适应性差",
+     "方法：设计圆形机器人架构，采用多陀螺仪姿态估计和模糊PID控制实现多轮协调",
+     "效果：爬行稳定性更好，接触压力和载重能力可调，支持多种检测设备集成"
+    ],
+    "tags": [
+     "爬壁机器人",
+     "多轮协调控制",
+     "模糊PID",
+     "桥梁检测"
+    ]
+   }
   }
  ]
 }

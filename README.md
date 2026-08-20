@@ -10,23 +10,23 @@
 
 ## 使用方法
 
-一键更新（抓取 + 总结）：
+启动网站（带更新 API 的服务器）：
 
 ```bash
+python serve.py
+```
+
+然后打开 <http://localhost:8303>。**点击页面右上角「🔄 更新」按钮**即可随时抓取新论文并生成总结
+（可选「抓取 + 总结」/「仅抓取」/「仅总结」），进度日志实时显示在页面上，完成后列表自动刷新。
+更新任务在服务器后台运行，关掉页面也不会中断。
+
+### 命令行方式（可选）
+
+```bash
+# 一键更新（抓取 + 总结）
 python scripts/update.py
-```
 
-启动网站：
 
-```bash
-python -m http.server 8303
-```
-
-然后打开 <http://localhost:8303>。
-
-### 分步运行
-
-```bash
 # 只抓取（可指定领域: control / autonomous_driving / vehicle_dynamics / robotics / uav / ai）
 python scripts/fetch_papers.py
 python scripts/fetch_papers.py uav robotics
@@ -52,10 +52,11 @@ python scripts/summarize.py 8
 ## 目录结构
 
 ```
+serve.py               网站服务器: 静态页面 + POST /api/update + GET /api/status
 config.json            领域与抓取配置
 scripts/fetch_papers.py  抓取 + 去重 + 清理过期
-scripts/summarize.py     调用 claude -p 批量中文总结（每批落盘，可中断续跑）
-scripts/update.py        一键: 抓取 + 总结
+scripts/summarize.py     调用 claude -p 批量中文总结（每批落盘，可中断续跑，限流自动重试）
+scripts/update.py        命令行一键: 抓取 + 总结
 data/papers.json         论文库（含总结）
 index.html / app.js / style.css  网站前端
 ```
