@@ -1,0 +1,45 @@
+{
+  "days_back": 30,
+  "max_per_field_arxiv": 25,
+  "max_per_field_s2": 15,
+  "claude_model": "haiku",
+  "summarize_batch_size": 8,
+  "fields": {
+    "control": {
+      "name": "控制",
+      "arxiv_query": "cat:eess.SY OR cat:math.OC",
+      "s2_query": "\"control theory\" | \"optimal control\" | \"model predictive control\" | \"robust control\"",
+      "s2_venues": "IEEE Transactions on Automatic Control,IEEE Transactions on Control Systems Technology,IEEE Control Systems Letters,Automatica"
+    },
+    "autonomous_driving": {
+      "name": "自动驾驶",
+      "arxiv_query": "all:\"autonomous driving\" OR all:\"self-driving\" OR all:\"autonomous vehicle\"",
+      "s2_query": "\"autonomous driving\" | \"self-driving\" | \"autonomous vehicles\"",
+      "s2_venues": "IEEE Transactions on Intelligent Vehicles,IEEE Transactions on Intelligent Transportation Systems,IEEE Intelligent Transportation Systems Magazine"
+    },
+    "vehicle_dynamics": {
+      "name": "汽车动力学",
+      "arxiv_query": "all:\"vehicle dynamics\" OR all:\"chassis control\" OR all:\"vehicle stability\" OR all:\"path tracking control\"",
+      "s2_query": "\"vehicle dynamics\" | \"chassis control\" | \"vehicle stability control\" | \"torque vectoring\"",
+      "s2_venues": "IEEE Transactions on Vehicular Technology,Vehicle System Dynamics,IEEE Transactions on Intelligent Vehicles"
+    },
+    "robotics": {
+      "name": "机器人",
+      "arxiv_query": "cat:cs.RO",
+      "s2_query": "robot | manipulation | \"legged locomotion\" | \"robot learning\"",
+      "s2_venues": "IEEE Transactions on Robotics,IEEE Robotics and Automation Letters,The International Journal of Robotics Research"
+    },
+    "uav": {
+      "name": "无人机",
+      "arxiv_query": "all:UAV OR all:quadrotor OR all:\"unmanned aerial vehicle\" OR all:\"aerial robot\"",
+      "s2_query": "UAV | quadrotor | \"unmanned aerial vehicle\" | drone",
+      "s2_venues": "IEEE Transactions on Aerospace and Electronic Systems,IEEE Robotics and Automation Letters,Journal of Field Robotics"
+    },
+    "ai": {
+      "name": "人工智能",
+      "arxiv_query": "cat:cs.AI OR cat:cs.LG",
+      "s2_query": "\"deep learning\" | \"reinforcement learning\" | \"large language model\" | \"foundation model\"",
+      "s2_venues": "IEEE Transactions on Pattern Analysis and Machine Intelligence,IEEE Transactions on Neural Networks and Learning Systems"
+    }
+  }
+}

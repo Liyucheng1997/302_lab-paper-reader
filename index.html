@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>领域论文阅读</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <h1>📚 领域论文阅读</h1>
+    <div class="meta">
+      <span id="updated"></span>
+      <span id="count"></span>
+    </div>
+  </div>
+  <nav id="field-tabs"></nav>
+  <div class="toolbar">
+    <input type="search" id="search" placeholder="搜索标题 / 摘要 / 标签 / 作者...">
+    <select id="source-filter">
+      <option value="">全部来源</option>
+      <option value="arXiv">arXiv</option>
+      <option value="IEEE">IEEE</option>
+      <option value="期刊">其他期刊</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="only-summarized">仅看已总结</label>
+  </div>
+</header>
+<main id="paper-list"></main>
+<footer>
+  数据来源: arXiv API · Semantic Scholar (IEEE 期刊) &nbsp;|&nbsp; 总结由 Claude 生成，仅供快速浏览，请以原文为准
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
