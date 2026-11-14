@@ -1,0 +1,42 @@
+name: Deploy to server
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-paper
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      # 和服务器一样用 Ubuntu 24.04 自带的 Python 3.12 检查语法
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m compileall -q backend scripts serve.py
+
+      - name: Assemble bundle
+        run: |
+          mkdir -p bundle/seed
+          cp -a backend web scripts deploy serve.py config.json requirements.txt README.md bundle/
+          cp data/papers.json bundle/seed/papers.json
+          find bundle -name '__pycache__' -prune -exec rm -rf {} +
+          echo "$GITHUB_SHA" > bundle/.deploy-rev
+
+      - name: Deploy
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # 服务器端是受限钥匙，只能执行 deploy-paper，stdin 就是部署包
+          tar -C bundle -czf - . | ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes ubuntu@151.80.60.57

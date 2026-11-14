@@ -11,7 +11,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(ROOT))
+from backend import config as _config  # noqa: E402  合并 config.local.json 与环境变量
+
+CONFIG = _config.load()
 DATA_FILE = ROOT / "data" / "papers.json"
 
 ARXIV_API = "http://export.arxiv.org/api/query"

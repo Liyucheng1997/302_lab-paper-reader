@@ -8,6 +8,14 @@ venv/
 .env
 .env.*
 !.env.example
+config.local.json
+
+# 个人数据：阅读记录、收藏、AI 解读与对话、PDF 缓存
+data/user.db
+data/user.db-*
+data/pdf/
+data/secret.key
+backups/
 
 # Editor and operating-system files
 .vscode/

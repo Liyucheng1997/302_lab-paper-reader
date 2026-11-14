@@ -1,0 +1,18 @@
+# 安装到 /etc/systemd/system/app-paper.service
+[Unit]
+Description=app-paper (论文阅读 · Paper Reader)
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/apps/paper
+EnvironmentFile=/opt/apps/paper/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/apps/paper/.venv/bin/python serve.py
+Restart=always
+RestartSec=3
+# 站长的 AI 在这个服务里起 claude 命令行（每个一两百 MB，最多同时 2 个），所以给大一点
+MemoryMax=1500M
+
+[Install]
+WantedBy=multi-user.target

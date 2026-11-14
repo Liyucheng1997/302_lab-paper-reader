@@ -1,0 +1,13 @@
+# 安装到 /etc/systemd/system/app-paper-update.service（由 app-paper-update.timer 每天触发）
+# 抓取订阅领域的新论文，并用站长的 AI（Claude 订阅，haiku）批量生成中文总结
+[Unit]
+Description=论文阅读 · 每日抓取新论文并总结
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/apps/paper
+EnvironmentFile=/opt/apps/paper/.env
+Environment=PYTHONUNBUFFERED=1 PYTHONIOENCODING=utf-8
+ExecStart=/opt/apps/paper/.venv/bin/python scripts/update.py
+TimeoutStartSec=3h

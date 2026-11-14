@@ -1,0 +1,10 @@
+# 安装到 /etc/systemd/system/app-paper-update.timer：每天意大利时间早上 6 点更新论文库
+[Unit]
+Description=论文阅读 · 每日抓取新论文并总结
+
+[Timer]
+OnCalendar=*-*-* 06:00:00 Europe/Rome
+Persistent=true
+
+[Install]
+WantedBy=timers.target

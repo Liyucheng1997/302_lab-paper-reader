@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-"""调用 `claude -p` 为 data/papers.json 中尚未总结的论文批量生成中文总结。"""
+"""为 data/papers.json 中尚未总结的论文批量生成中文总结（走站长的 AI：本机 Claude 订阅优先）。"""
 import json
-import os
 import re
-import shutil
-import subprocess
 import sys
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(ROOT))
+from backend import ai  # noqa: E402
+from backend import config as _config  # noqa: E402  合并 config.local.json 与环境变量
+
+CONFIG = _config.load()
 DATA_FILE = ROOT / "data" / "papers.json"
 
 PROMPT_TEMPLATE = """你是一位精通控制、自动驾驶、汽车动力学、机器人、无人机和人工智能的研究助理。
@@ -48,80 +47,28 @@ def parse_json_array(text):
     return json.loads(m.group(0))
 
 
-def run_claude(prompt, claude_path):
-    last_err = None
+def run_model(prompt):
+    """用站长的 AI（本机 Claude 订阅或 Anthropic 兼容接口）批量总结，模型用 claude_model（默认 haiku）。"""
+    prov = ai.owner_provider()
+    prov["model"] = CONFIG.get("claude_model", "haiku")
+    prov["effort"] = None
+    last = None
     for attempt in range(3):
-        result = subprocess.run(
-            [claude_path, "-p", "--model", CONFIG.get("claude_model", "haiku")],
-            input=prompt,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=600,
-        )
-        if result.returncode == 0:
-            return result.stdout
-        detail = (result.stderr or "").strip() or (result.stdout or "").strip()
-        last_err = f"claude -p 失败 (exit {result.returncode}): {detail[:300]}"
-        wait = 20 * (attempt + 1)
-        print(f"    {last_err}，{wait}s 后重试...", flush=True)
-        time.sleep(wait)
-    raise RuntimeError(last_err)
-
-
-def run_proxy(prompt):
-    """通过本机 claude -p 的 Anthropic 兼容反代生成总结。"""
-    base_url = os.environ.get("CLAUDE_PROXY_URL", CONFIG.get("claude_base_url", "http://localhost:8787"))
-    base_url = base_url.rstrip("/")
-    url = base_url + ("/messages" if base_url.endswith("/v1") else "/v1/messages")
-    api_key = os.environ.get("CLAUDE_PROXY_KEY", CONFIG.get("claude_api_key", "unused"))
-    body = json.dumps({
-        "model": CONFIG.get("claude_model", "haiku"),
-        "max_tokens": 8000,
-        "messages": [{"role": "user", "content": prompt}],
-    }, ensure_ascii=False).encode("utf-8")
-
-    last_err = None
-    for attempt in range(3):
-        request = urllib.request.Request(url, data=body, method="POST", headers={
-            "Content-Type": "application/json",
-            "x-api-key": api_key,
-            "anthropic-version": "2023-06-01",
-        })
         try:
-            with urllib.request.urlopen(request, timeout=600) as response:
-                payload = json.loads(response.read().decode("utf-8"))
-            text = "".join(
-                block.get("text", "") for block in payload.get("content", [])
-                if block.get("type") == "text"
-            )
-            if not text:
-                raise RuntimeError("反代返回内容为空")
-            return text
-        except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", errors="replace")[:300]
-            last_err = f"反代返回 HTTP {exc.code}: {detail}"
-        except (urllib.error.URLError, TimeoutError, ValueError, RuntimeError) as exc:
-            last_err = f"反代调用失败: {exc}"
-        wait = 20 * (attempt + 1)
-        print(f"    {last_err}，{wait}s 后重试...", flush=True)
-        time.sleep(wait)
-    raise RuntimeError(last_err)
+            return ai.complete(prov, prompt, max_tokens=8000)
+        except ai.AIError as e:
+            last = e
+            if e.code == "busy" and "额度" in str(e):
+                raise
+            wait = 20 * (attempt + 1)
+            print(f"    {e}，{wait}s 后重试...", flush=True)
+            time.sleep(wait)
+    raise RuntimeError(str(last))
 
 
-def run_model(prompt, claude_path):
-    backend = CONFIG.get("claude_backend", "proxy").lower()
-    if backend == "proxy":
-        return run_proxy(prompt)
-    if backend == "cli":
-        return run_claude(prompt, claude_path)
-    raise RuntimeError(f"不支持的 claude_backend: {backend}")
-
-
-def summarize_batch(papers, claude_path):
+def summarize_batch(papers):
     prompt = PROMPT_TEMPLATE.format(papers=build_batch_text(papers))
-    output = run_model(prompt, claude_path)
+    output = run_model(prompt)
     items = parse_json_array(output)
     by_id = {it.get("id"): it for it in items if isinstance(it, dict)}
     done = 0
@@ -139,10 +86,6 @@ def summarize_batch(papers, claude_path):
 
 def main():
     limit = int(sys.argv[1]) if len(sys.argv) > 1 else None
-    backend = CONFIG.get("claude_backend", "proxy").lower()
-    claude_path = shutil.which("claude") if backend == "cli" else None
-    if backend == "cli" and not claude_path:
-        sys.exit("找不到 claude CLI，请确认已安装并在 PATH 中")
 
     db = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     pending = [p for p in db["papers"] if not p.get("summary")]
@@ -151,7 +94,11 @@ def main():
     if not pending:
         print("所有论文均已总结，无需处理")
         return
-    print(f"待总结论文: {len(pending)} 篇，后端: {backend}，模型: {CONFIG.get('claude_model', 'haiku')}")
+    status = ai.owner_status()
+    if not status["ok"]:
+        print(f"站长的 AI 现在用不了（{status['text']}），跳过总结，下次再补")
+        return
+    print(f"待总结论文: {len(pending)} 篇，{ai.owner_status()['text']}，总结模型: {CONFIG.get('claude_model', 'haiku')}")
 
     batch_size = CONFIG.get("summarize_batch_size", 8)
     total_done = 0
@@ -159,14 +106,14 @@ def main():
         batch = pending[i : i + batch_size]
         print(f"  批次 {i // batch_size + 1}: {len(batch)} 篇...", end=" ", flush=True)
         try:
-            done = summarize_batch(batch, claude_path)
+            done = summarize_batch(batch)
             print(f"完成 {done} 篇")
             total_done += done
         except Exception as e:  # noqa: BLE001
             print(f"批量失败({e})，逐篇重试")
             for p in batch:
                 try:
-                    total_done += summarize_batch([p], claude_path)
+                    total_done += summarize_batch([p])
                 except Exception as e2:  # noqa: BLE001
                     print(f"    跳过 {p['id']}: {e2}")
         # 每批次后落盘，中断也不丢进度

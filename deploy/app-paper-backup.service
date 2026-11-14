@@ -1,0 +1,10 @@
+# 安装到 /etc/systemd/system/app-paper-backup.service（由 app-paper-backup.timer 每天触发）
+[Unit]
+Description=论文阅读 · 数据库每日备份
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/opt/apps/paper
+EnvironmentFile=/opt/apps/paper/.env
+ExecStart=/opt/apps/paper/.venv/bin/python scripts/backup.py daily
