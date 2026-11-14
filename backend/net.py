@@ -1,12 +1,24 @@
 # -*- coding: utf-8 -*-
 """HTTP 工具：带重试的 GET/POST。"""
 import json
+import socket
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 
 UA = "PaperReader/2.0 (personal research reading site; python-urllib)"
+
+# 服务器的 IPv6 出口不通：Python 会按顺序先连 IPv6 地址、每个都等到超时才换 IPv4（OpenAlex 一次要 50 秒）。
+# 解析结果里把 IPv4 排在前面；IPv6 正常的机器不受影响。
+_getaddrinfo = socket.getaddrinfo
+
+
+def _ipv4_first(*args, **kwargs):
+    return sorted(_getaddrinfo(*args, **kwargs), key=lambda r: r[0] != socket.AF_INET)
+
+
+socket.getaddrinfo = _ipv4_first
 
 
 class HTTPFail(Exception):
