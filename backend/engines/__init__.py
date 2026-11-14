@@ -69,11 +69,18 @@ def search(q, sources=None, limit=20, sort="relevance", year_from=None):
     # 合并 + RRF
     merged = {}
     scores = {}
+    alias = {}
     for key, papers in results.items():
         for rank, p in enumerate(papers):
             k = _key(p)
             if k[1] == "":
                 continue
+            # 一个来源有 DOI、另一个没有时，按标题也认作同一篇
+            tk = ("t", store.norm_title(p.get("title")))
+            if k not in merged and len(tk[1]) > 12 and tk in alias:
+                k = alias[tk]
+            if len(tk[1]) > 12:
+                alias.setdefault(tk, k)
             p = dict(p)
             p["found_in"] = [key]
             if k in merged:

@@ -2,6 +2,7 @@
 import { ME, aiLabel, hasAI, openAiAccess } from './access.js';
 import { api, chatStream } from './api.js';
 import { openFavorite } from './favorite.js';
+import { openLook } from './look.js';
 import {
   $, $$, confirmDialog, emptyState, esc, externalLinks, h, icon, md, paperUrl, renderMath, toast,
 } from './ui.js';
@@ -62,6 +63,7 @@ export async function renderReader(root, id) {
       <div class="seg" data-tab><button data-k="text">全文</button><button data-k="pdf">PDF</button><button data-k="info">概览</button></div>
       <button class="round ${R.fav ? 'fav-on' : ''}" data-fav title="收藏">${icon('star')}</button>
       <button class="round" data-more title="原文与外部链接">${icon('external')}</button>
+      <button class="round" data-look title="外观：纸张颜色、字号">${icon('type')}</button>
       <button class="round" data-togai title="显示 / 隐藏 AI 助手">${icon('panel')}</button>
     </div>
     <div class="reader-body">
@@ -86,6 +88,7 @@ export async function renderReader(root, id) {
   });
   $('[data-more]', el).onclick = e => openMoreMenu(e.currentTarget);
   $('[data-togai]', el).onclick = () => document.body.classList.toggle('ai-collapsed');
+  $('[data-look]', el).onclick = e => openLook(e.currentTarget);
   setupResizer($('[data-resizer]', el));
 
   setTab(R.tab);
@@ -145,6 +148,8 @@ async function renderFulltext(box) {
       parts.push(`<${tag} id="sec-${i}" data-h="${i}">${esc(b.x)}</${tag}>`);
     } else if (b.t === 'p') {
       parts.push(`<p>${esc(b.x)}</p>`);
+    } else if (b.t === 'eq') {
+      parts.push(`<div class="eq">${esc('$$' + b.x + '$$')}${b.n ? `<span class="eq-n">${esc(b.n)}</span>` : ''}</div>`);
     } else if (b.t === 'page' && b.n > 1) {
       parts.push(`<div class="pg">第 ${b.n} 页</div>`);
     }
@@ -163,7 +168,7 @@ async function renderFulltext(box) {
     </article>
   </div>`);
   box.replaceChildren(el);
-  renderMath($('.ft-body', el));
+  lazyMath($('.ft-body', el), box);
   $$('.toc a', el).forEach(a => a.onclick = e => { e.preventDefault(); scrollToHeading(+a.dataset.to); });
   // 滚动高亮目录
   const toc = $('.toc', el);
@@ -182,10 +187,36 @@ async function renderFulltext(box) {
   $('.ft-body', el).addEventListener('mouseup', () => setTimeout(onSelect, 10));
 }
 
+// 公式多的论文（上千个）一次全部排版会让页面卡住十几秒：只排版滚动到附近的段落
+let mathObserver = null;
+function lazyMath(body, scroller) {
+  if (mathObserver) mathObserver.disconnect();
+  const targets = [...body.children].filter(n => /\$|\\\(|\\\[/.test(n.textContent));
+  if (!('IntersectionObserver' in window)) { renderMath(body); return; }
+  mathObserver = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      mathObserver.unobserve(e.target);
+      renderMath(e.target);
+    }
+  }, { root: scroller, rootMargin: '1200px 0px' });
+  targets.forEach(t => mathObserver.observe(t));
+}
+
 function scrollToHeading(i) {
   const target = document.getElementById('sec-' + i);
-  if (!target) return;
-  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const box = $('[data-read]');
+  if (!target || !box) return;
+  // 屏幕外段落用的是估计高度，跳过去后上方段落排版完高度会变：连续校正几帧直到对准
+  let tries = 0;
+  const align = () => {
+    const off = target.getBoundingClientRect().top - box.getBoundingClientRect().top - 16;
+    if (Math.abs(off) > 4 && tries++ < 12) {
+      box.scrollTop += off;
+      requestAnimationFrame(align);
+    }
+  };
+  align();
   target.classList.add('hl');
   setTimeout(() => target.classList.remove('hl'), 1800);
 }

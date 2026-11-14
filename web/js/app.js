@@ -1,6 +1,7 @@
 // 入口：路由、侧栏、发现 / 检索 / 收藏 / 历史 / 设置
 import { ME, aiLabel, openAiAccess, refreshMe } from './access.js';
 import { api } from './api.js';
+import { openLook } from './look.js';
 import { openFavorite } from './favorite.js';
 import { renderReader, leaveReader } from './reader.js';
 import {
@@ -41,11 +42,11 @@ function renderSidebar() {
     <a class="nav-item ${isOn('/library')}" href="#/library">${icon('bookmark')}<span class="nav-label">收藏夹</span></a>
     <a class="nav-item ${isOn('/history')}" href="#/history">${icon('clock')}<span class="nav-label">阅读记录</span></a>
     <div class="sidebar-bottom">
-      <button class="nav-item opt" data-theme-toggle title="切换深浅色">${icon(dark ? 'sun' : 'moon')}<span class="nav-label">${dark ? '浅色模式' : '深色模式'}</span></button>
+      <button class="nav-item opt" data-look title="外观：纸张颜色、字号、深浅色">${icon('palette')}<span class="nav-label">外观</span></button>
       <button class="nav-item" data-nav-ai title="AI 设置：${esc(lab.text)}">${icon('sparkles')}<span class="nav-label">AI 设置</span><span class="count ${lab.cls === 'ok' ? 'ai-on' : ''}">${ME.owner ? '站长' : lab.cls === 'ok' ? '自有' : '未开启'}</span></button>
       ${ME.owner ? `<button class="nav-item" data-settings title="服务器设置">${icon('sliders')}<span class="nav-label">设置</span></button>` : ''}
     </div>`;
-  $('[data-theme-toggle]', sb).onclick = () => setTheme(dark ? 'light' : 'dark');
+  $('[data-look]', sb).onclick = e => openLook(e.currentTarget, 'right');
   $('[data-nav-ai]', sb).onclick = () => openAiAccess();
   const st = $('[data-settings]', sb);
   if (st) st.onclick = openSettings;
@@ -611,4 +612,5 @@ document.addEventListener('keydown', e => {
   }
 });
 window.addEventListener('me-changed', renderSidebar);
+window.addEventListener('look-changed', renderSidebar);
 refreshMe().then(route);

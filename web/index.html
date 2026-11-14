@@ -9,8 +9,12 @@
   (function () {
     var t = null;
     try { t = localStorage.getItem('theme'); } catch (e) {}
-    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', t);
+    try {
+      document.documentElement.setAttribute('data-paper', localStorage.getItem('paper') || 'white');
+      document.documentElement.setAttribute('data-fs', localStorage.getItem('fontSize') || 'm');
+    } catch (e) {}
   })();
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">

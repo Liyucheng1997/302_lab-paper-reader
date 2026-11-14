@@ -444,12 +444,15 @@ def fulltext_get(pid):
         return None
     if time.time() - (row["created"] or 0) > 86400:
         x("UPDATE fulltext SET created=? WHERE paper_id=?", (time.time(), pid))  # 记录最近使用，清理时保留常用的
-    return {"source": row["source"], "blocks": json.loads(row["blocks"])}
+    data = json.loads(row["blocks"])
+    if isinstance(data, dict):  # 第 2 版起带解析版本号
+        return {"source": row["source"], "blocks": data["blocks"], "v": data.get("v", 1)}
+    return {"source": row["source"], "blocks": data, "v": 1}
 
 
-def fulltext_set(pid, source, blocks):
+def fulltext_set(pid, source, blocks, v=2):
     x("INSERT OR REPLACE INTO fulltext(paper_id,source,blocks,created) VALUES(?,?,?,?)",
-      (pid, source, json.dumps(blocks, ensure_ascii=False), time.time()))
+      (pid, source, json.dumps({"v": v, "blocks": blocks}, ensure_ascii=False), time.time()))
 
 
 def dismiss(uid, pid):

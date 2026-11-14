@@ -10,6 +10,7 @@ from html.parser import HTMLParser
 from . import config, net, store
 
 PDF_DIR = config.DATA_DIR / "pdf"
+FT_VERSION = 2  # 2：arXiv HTML 带行间公式
 
 
 # ---------------- arXiv HTML ----------------
@@ -29,6 +30,10 @@ class _ArxivHTML(HTMLParser):
         self.math = 0
         self.in_abstract = False
         self.cites = 0
+        self.eq = 0          # 在行间公式表格（ltx_equation）里的嵌套层数
+        self.eq_parts = []   # 公式 LaTeX
+        self.eq_tag = []     # 公式编号，如 (3)
+        self.in_eq_tag = 0
 
     def _flush(self):
         text = re.sub(r"\s+", " ", "".join(self.buf)).strip()
@@ -47,6 +52,22 @@ class _ArxivHTML(HTMLParser):
         if self.skip:
             if tag == self._skip_tag:
                 self.skip += 1
+            return
+        # 行间公式：arXiv 用 <table class="ltx_equation"> 排版，不能当普通表格跳过
+        if self.eq:
+            if tag == "table":
+                self.eq += 1
+            elif tag == "math":
+                alt = (a.get("alttext") or "").strip()
+                if alt:
+                    self.eq_parts.append(alt)
+                self.math += 1
+            elif "ltx_tag_equation" in classes or "ltx_tag" in classes:
+                self.in_eq_tag += 1
+            return
+        if tag == "table" and classes & {"ltx_equation", "ltx_equationgroup", "ltx_eqn_table"}:
+            self._flush()
+            self.eq, self.eq_parts, self.eq_tag = 1, [], []
             return
         if tag in self.SKIP or any(k in classes for k in ("ltx_bibliography", "ltx_authors", "ltx_page_footer",
                                                          "ltx_role_footnote", "ltx_note", "ltx_tag_note")):
@@ -76,6 +97,17 @@ class _ArxivHTML(HTMLParser):
             if tag == self._skip_tag:
                 self.skip -= 1
             return
+        if self.eq:
+            if tag == "math":
+                self.math = max(0, self.math - 1)
+            elif tag == "span" and self.in_eq_tag:
+                self.in_eq_tag -= 1
+            elif tag == "table":
+                self.eq -= 1
+                if self.eq == 0 and self.eq_parts:
+                    num = re.sub(r"\s+", "", "".join(self.eq_tag))
+                    self.blocks.append({"t": "eq", "x": " \\\\ ".join(self.eq_parts), "n": num[:12]})
+            return
         if tag == "math":
             self.math = max(0, self.math - 1)
             return
@@ -83,6 +115,10 @@ class _ArxivHTML(HTMLParser):
             self._flush()
 
     def handle_data(self, data):
+        if self.eq:
+            if self.in_eq_tag and not self.math:
+                self.eq_tag.append(data)
+            return
         if self.skip or self.math:
             return
         if self.mode is None:
@@ -221,7 +257,7 @@ def get(paper, force=False):
     pid = paper["id"]
     if not force:
         cached = store.fulltext_get(pid)
-        if cached:
+        if cached and (cached["source"] != "arxiv-html" or cached.get("v", 1) >= FT_VERSION):
             return cached
     errors = []
     blocks, source = None, None
@@ -253,6 +289,8 @@ def as_text(ft, limit):
             parts.append("\n" + "#" * (b.get("lv", 1) + 1) + " " + b["x"])
         elif b["t"] == "p":
             parts.append(b["x"])
+        elif b["t"] == "eq":
+            parts.append(f"$${b['x']}$$ {b.get('n') or ''}".rstrip())
         elif b["t"] == "page":
             parts.append(f"[第 {b['n']} 页]")
     text = "\n".join(parts)
