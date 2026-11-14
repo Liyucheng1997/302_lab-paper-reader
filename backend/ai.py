@@ -147,7 +147,7 @@ def _do_probe():
     except Exception:  # noqa: BLE001
         return {"ok": False, "bin": b, "plan": None, "reason": "Claude Code 打不开（检查不了登录状态）"}
     if not s.get("loggedIn"):
-        return {"ok": False, "bin": b, "plan": None, "reason": "本机 Claude Code 还没登录"}
+        return {"ok": False, "bin": b, "plan": None, "reason": "本机 Claude Code 还没登录（在 .env 配置 CLAUDE_CODE_OAUTH_TOKEN，或运行 claude 后 /login）"}
     if "api" in (s.get("authMethod") or "").lower() or s.get("apiKeySource"):
         return {"ok": False, "bin": b, "plan": None, "reason": "本机 Claude Code 登录的是 API key，不是订阅"}
     return {"ok": True, "bin": b, "plan": s.get("subscriptionType"), "reason": ""}

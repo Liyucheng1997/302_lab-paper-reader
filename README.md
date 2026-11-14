@@ -119,7 +119,7 @@ sudo mkdir -p /opt/apps/paper && sudo chown ubuntu:ubuntu /opt/apps/paper
 4. 域名：DNS 加 `paper.liyucheng.me` 指向服务器；`deploy/nginx-paper.conf` 拷到 `/etc/nginx/sites-available/` 并链接到 `sites-enabled/`，`sudo nginx -t && sudo systemctl reload nginx && sudo certbot --nginx -d paper.liyucheng.me`
 5. 推送一次（或在 Actions 里手动运行）完成首次部署，然后设置站长密码：`cd /opt/apps/paper && .venv/bin/python scripts/set_password.py`
 
-服务器上的 Claude Code 和 NJJ 共用同一个 ubuntu 账号的登录（`claude auth status` 能看到 `loggedIn: true` 即可），不用再配置。
+站长的 AI 和 NJJ 一样走 Claude 订阅：服务器上 `claude setup-token` 生成的长期 token 写在 `/opt/apps/paper/.env` 的 `CLAUDE_CODE_OAUTH_TOKEN`（与 NJJ 的 `.env` 共用同一个，文件权限 600），`claude -p` 从环境变量读取。token 过期后重新运行 `claude setup-token`，把两个 `.env` 里的值都换掉并重启 `app-paper`、`app-njj`。
 
 常用命令（在服务器上）：
 
